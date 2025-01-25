@@ -10,10 +10,13 @@ import ResidentialProject from '../pages/ResidentialProject';
 import Team from '../pages/Team';
 import Contact from '../pages/Contact';
 import NotFound from '../pages/NotFound';
+import Navbar from '../components/Navbar/Navbar';
+import Footer from '../components/Footer/Footer';
 
 const AppRouter = () => {
     return (
         <Router>
+            <Navbar />
             <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/about" element={<AboutUs />} />
@@ -25,6 +28,7 @@ const AppRouter = () => {
                 <Route path="/contact" element={<Contact />} />
                 <Route path="*" element={<NotFound />} />
             </Routes>
+            <Footer />
         </Router>
     );
 };
