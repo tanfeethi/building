@@ -6,7 +6,7 @@ function App() {
 
   return (
     <>
-      <Button name={"Learn more"}/>
+      {/* <Button name="Learn more"/> */}
       <AppRouter />
     </>
   )
