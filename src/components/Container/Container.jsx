@@ -1,11 +1,9 @@
 import React from 'react'
 
-const Container = ({ image, title, description }) => {
+const Container = ({children}) => {
     return (
-        <div>
-            <img src={image} alt={image} />
-            <h1>{title}</h1>
-            <h1>{description}</h1>
+        <div className='max-w-7xl mx-auto'>
+            {children}
         </div>
     )
 }
