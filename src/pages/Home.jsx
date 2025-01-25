@@ -11,8 +11,8 @@ const Home = () => {
         // className='mx-auto max-w-7xl'
         >
             {/* <Footer /> */}
-            <Hero />
             <AboutUs />
+            <Hero />
             <Sponsors />
             <Expertise />
             {/* Home */}
