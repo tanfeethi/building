@@ -1,11 +1,15 @@
 import React from 'react'
-import Hero2 from '../components/Hero2/Hero2'
+import Projects from '../components/Projects/Projects'
+import ContactSection from '../assets/ContactSection.png'
+import Container from '../components/Container/Container'
+
 
 const Services = () => {
     return (
-        <div>
-            <Hero2 />
-        </div>
+        <Container>
+            <img src={ContactSection} className='w-full' alt="Contact Us" />
+            <Projects />
+        </Container>
     )
 }
 
