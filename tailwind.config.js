@@ -10,11 +10,11 @@ module.exports = {
         '20vh': '20vh',
       },
     colors: {
-      'text-primary': '#1F69B3',
+      'text-primary': '#206AB3',
       'text-black': '#000000',
-      'text-grey': '#939598',
-      'text-primary-dark': '#042b7e',
-      'text-dark': '#133649',
+      'text-grey': '#929497',
+      'text-primary-dark': '#0A1E29',
+      'text-dark': '#042B7E',
       'text-grey-hover': '#e8e9ea',
       'text-white': '#ffffff'
     },
