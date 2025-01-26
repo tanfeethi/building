@@ -1,89 +1,105 @@
 import React from "react";
-import { FiMail, FiPhone } from "react-icons/fi";
-import { FaTwitter, FaInstagram, FaWhatsapp } from "react-icons/fa";
 import logo from "../../assets/logo.png";
+import { FaWhatsapp, FaInstagram, FaEnvelope, FaPhoneAlt } from "react-icons/fa";
+import { MdLocationOn } from "react-icons/md";
+import Container from "../Container/Container";
 
 const Footer = () => {
     return (
-        <footer className="bg-text-white py-8">
-            <div className="max-w-7xl mx-auto flex flex-col lg:flex-row justify-between items-start lg:items-center text-text-dark">
-                <div className="lg:w-1/3 mb-8 lg:mb-0">
-                    <img src={logo} alt="BRU.co Logo" className="mb-4 h-10 lg:h-14 sm:h-14" />
-                    <p className="text-small leading-6 mb-4">
-                        Founded in 2000, Marj' Al-Banai United is a Saudi construction company offering civil, architectural, electromechanical services, and project management, committed to quality and the Saudi Building Code.
-                    </p>
-                    <div className="flex gap-4">
-                        <a href="#" className="text-text-primary hover:text-text-primary-dark text-xl">
-                            <FaTwitter />
-                        </a>
-                        <a href="#" className="text-text-primary hover:text-text-primary-dark text-xl">
-                            <FaInstagram />
-                        </a>
-                        <a href="#" className="text-text-primary hover:text-text-primary-dark text-xl">
-                            <FaWhatsapp />
-                        </a>
+        <div className="bg-text-primary text-white py-8 px-4">
+        <Container>
+            <div className="flex flex-col md:flex-row justify-between items-start">
+
+                <div className="w-full md:w-1/2 mt-8 md:mt-0 flex flex-col items-start">
+                    <div className="flex items-center space-x-6">
+                        <img src={logo} alt="Logo" className="w-24 h-auto mb-4" />
                     </div>
-                </div>
-
-                <div className="lg:w-1/3 mb-8 lg:mb-0">
-                    <h3 className="font-medium text-medium mb-4">Company</h3>
-                    <ul className="space-y-2">
-                        <li>
-                            <a href="#" className="text-text-dark hover:text-text-primary">
-                                About Us
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" className="text-text-dark hover:text-text-primary">
-                                Our Services
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" className="text-text-dark hover:text-text-primary">
-                                Our Projects
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" className="text-text-dark hover:text-text-primary">
-                                Our Team
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-
-                {/* Contact and Location Info */}
-                <div className="lg:w-1/3 flex flex-col lg:flex-row justify-between lg:items-start">
-                    {/* Contact Us */}
-                    <div className="lg:w-1/2 mb-8 lg:mb-0">
-                        <h3 className="font-medium text-medium mb-4">Contact Us</h3>
+                    <div className="space-y-2 mb-4">
                         <ul className="space-y-2">
-                            <li>
-                                <a href="mailto:info@bru.com.sa" className="flex items-center text-text-dark hover:text-text-primary">
-                                    <FiMail className="mr-2 text-lg" /> info@bru.com.sa
-                                </a>
-                            </li>
-                            <li>
-                                <a href="tel:0552311322" className="flex items-center text-text-dark hover:text-text-primary">
-                                    <FiPhone className="mr-2 text-lg" /> 0552311322
-                                </a>
-                            </li>
+                            <li className="cursor-pointer hover:underline">من نحن</li>
+                            <li className="cursor-pointer hover:underline">خدماتنا</li>
+                            <li className="cursor-pointer hover:underline">أعمالنا</li>
+                            <li className="cursor-pointer hover:underline">فريقنا</li>
                         </ul>
                     </div>
-
-                    {/* Location */}
-                    <div className="lg:w-1/2">
-                        <h3 className="font-medium text-medium mb-4">Location</h3>
-                        <p className="text-small">Jeddah, Al-Batarji Street, Al-Zahra District</p>
-                        <div className="mt-4">
-                            <img src="/path-to-map.png" alt="Map" className="rounded-2xl" />
-                        </div>
+                    <div className="space-y-2 mb-4">
+                        <p className="flex items-center">
+                            <FaEnvelope className="mr-2" /> info@bru.com.sa
+                        </p>
+                        <p className="flex items-center">
+                            <FaPhoneAlt className="mr-2" /> 0552311322
+                        </p>
+                        <p className="flex items-center">
+                            <MdLocationOn className="mr-2" /> جدة شارع البترجي حي الزهراء
+                        </p>
+                    </div>
+                    <div className="flex space-x-4 rtl:space-x-reverse">
+                        <span className="bg-white text-text-primary px-2 py-1 rounded cursor-pointer">EN</span>
+                        <FaWhatsapp className="w-6 h-6 cursor-pointer hover:text-gray-300" />
+                        <FaInstagram className="w-6 h-6 cursor-pointer hover:text-gray-300" />
                     </div>
                 </div>
+
+                <div className="w-full md:w-1/2 text-end flex flex-col space-y-6">
+                    <h2 className="text-xlarge mb-4">كن على تواصل معنا</h2>
+                    <form className="space-y-4">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <label className="block mb-1">الاسم كاملاً</label>
+                                <input
+                                    type="text"
+                                    className="w-full p-2 rounded bg-transparent border border-text-white text-text-primary"
+                                />
+                            </div>
+                            <div>
+                                <label className="block mb-1">البريد الإلكتروني</label>
+                                <input
+                                    type="email"
+                                    className="w-full p-2 rounded bg-transparent border border-text-white text-text-primary"
+                                />
+                            </div>
+                        </div>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <label className="block mb-1">رقم الهاتف</label>
+                                <input
+                                    type="text"
+                                    className="w-full p-2 rounded bg-transparent border border-text-white text-text-primary"
+                                />
+                            </div>
+                            <div>
+                                <label className="block mb-1">موضوع الرسالة</label>
+                                <input
+                                    type="text"
+                                    className="w-full p-2 rounded bg-transparent border border-text-white text-text-primary"
+                                />
+                            </div>
+                        </div>
+                        <div>
+                            <label className="block mb-1">تفاصيل الخدمة / الاستفسار</label>
+                            <textarea
+                                className="w-full p-2 rounded bg-transparent border border-text-white text-text-primary"
+                            ></textarea>
+                        </div>
+                        <div>
+                            <label className="block mb-1">رقم التحقق</label>
+                            <input
+                                type="text"
+                                className="w-full p-2 rounded text-text-primary bg-transparent border border-text-white"
+                            />
+                        </div>
+                        <button
+                            type="submit"
+                            className="bg-white text-text-primary px-4 py-2 rounded hover:bg-text-grey-hover"
+                        >
+                            إرسال
+                        </button>
+                    </form>
+                </div>
             </div>
-            <div className="text-center mt-8 text-text-grey text-small">
-                &copy; 2025 Building Reference United Company. All rights reserved.
-            </div>
-        </footer>
+        </Container>
+
+        </div>
     );
 };
 
