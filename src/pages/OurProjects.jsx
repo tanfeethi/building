@@ -7,7 +7,7 @@ import Projects2 from '../components/Projects/Projects2'
 const OurProjects = () => {
     return (
         <Container>
-            <img src={ContactSection} className='w-full' alt="Contact Us" />
+            <img src={ContactSection} className='w-full my-2xl mb-5xl' alt="Contact Us" />
             <Projects2 />
         </Container>
     )
