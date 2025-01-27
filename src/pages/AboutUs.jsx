@@ -6,7 +6,7 @@ import AboutUs2 from '../components/AboutUs/AboutUs2'
 const AboutUs = () => {
     return (
         <Container>
-            <img src={ContactSection} className='w-full' alt="Contact Us" />
+            <img src={ContactSection} className='w-full my-2xl mb-5xl' alt="Contact Us" />
             <AboutUs2 />
         </Container>
     )
