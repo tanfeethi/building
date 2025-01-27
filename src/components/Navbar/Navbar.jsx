@@ -24,7 +24,7 @@ const Navbar = () => {
                         </div>
 
                         <div className="flex justify-center lg:justify-start">
-                            <img src={logo} alt="Logo" className="h-10 lg:h-14 sm:h-14" />
+                            <img src={logo} alt="Logo" className="h-32" />
                         </div>
 
                         <div className="hidden lg:flex space-x-8">
