@@ -1,46 +1,90 @@
-import React from 'react';
-import Container from '../Container/Container';
+import React from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/swiper-bundle.css";
+// import { Navigation, Pagination, Autoplay } from "swiper";
 
 const Testimonials = () => {
     const testimonials = [
         {
-            name: "عبد العزيز اليعقوب",
+            name: "عبدالعزيز اليعقوب",
             title: "مصمم داخلي",
-            quote: "كنت أعمل مع فريق مرجاني، وقد أعجبني كثيرًا أسلوبهم في العمل. كانوا دائمًا ملتزمين بالمواعيد.",
-            image: "path_to_image_1", // Add the path to the image for عبد العزيز
+            quote: "كنت قلقًا بشأن الانتهاء من المشروع في الوقت المحدد، ولكنكم تجاوزتم التوقعات وأنهيتم العمل قبل الموعد المحدد. بارك الله فيكم.",
+            image: "path_to_image_1",
         },
         {
             name: "Pedro",
             title: "Engineer",
-            quote: "The team was very professional and delivered great results. Highly recommended!",
-            image: "path_to_image_2", // Add the path to the image for Pedro
+            quote: "من أقوى المقاولين في جدة، مع خبرة تقارب 20 عامًا في بناء الخرسانة المسلحة.",
+            image: "path_to_image_2",
         },
         {
             name: "Sera",
             title: "Engineer",
-            quote: "I appreciated their attention to detail and commitment to quality. Excellent service!",
-            image: "path_to_image_3", // Add the path to the image for Sera
+            quote: "كنت قلقًا بشأن الانتهاء من المشروع في الوقت المحدد، ولكنكم تجاوزتم التوقعات وأنهيتم العمل قبل الموعد المحدد. بارك الله فيكم.",
+            image: "path_to_image_3",
+        },
+        {
+            name: "Ali",
+            title: "مهندس مدني",
+            quote: "عمل رائع وخدمة ممتازة، بالتأكيد أوصي بهم لأي مشروع كبير.",
+            image: "path_to_image_4",
+        },
+        {
+            name: "Lina",
+            title: "مهندسة معمارية",
+            quote: "الاحترافية في التعامل جعلتني أشعر بالراحة طوال فترة المشروع.",
+            image: "path_to_image_5",
         },
     ];
 
     return (
-        <Container className="p-8 bg-gray-100">
-            <h2 className="text-center text-text-primary text-3xl font-bold mb-8">شهادات العملاء</h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                {testimonials.map((testimonial, index) => (
-                    <div key={index} className="bg-white rounded-lg shadow-lg p-6 flex flex-col items-center">
-                        <p className="text-gray-600 text-lg italic mb-4">"{testimonial.quote}"</p>
-                        <div className="flex items-center mt-4">
-                            <img src={testimonial.image} alt={testimonial.name} className="w-16 h-16 rounded-full border-2 border-blue-500" />
-                            <div className="ml-4 text-center">
-                                <h4 className="text-text-primary font-semibold">{testimonial.name}</h4>
-                                <p className="text-gray-500">{testimonial.title}</p>
+        <div className="bg-gray-900 py-16">
+            <h2 className="text-center text-white text-3xl font-bold mb-12">
+                شهادات العملاء
+            </h2>
+            <div className="container mx-auto">
+                <Swiper
+                    // modules={[Navigation, Pagination, Autoplay]}
+                    spaceBetween={30}
+                    slidesPerView={3}
+                    // navigation
+                    // pagination={{ clickable: true }}
+                    // autoplay={{ delay: 3000, disableOnInteraction: false }}
+                    loop={true}
+                >
+                    {testimonials.map((testimonial, index) => (
+                        <SwiperSlide key={index}>
+                            <div className="flex flex-col items-center">
+                                <div className="bg-white rounded-lg shadow-lg p-8 relative text-center">
+                                    <div className="absolute -top-6 left-1/2 transform -translate-x-1/2">
+                                        <span className="text-6xl text-gray-300 font-bold">“</span>
+                                    </div>
+                                    <p className="text-gray-600 text-lg mb-8">{testimonial.quote}</p>
+                                    <h4 className="text-gray-800 font-semibold">{testimonial.name}</h4>
+                                    <p className="text-gray-500">{testimonial.title}</p>
+
+                                    <div
+                                        className="absolute -bottom-3 left-1/2 transform -translate-x-1/2 w-0 h-0"
+                                        style={{
+                                            borderLeft: "10px solid transparent",
+                                            borderRight: "10px solid transparent",
+                                            borderTop: "10px solid white",
+                                        }}
+                                    ></div>
+                                </div>
+                                <div className="mt-6">
+                                    <img
+                                        src={testimonial.image}
+                                        alt={testimonial.name}
+                                        className="w-16 h-16 rounded-full border-2 border-gray-800"
+                                    />
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                ))}
+                        </SwiperSlide>
+                    ))}
+                </Swiper>
             </div>
-        </Container>
+        </div>
     );
 };
 
