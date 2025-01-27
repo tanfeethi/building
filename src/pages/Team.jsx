@@ -1,12 +1,15 @@
 import React from 'react'
 import ContactSection from '../assets/ContactSection.png'
-import Container from '../components/Container/Container'
+import OurTeam from '../components/OurTeam/OurTeam'
+import TeamDetails from '../components/TeamDetails/TeamDetails'
 
 const Team = () => {
     return (
-        <Container>
+        <div>
             <img src={ContactSection} className='w-full' alt="Contact Us" />
-        </Container>
+            <OurTeam />
+            <TeamDetails />
+        </div>
     )
 }
 
