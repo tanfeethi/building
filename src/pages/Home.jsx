@@ -4,6 +4,7 @@ import Expertise from '../components/Expertise/Expertise'
 import AboutUs from '../components/AboutUs/AboutUs'
 import Services from '../components/Services/Services'
 import Testimonials from '../components/Testimoinals/Testimonials'
+import Timeline from '../components/Timeline/Timeline'
 
 const Home = () => {
     return (
@@ -14,7 +15,8 @@ const Home = () => {
             <AboutUs />
             <Services />
             <Expertise />
-            <Testimonials />
+            <Timeline />
+            {/* <Testimonials /> */}
             {/* Home */}
         </div>
     )
