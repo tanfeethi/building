@@ -1,6 +1,6 @@
 import React from 'react';
 import Container from '../Container/Container';
-import servicesPhoto1 from '../../assets/servicesPhoto1.png'; // Use the same photo temporarily
+import servicesPhoto1 from '../../assets/servicesPhoto1.png';
 import Button from '../Buttons/Button';
 
 const Projects = () => {
