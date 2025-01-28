@@ -14,7 +14,7 @@ const Navbar = () => {
             <div>
                 <Container>
                     <div className="flex items-center justify-between h-24">
-                        <div className="lg:hidden flex items-center">
+                        <div className="2xl:hidden xl:hidden lg:hidden flex items-center">
                             <button
                                 className="text-text-primary text-2xl"
                                 onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -27,7 +27,7 @@ const Navbar = () => {
                             <img src={logo} alt="Logo" className="h-32" />
                         </div>
 
-                        <div className="hidden lg:flex space-x-8">
+                        <div className="hidden 2xl:flex xl:flex lg:flex space-x-8">
                             <a
                                 href="/"
                                 className={`${isActive("/") ? "text-text-primary font-bold" : "text-text-grey font-medium"
