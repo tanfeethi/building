@@ -6,7 +6,7 @@ const Services = () => {
     return (
         <Container>
             <h2 className="text-text-primary text-large font-bold mb-8 text-end">خدماتنا</h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 2xl:grid-cols-3 xl:grid-cols-3 lg:grid-cols-3 gap-8">
 
                 <div className="relative rounded-lg overflow-hidden shadow-lg group">
                     <img src={servicesPhoto1} alt="Service 1" className="w-full h-96 object-cover" />
