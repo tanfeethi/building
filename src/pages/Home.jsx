@@ -7,12 +7,14 @@ import Testimonials from '../components/Testimoinals/Testimonials'
 import Timeline from '../components/Timeline/Timeline'
 import Experience from '../components/Experience/Experience'
 import PriceSection from '../components/Price/Price'
+import Hero from '../components/Hero/Hero'
 
 const Home = () => {
     return (
         <div 
         // className='mx-auto max-w-7xl'
         >
+            <Hero />
             <AboutUs />
             <Experience />
             <Services />
