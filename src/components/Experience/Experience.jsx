@@ -1,92 +1,54 @@
-import React from 'react';
-import Container from "../Container/Container";
+import React from "react";
 import servicesPhoto1 from '../../assets/servicesPhoto1.png';
+import Container from "../Container/Container";
 
-const Experience = () => {
+const ExperienceSection = () => {
+    const experiences = [
+        { image: servicesPhoto1, text: "239+", description: null },
+        { image: servicesPhoto1, text: "49+", description: null },
+        { image: servicesPhoto1, text: "21+", description: null },
+        { image: servicesPhoto1, text: "3+", description: "أنشطة ومجالات" },
+    ];
+
     return (
-        <Container>
-            <h2 className="text-text-primary text-large font-bold text-center mb-8">الخبرة تجعلنا واثقين</h2>
-            <p className="text-text-black text-medium text-center mb-12">
-                أكثر من 20 عامًا من الخبرة في تقديم خدمات المقاولات بجودة واحترافية، لنكون شريكك الموثوق في تنفيذ المشاريع.
-            </p>
-            <div className="flex justify-center gap-8 flex-wrap">
-
-                {/* العنصر الأول */}
-                <div className="relative">
-                    <img
-                        src={servicesPhoto1}
-                        className="w-[286px] h-[596px] object-cover"
-                        style={{
-                            clipPath: "polygon(0 0, 85% 0%, 100% 100%, 0 100%)",
-                        }}
-                        alt="servicesPhoto1"
-                    />
-                    <div
-                        style={{
-                            clipPath: "polygon(0 0, 85% 0%, 100% 100%, 0 100%)",
-                        }}
-                        className="absolute w-[286px] h-[596px] top-0 left-0 right-0 bottom-0 flex items-center justify-center bg-text-dark bg-opacity-50">
-                        <h4 className="text-white text-3xl font-bold">+239</h4>
-                    </div>
+        <Container >
+            <div className=" py-10 text-end">
+                <h2 className="text-2xl font-bold text-blue-900 mb-4">الخبرة تجعلنا واثقين</h2>
+                <p className="text-gray-600 mb-10">
+                    أكثر من 20 عامًا من الخبرة في تقديم خدمات المقاولات بجودة وإتقان.
+                </p>
+                <div className="flex flex-wrap justify-center gap-6">
+                    {experiences.map((item, index) => (
+                        <div
+                            key={index}
+                            className={`relative ${item.text === "3+" ? "w-64 h-[596px]" : "w-52 h-[296px]"
+                                } bg-blue-900 text-white flex flex-col justify-end items-center`}
+                            style={{
+                                clipPath:
+                                    item.text === "3+"
+                                        ? "polygon(0 0, 100% 60%, 100% 100%, 0 100%)"
+                                        : "polygon(0 0, 100% 70%, 100% 100%, 0 100%)",
+                            }}
+                        >
+                            <div className="absolute inset-0 w-full h-full z-0">
+                                <img
+                                    src={item.image}
+                                    alt={item.description || "Experience Image"}
+                                    className="w-full h-full object-cover"
+                                />
+                            </div>
+                            <div className="relative z-10 p-4 bg-blue-900 opacity-80 w-full h-full flex items-center justify-center flex-col">
+                                <p className="text-4xl font-bold">{item.text}</p>
+                                {item.description && (
+                                    <p className="text-lg mt-2">{item.description}</p>
+                                )}
+                            </div>
+                        </div>
+                    ))}
                 </div>
-
-                <div className="relative">
-                    <img
-                        src={servicesPhoto1}
-                        className="w-[286px] h-[296px] object-cover"
-                        style={{
-                            clipPath: "polygon(0 0, 100% 70%, 100% 100%, 0 100%)",
-                        }}
-                        alt="servicesPhoto1"
-                    />
-                    <div
-                        style={{
-                            clipPath: "polygon(0 0, 100% 70%, 100% 100%, 0 100%)",
-                        }}
-                        className="absolute w-[286px] h-[296px] top-0 left-0 right-0 bottom-0 flex items-center justify-center bg-text-dark bg-opacity-50">
-                        <h4 className="text-white text-3xl font-bold">+49</h4>
-                    </div>
-                </div>
-
-                <div className="relative">
-                    <img
-                        src={servicesPhoto1}
-                        className="w-[286px] h-[296px] object-cover"
-                        style={{
-                            clipPath: "polygon(0 0, 100% 70%, 100% 100%, 0 100%)",
-                        }}
-                        alt="servicesPhoto1"
-                    />
-                    <div
-                        style={{
-                            clipPath: "polygon(0 0, 100% 70%, 100% 100%, 0 100%)",
-                        }}
-                        className="absolute w-[286px] h-[296px] top-0 left-0 right-0 bottom-0 flex items-center justify-center bg-text-dark bg-opacity-50">
-                        <h4 className="text-white text-3xl font-bold">+21</h4>
-                    </div>
-                </div>
-
-                <div className="relative">
-                    <img
-                        src={servicesPhoto1}
-                        className="w-[286px] h-[296px] object-cover"
-                        style={{
-                            clipPath: "polygon(0 0, 100% 70%, 100% 100%, 0 100%)",
-                        }}
-                        alt="servicesPhoto1"
-                    />
-                    <div
-                        style={{
-                            clipPath: "polygon(0 0, 100% 70%, 100% 100%, 0 100%)",
-                        }}
-                        className="absolute w-[286px] h-[296px] top-0 left-0 right-0 bottom-0 flex items-center justify-center bg-text-dark bg-opacity-50">
-                        <h4 className="text-white text-3xl font-bold">+3</h4>
-                    </div>
-                </div>
-
             </div>
         </Container>
     );
 };
 
-export default Experience;
+export default ExperienceSection;
