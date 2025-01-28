@@ -13,7 +13,7 @@ const ExperienceSection = () => {
     return (
         <Container >
             <div className=" py-10 text-end">
-                <h2 className="text-2xl font-bold text-blue-900 mb-4">الخبرة تجعلنا واثقين</h2>
+                <h2 className="text-2xl font-bold text-text-primary mb-4">الخبرة تجعلنا واثقين</h2>
                 <p className="text-gray-600 mb-10">
                     أكثر من 20 عامًا من الخبرة في تقديم خدمات المقاولات بجودة وإتقان.
                 </p>
