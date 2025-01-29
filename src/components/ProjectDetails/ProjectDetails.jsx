@@ -29,14 +29,12 @@ const ProjectDetails = () => {
     return (
         <div>
             <Container>
-                <img src={ProjectDetail} alt="ProjectDetail" />
-                {/* Project Title and Type */}
+                <img src={ProjectDetail} className="w-full" alt="ProjectDetail" />
                 <div className="text-center py-6">
                     <h1 className="text-4xl font-bold text-gray-800">{project.title}</h1>
                     <p className="text-lg text-gray-600 mt-2">{project.type || "غير متوفر"}</p>
                 </div>
 
-                {/* Slider Section */}
                 <div className="relative w-full md:w-[842px] mx-auto h-[500px] overflow-hidden rounded-2xl shadow-lg mb-10">
                     {project.images.length > 0 ? (
                         <img
@@ -49,7 +47,6 @@ const ProjectDetails = () => {
                             لا توجد صور متوفرة
                         </div>
                     )}
-                    {/* Slider Controls */}
                     {project.images.length > 1 && (
                         <>
                             {/* Left Arrow */}
