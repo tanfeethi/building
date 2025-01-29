@@ -1,32 +1,33 @@
-import React, { useRef } from "react";
+import React from "react";
 import { motion } from "framer-motion";
+import { useTranslation } from "react-i18next";
 import Container from "../Container/Container";
 import servicesPhoto1 from "../../assets/servicesPhoto1.png";
 
 const Service = () => {
-    const services = [
-        { id: 1, title: "الأعمال الإلكترونية", image: servicesPhoto1 },
-        { id: 2, title: "الإنشائيات", image: servicesPhoto1 },
-        { id: 3, title: "الأعمال المعمارية", image: servicesPhoto1 }
-    ];
+    const { t } = useTranslation();
+
+    // Fetch translated service titles
+    const services = t("servicesList", { returnObjects: true });
 
     return (
         <Container>
-            <h2 className="text-text-primary text-large font-bold mb-8 text-end">خدماتنا</h2>
+            <h2 className="text-text-primary text-large font-bold mb-8 text-end">
+                {t("services")}
+            </h2>
             
             <div className="grid grid-cols-1 2xl:grid-cols-3 xl:grid-cols-3 lg:grid-cols-3 gap-8">
-
-                {services.map((service) => (
+                {services.map((service, index) => (
                     <motion.div
-                        key={service.id}
+                        key={index}
                         className="relative rounded-lg overflow-hidden shadow-lg group w-full h-96 cursor-pointer bg-white"
                         initial={{ opacity: 0, y: 50 }}
                         whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}  // ✅ Ensures animation happens only on first view
+                        viewport={{ once: true }}  
                         transition={{ duration: 0.8, ease: "easeOut" }}
                     >
                         <motion.img
-                            src={service.image}
+                            src={servicesPhoto1}
                             alt={service.title}
                             className="absolute inset-0 w-full h-full object-cover opacity-0 scale-90 transition-all duration-500 ease-in-out group-hover:opacity-100 group-hover:scale-110"
                         />
@@ -40,7 +41,6 @@ const Service = () => {
                         </motion.div>
                     </motion.div>
                 ))}
-
             </div>
         </Container>
     );
