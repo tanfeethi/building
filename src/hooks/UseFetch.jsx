@@ -9,11 +9,10 @@ const useFetch = (url, options = {}, lang = "ar") => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch(`${api_url}/${url}`, {
+                const response = await fetch(`${api_url}/${url}?lang=${lang}`, { // Pass lang in params
                     headers: {
                         "Content-Type": "application/json",
                         "ngrok-skip-browser-warning": "true",
-                        Lang: lang,
                         ...options.headers,
                     },
                     ...options,
@@ -38,7 +37,7 @@ const useFetch = (url, options = {}, lang = "ar") => {
         };
 
         fetchData();
-    }, []);
+    }, [url, lang]); // Dependency added for lang
 
     return { data, loading, error };
 };
