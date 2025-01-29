@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import Container from "../Container/Container";
 import useFetch from "../../hooks/UseFetch";
 
@@ -29,13 +30,20 @@ const Hero = () => {
     return (
         <div className="w-full my-5xl flex justify-between">
             <div className="grid grid-cols-1 2xl:grid-cols-2 xl:grid-cols-2 lg:grid-cols-1 gap-8 w-full">
-
                 <div className="relative w-[842px] h-[500px] overflow-hidden">
-                    <img
-                        src={sliders[currentIndex]?.background}
-                        alt={sliders[currentIndex]?.title}
-                        className="w-full h-full object-cover rounded-2xl shadow-lg"
-                    />
+                    <AnimatePresence exitBeforeEnter>
+                        {/* Motion for background image */}
+                        <motion.img
+                            key={currentIndex} // This helps in animating the component on index change
+                            src={sliders[currentIndex]?.background}
+                            alt={sliders[currentIndex]?.title}
+                            className="w-full h-full object-cover rounded-2xl shadow-lg"
+                            initial={{ y: -500 }} // Start from below
+                            animate={{ y: 0 }}   // Move to original position
+                            exit={{ y: -500 }}   // Exit to top
+                            transition={{ type: "spring", stiffness: 100 }}
+                        />
+                    </AnimatePresence>
 
                     <div className="absolute bottom-4 left-4 flex space-x-4">
                         <button
@@ -53,8 +61,15 @@ const Hero = () => {
                     </div>
                 </div>
 
+                {/* Motion for content */}
                 <Container>
-                    <div className="text-right">
+                    <motion.div
+                        className="text-right"
+                        initial={{ y: -50, opacity: 0 }}
+                        animate={{ y: 0, opacity: 1 }}
+                        exit={{ y: -50, opacity: 0 }}
+                        transition={{ type: "spring", stiffness: 300 }}
+                    >
                         <h1 className="text-3xl font-bold text-text-primary">
                             {sliders[currentIndex]?.title}
                         </h1>
@@ -64,9 +79,8 @@ const Hero = () => {
                         <button className="mt-6 px-6 py-3 bg-text-primary text-white rounded-2xl hover:bg-opacity-80">
                             {sliders[currentIndex]?.btnTitle}
                         </button>
-                    </div>
+                    </motion.div>
                 </Container>
-
             </div>
         </div>
     );
