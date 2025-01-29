@@ -1,11 +1,25 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import Container from "../Container/Container";
 import useFetch from "../../hooks/UseFetch";
 import Aboutlogo from '../../assets/Aboutlogo.png';
+import { useTranslation } from "react-i18next"; // Import useTranslation
 
 const AboutUs2 = () => {
-    const { data, loading, error } = useFetch("api/frontend/staticPages", {}, "ar");
+    const { i18n } = useTranslation(); // Initialize i18n
+    const [lang, setLang] = useState(localStorage.getItem("language") || "ar"); // Ensure correct language on load
+    const { data, loading, error } = useFetch("api/frontend/staticPages", {}, lang);
+
+    useEffect(() => {
+        const storedLang = localStorage.getItem("language") || "ar";
+        if (i18n.language !== storedLang) {
+            i18n.changeLanguage(storedLang).then(() => {
+                setLang(storedLang);
+            });
+        } else {
+            setLang(storedLang); // Language was already correct
+        }
+    }, [i18n.language]);
 
     if (loading) return <div className="text-center">Loading...</div>;
     if (error) return <div className="text-center text-red-500">Error: {error}</div>;
@@ -20,13 +34,15 @@ const AboutUs2 = () => {
                 viewport={{ once: true }}
             >
                 <div className="2xl:w-1/2">
-                    <h2 className="text-text-primary text-3xl me-8 font-bold mb-4 text-center">من نحــــــن</h2>
+                    <h2 className="text-text-primary text-3xl me-8 font-bold mb-4 text-center">
+                        {i18n.language === "ar" ? "من نحــــــن" : "About Us"} {/* Dynamic Title */}
+                    </h2>
                     <p className='mt-xl flex justify-center text-medium items-center'>
-                        في عالم البناء  
+                        {i18n.language === "ar" ? "في عالم البناء" : "In the world of construction"}
                         <span className='mx-4'>
                             <img src={Aboutlogo} alt="Aboutlogo" />
                         </span>
-                        شركة مرجع المباني المتحدة
+                        {i18n.language === "ar" ? "شركة مرجع المباني المتحدة" : "United Buildings Reference Company"} {/* Dynamic Text */}
                     </p>
                 </div>
             </motion.div>
@@ -47,22 +63,22 @@ const AboutUs2 = () => {
                                 alt={section.title}
                                 className="w-full h-auto rounded-lg shadow-lg"
                                 initial={{ scale: 0 }}
-                                whileInView={{ scale: 1 ,}}
+                                whileInView={{ scale: 1 }}
                                 transition={{ duration: 0.8 }}
                             />
                         </div>
                         <div className="2xl:w-1/2 text-right my-xl">
                             <h2 className="text-text-primary text-3xl me-8 font-bold mb-4">
-                                {section.title}
+                                {section.title} {/* Static title, ensure it’s properly translated in the backend */}
                             </h2>
                             <motion.p
                                 className="text-text-primary-dark me-8"
-                                initial={{ opacity: 0 }}  // Start with opacity 0
-                                whileInView={{ opacity: 1 }}   // Fade in to full opacity when in view
+                                initial={{ opacity: 0 }}
+                                whileInView={{ opacity: 1 }}
                                 transition={{ duration: 1 }}
                                 viewport={{ once: true, amount: 0.2 }}
                             >
-                                {section.text}
+                                {section.text} {/* Static text, ensure it’s properly translated in the backend */}
                             </motion.p>
                         </div>
                     </motion.div>
