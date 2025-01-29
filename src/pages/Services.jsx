@@ -1,14 +1,24 @@
 import React from 'react'
 import Projects from '../components/Projects/Projects'
-import ContactSection from '../assets/ContactSection.png'
+import serviceHero from '../assets/serviceHero.jpg'
 import Container from '../components/Container/Container'
+import Timeline from '../components/Timeline/Timeline'
+import Testimonials from '../components/Testimoinals/Testimonials'
+import Expertise from '../components/Expertise/Expertise'
+import Service from '../components/Service/Service'
+import Footer from '../components/Footer/Footer'
 
 
 const Services = () => {
     return (
         <Container>
-            <img src={ContactSection} className='w-full' alt="Contact Us" />
+            <img src={serviceHero} className='w-full' alt="Contact Us" />
+            <Service />
             <Projects />
+            <Expertise />
+            <Testimonials />
+            <Timeline />
+            <Footer />
         </Container>
     )
 }

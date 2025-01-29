@@ -1,14 +1,18 @@
 import React from 'react'
-import ContactSection from '../assets/ContactSection.png'
+import aboutusSection2 from '../assets/aboutusSection2.png'
 import Container from '../components/Container/Container'
 import AboutUs2 from '../components/AboutUs/AboutUs2'
+import Footer from '../components/Footer/Footer'
 
 const AboutUs = () => {
     return (
-        <Container>
-            <img src={ContactSection} className='w-full my-2xl mb-5xl' alt="Contact Us" />
+        <div>
+            <Container>
+                <img src={aboutusSection2} className='w-full my-2xl mb-5xl' alt="Contact Us" />
+            </Container>
             <AboutUs2 />
-        </Container>
+            <Footer />
+        </div>
     )
 }
 

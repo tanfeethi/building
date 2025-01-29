@@ -57,6 +57,14 @@ const Navbar = () => {
                                 Our Projects
                             </a>
                             <a
+                                    href="/team"
+                                    className={`${isActive("/team") ? "text-text-primary font-bold" : "text-text-grey font-medium"
+                                        } text-medium`}
+                                    onClick={() => setIsMenuOpen(false)}
+                                >
+                                    Our Teams
+                                </a>
+                            <a
                                 href="/contact"
                                 className={`${isActive("/contact") ? "text-text-primary font-bold" : "text-text-grey font-medium"
                                     } text-medium hover:text-text-primary`}
@@ -66,17 +74,9 @@ const Navbar = () => {
                         </div>
 
                         <div className="flex items-center space-x-2">
-                            <div className="text-text-primary">
-                                <IoCallOutline className="w-6 h-6" />
-                            </div>
+
                             <div>
-                                <p className="text-text-grey text-small">Hotline</p>
-                                <a
-                                    href="tel:0552311322"
-                                    className="text-text-black font-bold text-medium hover:underline"
-                                >
-                                    0552311322
-                                </a>
+                                <p className="bg-text-primary px-4 py-4 rounded-md text-text-white cursor-pointer text-small">En</p>
                             </div>
                         </div>
                     </div>
@@ -116,6 +116,14 @@ const Navbar = () => {
                                     onClick={() => setIsMenuOpen(false)}
                                 >
                                     Our Projects
+                                </a>
+                                <a
+                                    href="/team"
+                                    className={`${isActive("/team") ? "text-text-primary font-bold" : "text-text-grey font-medium"
+                                        } text-medium`}
+                                    onClick={() => setIsMenuOpen(false)}
+                                >
+                                    Our Teams
                                 </a>
                                 <a
                                     href="/contact"

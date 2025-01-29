@@ -1,12 +1,12 @@
 import React from 'react'
 import './App.css'
-import Button from './components/Buttons/Button'
 import AppRouter from './routes/AppRouter';
+import ScrollSidebar from './components/ScrollSidebar/ScrollSidebar';
 function App() {
 
   return (
     <>
-      {/* <Button name="Learn more"/> */}
+      <ScrollSidebar />
       <AppRouter />
     </>
   )
