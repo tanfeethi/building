@@ -1,15 +1,19 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
 import rightAbout from '../../assets/rightAbout.png';
 import leftAbout from '../../assets/leftAbout.png';
 import Container from '../Container/Container';
 
 const AboutUs = () => {
+    const { t } = useTranslation();
+
     return (
         <Container>
             <div className="px-4 py-8">
                 <div className="flex flex-col 2xl:flex-row items-center justify-between gap-6">
 
+                    {/* Image Section */}
                     <div className="flex gap-4">
                         <motion.img
                             src={leftAbout}
@@ -33,15 +37,14 @@ const AboutUs = () => {
 
                     {/* Text Section */}
                     <div className="text-right md:w-2/3">
-                        <h3 className="text-text-primary font-bold text-xl mb-4">من نحن؟</h3>
+                        <h3 className="text-text-primary font-bold text-xl mb-4">
+                            {t("aboutUs.title")}
+                        </h3>
                         <p className="text-text-black text-base leading-7 mb-4 ms-xl">
-                            تأسست شركة مرجع المباني المتحدة عام 2000م، وهي شركة سعودية تعمل في مجال المقاولات.
-                            نقوم بتنفيذ جميع أعمال البناء الإنشائية والمعمارية والإلكتروميكانيكية. تقدم الشركة خدمات
-                            متكاملة في إدارة المشاريع وأعمال التنفيذ.
+                            {t("aboutUs.description1")}
                         </p>
                         <p className="text-text-black text-base leading-7">
-                            نحرص على تبني الأفكار وتحويلها إلى واقع ملموس بأعلى معايير الجودة، وذلك وفقا للمواصفات
-                            العالمية والمطابقة للكود السعودي للبناء.
+                            {t("aboutUs.description2")}
                         </p>
                     </div>
                 </div>
