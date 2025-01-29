@@ -1,0 +1,71 @@
+{
+    "priceSection": {
+        "title": "Our Prices",
+        "description": "To provide a professional price quote, Maraaj Al Mabani conducts a comprehensive study in three main stages.",
+        "stage1": "Stage 1",
+        "stage2": "Stage 2",
+        "stage3": "Stage 3",
+        "stage1DescriptionShort": "Study of plans and specifications",
+        "stage2DescriptionShort": "Study of plans and costs",
+        "stage3DescriptionShort": "Project execution and delivery",
+        "stage1DescriptionLong": "In this stage, we study the technical details of the project, including plans and specifications.",
+        "stage2DescriptionLong": "In this stage, the project budget is determined based on material details and specifications.",
+        "stage3DescriptionLong": "In this stage, project execution begins according to the specified plans, and the final project is delivered.",
+        "contact": "Contact us now to know the best price offer for your project!"
+    },
+    "home": "Home",
+    "about": "About Us",
+    "services": "Our Services",
+    "projects": "Our Projects",
+    "team": "Our Teams",
+    "contact": "Contact Us",
+    "aboutUs": {
+        "title": "Who Are We?",
+        "description1": "Maraaj Al Mabani United was established in 2000, a Saudi company specializing in contracting. We execute all construction, architectural, and electromechanical works. The company provides integrated services in project management and execution.",
+        "description2": "We are committed to adopting ideas and turning them into tangible reality with the highest quality standards, in accordance with international specifications and the Saudi Building Code."
+    },
+    "servicesList": [
+        {
+            "title": "Electronic Works"
+        },
+        {
+            "title": "Construction"
+        },
+        {
+            "title": "Architectural Works"
+        }
+    ],
+    "experience": {
+        "title": "Experience Makes Us Confident",
+        "description": "More than 20 years of experience in providing high-quality contracting services.",
+        "stats": [
+            {
+                "text": "239+",
+                "description": null
+            },
+            {
+                "text": "49+",
+                "description": null
+            },
+            {
+                "text": "21+",
+                "description": null
+            },
+            {
+                "text": "3+",
+                "description": "Activities & Fields"
+            }
+        ]
+    },
+    "expertise": {
+        "title": "At Maraaj Al Mabani United",
+        "subtitle": "We ensure",
+        "description": "More than 20 years of experience in providing contracting services with quality and professionalism, making us your trusted partner in project execution.",
+        "service1": "Comprehensive Construction Services",
+        "service1Description": "We provide our clients with comfort by delivering all their construction needs from excavation to turnkey delivery with the best quality, lowest cost, and fastest execution.",
+        "service2": "Work Within a Defined Budget",
+        "service2Description": "We offer clarity and responsibility. If we agree with you on a specific budget that matches your needs, we ensure to meet the requirements to complete the project until turnkey delivery.",
+        "service3": "Follow-up and Supervision of Your Project",
+        "service3Description": "We ensure your comfort and peace of mind about the progress of your project. Therefore, we regularly inform you about the project stages."
+    }
+}
