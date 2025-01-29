@@ -1,6 +1,7 @@
 import React from "react";
 import Container from "../Container/Container";
 import Button from "../Buttons/Button";
+import { motion } from "framer-motion"; // for animations
 import useFetch from "../../hooks/UseFetch";
 
 const Projects = () => {
@@ -17,9 +18,13 @@ const Projects = () => {
                 </h2>
                 <div className="grid grid-cols-1 2xl:grid-cols-4 xl:grid-cols-4 lg:grid-cols-4 md:grid-cols-2 gap-8">
                     {projects.slice(0, 4).map((project) => (
-                        <div
+                        <motion.div
                             key={project.id}
                             className="relative rounded-lg overflow-hidden shadow-lg group"
+                            initial={{ opacity: 0, y: 50 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.8, ease: "easeOut" }}
                         >
                             <img
                                 src={project.images[0]?.image || ""}
@@ -27,18 +32,25 @@ const Projects = () => {
                                 className="w-full h-[500px] object-cover"
                             />
                             <div className="absolute top-0 left-0 right-0 bottom-0 p-4 flex flex-col justify-end items-end bg-text-dark bg-opacity-50 opacity-0 group-hover:opacity-100 transition-all duration-300">
-                                <h4 className="text-text-primary group-hover:text-text-white mb-2xl text-xl font-bold border-b-4 border-text-primary group-hover:border-b-4 group-hover:border-text-white">
-                                    {project.title}
-                                </h4>
-                                <p className="text-text-primary group-hover:text-text-white text-sm mb-5">
-                                    {project.deliveredStatus ? "تم التسليم" : "قيد التنفيذ"}
-                                </p>
-                                <Button
-                                    name={project.address || "معرفة المزيد"}
-                                    className="bg-transparent border-2 border-text-white text-white px-4 py-2 transition-all duration-300"
-                                />
+                                <motion.div
+                                    className="flex flex-col items-end"
+                                    initial={{ y: 30, opacity: 0 }}
+                                    animate={{ y: 0, opacity: 1 }}
+                                    transition={{ duration: 0.3 }}
+                                >
+                                    <h4 className="text-text-primary group-hover:text-text-white mb-2xl text-xl font-bold border-b-4 border-text-primary group-hover:border-b-4 group-hover:border-text-white">
+                                        {project.title}
+                                    </h4>
+                                    <p className="text-text-primary group-hover:text-text-white text-sm mb-5">
+                                        {project.deliveredStatus ? "تم التسليم" : "قيد التنفيذ"}
+                                    </p>
+                                    <Button
+                                        name={project.address || "معرفة المزيد"}
+                                        className="bg-transparent border-2 border-text-white text-white px-4 py-2 transition-all duration-300"
+                                    />
+                                </motion.div>
                             </div>
-                        </div>
+                        </motion.div>
                     ))}
                 </div>
             </div>
