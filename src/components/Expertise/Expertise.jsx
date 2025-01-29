@@ -1,8 +1,37 @@
-import React from "react";
+import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
 import ContainerPhoto from "../../assets/container.jpg"; // Replace with the actual image path
 import Container from "../Container/Container";
+import { motion } from "framer-motion";
 
 const Expertise = () => {
+    const { t } = useTranslation();
+    const [activeIndex, setActiveIndex] = useState(0);
+
+    const services = [
+        {
+            title: t("expertise.service1"),
+            description: t("expertise.service1Description"),
+            image: ContainerPhoto, // Static image for demonstration
+        },
+        {
+            title: t("expertise.service2"),
+            description: t("expertise.service2Description"),
+            image: ContainerPhoto, // Static image for demonstration
+        },
+        {
+            title: t("expertise.service3"),
+            description: t("expertise.service3Description"),
+            image: ContainerPhoto, // Static image for demonstration
+        }
+    ];
+
+    const handleClick = (index) => {
+        if (activeIndex !== index) {
+            setActiveIndex(index);
+        }
+    };
+
     return (
         <Container>
             <div className="py-12">
@@ -25,47 +54,37 @@ const Expertise = () => {
                                     clipPath: "polygon(0 0, 90% 0%, 100% 100%, 0 100%)",
                                 }}
                             >
-                                <p className="text-sm">
-                                    أكثر من 20 عامًا من الخبرة في تقديم خدمات المقاولات بجودة واحترافية، لنكون شريكك الموثوق في تنفيذ المشاريع.
-                                </p>
+                                <p className="text-sm">{t("expertise.description")}</p>
                             </div>
                         </div>
                     </div>
 
                     <div className="lg:w-1/2 w-full text-right">
                         <p className="text-3xl font-bold text-primary mb-4 text-text-primary">
-                            في شركة مرجع المباني المتحدة<p className="text-text-black"> نحرص على</p>
+                            {t("expertise.title")}
+                            <p className="text-text-black">{t("expertise.subtitle")}</p>
                         </p>
                     </div>
                 </div>
 
                 <div className="container mx-auto grid grid-cols-1 2xl:grid-cols-3 xl:grid-cols-3 lg:grid-cols-3 md:grid-cols-2 gap-12 px-6 lg:px-0">
-                    <div className="text-center group">
-                        <h3 className="text-lg font-bold text-misty mb-4 border-b-2 border-transparent inline-block text-text-primary group-hover:text-text-black group-hover:border-text-black transition-all duration-300">
-                            خدمات البناء الشاملة
-                        </h3>
-                        <p className="text-medium text-text-black">
-                            نوفر لعملائنا الراحة من خلال تقديم جميع احتياجاتهم في مشاريع البناء من الحفر وحتى تسليم المفتاح بأفضل جودة وأقل تكلفة وأسرع تنفيذ.
-                        </p>
-                    </div>
-
-                    <div className="text-center group">
-                        <h3 className="text-lg font-bold text-misty mb-4 border-b-2 border-transparent inline-block text-text-primary group-hover:text-text-black group-hover:border-text-black transition-all duration-300">
-                            العمل وفق ميزانية محددة
-                        </h3>
-                        <p className="text-medium text-text-black">
-                            نوفر الوضوح والمسؤولية. إذا اتفقنا معك على ميزانية محددة تتوافق مع احتياجاتك، نتناسب مع المطلوب لإكمال المشروع حتى تسليم المفتاح.
-                        </p>
-                    </div>
-
-                    <div className="text-center group">
-                        <h3 className="text-lg font-bold text-misty mb-4 border-b-2 border-transparent inline-block text-text-primary group-hover:text-text-black group-hover:border-text-black transition-all duration-300">
-                            متابعة مشروعك والإشراف عليه
-                        </h3>
-                        <p className="text-medium text-text-black">
-                            نحرص على راحتك والاطمئنان على سير مشروعك. لذلك نقوم بإبلاغك عن مراحل المشروع بشكل منتظم.
-                        </p>
-                    </div>
+                    {services.map((service, index) => (
+                        <motion.div
+                            key={index}
+                            className={`text-center group cursor-pointer`}
+                            initial={{ scale: 1 }}
+                            animate={{
+                                scale: activeIndex === index ? 1.05 : 1,
+                                transition: { duration: 0.3 },
+                            }}
+                            onClick={() => handleClick(index)}
+                        >
+                            <h3 className="text-lg font-bold text-misty mb-4 border-b-2 border-transparent inline-block text-text-primary group-hover:text-text-black group-hover:border-text-black transition-all duration-300">
+                                {service.title}
+                            </h3>
+                            <p className="text-medium text-text-black">{service.description}</p>
+                        </motion.div>
+                    ))}
                 </div>
             </div>
         </Container>
