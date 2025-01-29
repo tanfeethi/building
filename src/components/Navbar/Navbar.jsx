@@ -1,19 +1,35 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-import { IoCallOutline, IoMenu, IoClose } from "react-icons/io5";
+import { IoMenu, IoClose } from "react-icons/io5";
+import { useTranslation } from "react-i18next";
 import logo from "../../assets/logo.png";
 import Container from "../Container/Container";
 
 const Navbar = () => {
+    const { t, i18n } = useTranslation();
     const location = useLocation();
     const isActive = (path) => location.pathname === path;
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const [lang, setLang] = useState(localStorage.getItem("language") || "en"); // Load saved language
+
+    useEffect(() => {
+        i18n.changeLanguage(lang); // Set language when component mounts
+    }, [lang]);
+
+    const changeLanguage = () => {
+        const newLang = lang === "en" ? "ar" : "en";
+        setLang(newLang);
+        i18n.changeLanguage(newLang);
+        localStorage.setItem("language", newLang); // Save to localStorage
+    };
+
 
     return (
         <nav className="bg-text-white shadow-md w-full">
             <div>
                 <Container>
                     <div className="flex items-center justify-between h-24">
+                        {/* Mobile Menu Button */}
                         <div className="2xl:hidden xl:hidden lg:hidden flex items-center">
                             <button
                                 className="text-text-primary text-2xl"
@@ -23,61 +39,66 @@ const Navbar = () => {
                             </button>
                         </div>
 
+                        {/* Logo */}
                         <div className="flex justify-center lg:justify-start">
                             <img src={logo} alt="Logo" className="h-32" />
                         </div>
 
+                        {/* Desktop Navigation Links */}
                         <div className="hidden 2xl:flex xl:flex lg:flex space-x-8">
                             <a
                                 href="/"
                                 className={`${isActive("/") ? "text-text-primary font-bold" : "text-text-grey font-medium"
                                     } text-medium`}
                             >
-                                Home
+                                {t("home")}
                             </a>
                             <a
                                 href="/about"
                                 className={`${isActive("/about") ? "text-text-primary font-bold" : "text-text-grey font-medium"
                                     } text-medium hover:text-text-primary`}
                             >
-                                About Us
+                                {t("about")}
                             </a>
                             <a
                                 href="/services"
                                 className={`${isActive("/services") ? "text-text-primary font-bold" : "text-text-grey font-medium"
                                     } text-medium hover:text-text-primary`}
                             >
-                                Our Services
+                                {t("services")}
                             </a>
                             <a
                                 href="/projects"
                                 className={`${isActive("/projects") ? "text-text-primary font-bold" : "text-text-grey font-medium"
                                     } text-medium hover:text-text-primary`}
                             >
-                                Our Projects
+                                {t("projects")}
                             </a>
                             <a
-                                    href="/team"
-                                    className={`${isActive("/team") ? "text-text-primary font-bold" : "text-text-grey font-medium"
-                                        } text-medium`}
-                                    onClick={() => setIsMenuOpen(false)}
-                                >
-                                    Our Teams
-                                </a>
+                                href="/team"
+                                className={`${isActive("/team") ? "text-text-primary font-bold" : "text-text-grey font-medium"
+                                    } text-medium`}
+                                onClick={() => setIsMenuOpen(false)}
+                            >
+                                {t("team")}
+                            </a>
                             <a
                                 href="/contact"
                                 className={`${isActive("/contact") ? "text-text-primary font-bold" : "text-text-grey font-medium"
                                     } text-medium hover:text-text-primary`}
                             >
-                                Contact Us
+                                {t("contact")}
                             </a>
                         </div>
 
+                        {/* Language Switch Button */}
                         <div className="flex items-center space-x-2">
-
-                            <div>
-                                <p className="bg-text-primary px-4 py-4 rounded-md text-text-white cursor-pointer text-small">En</p>
-                            </div>
+                            <button
+                                onClick={changeLanguage}
+                                className="bg-text-primary px-4 py-2 rounded-md text-text-white cursor-pointer text-small"
+                            >
+                                {i18n.language === "en" ? "عربي" : "English"}
+                            </button>
                         </div>
                     </div>
 
@@ -91,7 +112,7 @@ const Navbar = () => {
                                         } text-medium`}
                                     onClick={() => setIsMenuOpen(false)}
                                 >
-                                    Home
+                                    {t("home")}
                                 </a>
                                 <a
                                     href="/about"
@@ -99,7 +120,7 @@ const Navbar = () => {
                                         } text-medium`}
                                     onClick={() => setIsMenuOpen(false)}
                                 >
-                                    About Us
+                                    {t("about")}
                                 </a>
                                 <a
                                     href="/services"
@@ -107,7 +128,7 @@ const Navbar = () => {
                                         } text-medium`}
                                     onClick={() => setIsMenuOpen(false)}
                                 >
-                                    Our Services
+                                    {t("services")}
                                 </a>
                                 <a
                                     href="/projects"
@@ -115,7 +136,7 @@ const Navbar = () => {
                                         } text-medium`}
                                     onClick={() => setIsMenuOpen(false)}
                                 >
-                                    Our Projects
+                                    {t("projects")}
                                 </a>
                                 <a
                                     href="/team"
@@ -123,7 +144,7 @@ const Navbar = () => {
                                         } text-medium`}
                                     onClick={() => setIsMenuOpen(false)}
                                 >
-                                    Our Teams
+                                    {t("team")}
                                 </a>
                                 <a
                                     href="/contact"
@@ -131,7 +152,7 @@ const Navbar = () => {
                                         } text-medium`}
                                     onClick={() => setIsMenuOpen(false)}
                                 >
-                                    Contact Us
+                                    {t("contact")}
                                 </a>
                             </div>
                         </div>
