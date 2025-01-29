@@ -9,14 +9,14 @@ const Footer = () => {
     return (
         <div className="bg-text-primary text-white py-5xl px-4">
             <Container>
-                <div className="flex flex-col-reverse 2xl:flex-row xl:flex-row lg:flex-row justify-between items-start">
+                <div className="flex flex-col-reverse 2xl:flex-row xl:flex-row lg:flex-row md:flex-row justify-between items-start">
 
-                    <div className="w-full 2xl:w-1/2 xl:w-1/2 lg:w-1/2 md:w-full mt-8 md:mt-0 flex flex-col items-start">
+                    <div className="w-full 2xl:w-1/2 xl:w-1/2 lg:w-1/2 md:w-1/2 mt-8 md:mt-0 flex flex-col items-start">
                         <div className="flex flex-row items-center space-x-6">
                             <img src={logo2} alt="Logo" className="w-48 h-auto mb-4" />
                         </div>
                         <div className="space-y-2 mb-4">
-                            <ul className="space-y-2">
+                            <ul className="space-y-2 flex flex-col items-start">
                                 <li className="cursor-pointer hover:underline">من نحن</li>
                                 <li className="cursor-pointer hover:underline">خدماتنا</li>
                                 <li className="cursor-pointer hover:underline">أعمالنا</li>
@@ -24,17 +24,17 @@ const Footer = () => {
                             </ul>
                         </div>
                         <div className="space-y-2 mb-4">
-                            <p className="flex flex-row-reverse items-center">
-                                <FaEnvelope className="ml-2" /> info@bru.com.sa
+                            <p className="flex flex-row items-center">
+                                <FaEnvelope className="mr-2" /> info@bru.com.sa
                             </p>
-                            <p className="flex flex-row-reverse items-center">
-                                <FaPhoneAlt className="ml-2" /> 0552311322
+                            <p className="flex flex-row items-center">
+                                <FaPhoneAlt className="mr-2" /> 0552311322
                             </p>
-                            <p className="flex flex-row-reverse items-center">
-                                <MdLocationOn className="ml-2" /> جدة شارع البترجي حي الزهراء
+                            <p className="flex flex-row items-center">
+                                <MdLocationOn className="mr-2" /> جدة شارع البترجي حي الزهراء
                             </p>
                         </div>
-                        <div className="flex flex-row space-x-4 space-y-2 rtl:space-x-reverse">
+                        <div className="flex flex-row-reverse space-x-4 space-y-2 rtl:space-x-reverse">
                             <span className="text-text-white px-7 py-1 rounded cursor-pointer">EN</span>
                             <FaWhatsapp className="w-6 h-6 cursor-pointer hover:text-gray-300" />
                             <FaInstagram className="w-6 h-6 cursor-pointer hover:text-gray-300" />
