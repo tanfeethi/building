@@ -1,11 +1,33 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Container from "../Container/Container";
 import useFetch from "../../hooks/UseFetch";
+import { useTranslation } from "react-i18next";
 
 const Hero = () => {
-    const { data: sliders, loading, error } = useFetch("api/frontend/sliders");
+    const { i18n } = useTranslation();
+    const [lang, setLang] = useState(localStorage.getItem("language") || "ar"); // Ensure correct language on load
+    const [isLangLoaded, setIsLangLoaded] = useState(false); // To track language loading
+    const { data: sliders, loading, error } = useFetch("api/frontend/sliders", {}, lang);
     const [currentIndex, setCurrentIndex] = useState(0);
+
+    useEffect(() => {
+        const storedLang = localStorage.getItem("language") || "ar";
+        if (i18n.language !== storedLang) {
+            i18n.changeLanguage(storedLang).then(() => {
+                setLang(storedLang);
+                setIsLangLoaded(true); // Set after ensuring language is applied
+            });
+        } else {
+            setIsLangLoaded(true); // Language was already correct
+        }
+    }, []);
+
+    useEffect(() => {
+        if (isLangLoaded) {
+            setLang(i18n.language); // Update lang after i18n updates
+        }
+    }, [i18n.language, isLangLoaded]);
 
     const prevSlide = () => {
         setCurrentIndex((prevIndex) =>
@@ -19,6 +41,10 @@ const Hero = () => {
         );
     };
 
+    if (!isLangLoaded) {
+        return <div className="text-center">Loading...</div>;
+    }
+
     if (loading) {
         return <div className="text-center">Loading...</div>;
     }
@@ -31,16 +57,15 @@ const Hero = () => {
         <div className="w-full my-5xl flex justify-between">
             <div className="grid grid-cols-1 2xl:grid-cols-2 xl:grid-cols-2 lg:grid-cols-1 gap-8 w-full">
                 <div className="relative w-[842px] h-[500px] overflow-hidden">
-                    <AnimatePresence exitBeforeEnter>
-                        {/* Motion for background image */}
+                    <AnimatePresence mode="wait">
                         <motion.img
-                            key={currentIndex} // This helps in animating the component on index change
+                            key={currentIndex}
                             src={sliders[currentIndex]?.background}
                             alt={sliders[currentIndex]?.title}
                             className="w-full h-full object-cover rounded-2xl shadow-lg"
-                            initial={{ y: -500 }} // Start from below
-                            animate={{ y: 0 }}   // Move to original position
-                            exit={{ y: -500 }}   // Exit to top
+                            initial={{ y: -500 }}
+                            animate={{ y: 0 }}
+                            exit={{ y: -500 }}
                             transition={{ type: "spring", stiffness: 100 }}
                         />
                     </AnimatePresence>
@@ -61,7 +86,6 @@ const Hero = () => {
                     </div>
                 </div>
 
-                {/* Motion for content */}
                 <Container>
                     <motion.div
                         className="text-right"
