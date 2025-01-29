@@ -1,17 +1,17 @@
 import React, { useState } from "react";
-import servicesPhoto1 from '../../assets/servicesPhoto1.png';
+import { useTranslation } from "react-i18next";
+import servicesPhoto1 from "../../assets/servicesPhoto1.png";
 import Container from "../Container/Container";
 import { motion } from "framer-motion";
 
 const ExperienceSection = () => {
-    const [activeIndex, setActiveIndex] = useState(0); // Keeps track of the active card
+    const { t } = useTranslation();
+    const [activeIndex, setActiveIndex] = useState(0);
 
-    const experiences = [
-        { image: servicesPhoto1, text: "239+", description: null },
-        { image: servicesPhoto1, text: "49+", description: null },
-        { image: servicesPhoto1, text: "21+", description: null },
-        { image: servicesPhoto1, text: "3+", description: "أنشطة ومجالات" },
-    ];
+    const experiences = t("experience.stats", { returnObjects: true }).map((exp) => ({
+        ...exp,
+        image: servicesPhoto1, // Keeping the image static
+    }));
 
     const handleClick = (index) => {
         if (activeIndex !== index) {
@@ -28,10 +28,9 @@ const ExperienceSection = () => {
     return (
         <Container>
             <div className="py-10 text-end">
-                <h2 className="text-2xl font-bold text-text-primary mb-4">الخبرة تجعلنا واثقين</h2>
-                <p className="text-gray-600 mb-10">
-                    أكثر من 20 عامًا من الخبرة في تقديم خدمات المقاولات بجودة وإتقان.
-                </p>
+                <h2 className="text-2xl font-bold text-text-primary mb-4">{t("experience.title")}</h2>
+                <p className="text-gray-600 mb-10">{t("experience.description")}</p>
+
                 <div className="flex flex-wrap justify-center gap-6">
                     {reorderedExperiences.map((item, index) => (
                         <motion.div
