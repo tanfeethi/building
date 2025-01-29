@@ -32,7 +32,7 @@ const Projects = () => {
                                     alt={project.title}
                                     className="w-full h-[500px] object-cover"
                                 />
-                                <div className="absolute top-0 left-0 right-0 bottom-0 p-4 flex flex-col justify-end items-end bg-text-dark bg-opacity-50 opacity-0 group-hover:opacity-100 transition-all duration-300">
+                                <div className="absolute top-0 left-0 right-0 bottom-0 p-4 flex flex-col justify-end items-end bg-opacity-50 opacity-0 group-hover:opacity-100 transition-all duration-300">
                                     <div className="absolute right-0 bottom-0 w-full p-8 space-y-8 flex flex-col justify-end items-end bg-opacity-0 group-hover:bg-text-primary transition-all duration-300">
                                         <h4 className="text-xl font-bold border-b-4 border-text-primary text-text-primary group-hover:text-text-white group-hover:border-text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                                             {project.title}
