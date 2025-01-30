@@ -19,7 +19,7 @@ const PriceSection = () => {
 
     return (
         <Container>
-            <div className="py-10 text-end">
+            <div className="py-10">
                 <h2 className="text-large font-bold text-text-primary mb-6">
                     {t("priceSection.title")}
                 </h2>
