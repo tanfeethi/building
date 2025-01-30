@@ -67,5 +67,58 @@
         "service2Description": "We offer clarity and responsibility. If we agree with you on a specific budget that matches your needs, we ensure to meet the requirements to complete the project until turnkey delivery.",
         "service3": "Follow-up and Supervision of Your Project",
         "service3Description": "We ensure your comfort and peace of mind about the progress of your project. Therefore, we regularly inform you about the project stages."
+    },
+    "testimonials": "Client Testimonials",
+    "appointment_title": "Appointment Booking",
+    "select_time": "Select Time",
+    "book_appointment": "Book Appointment",
+    "booking_in_progress": "Booking in progress...",
+    "error_occurred": "An error occurred. Please try again.",
+    "appointment_success": "Appointment booked successfully!",
+    "name_placeholder": "Name",
+    "phone_placeholder": "05xxxxxxxx",
+    "email_placeholder": "ex@example.com",
+    "engineer": "Engineer",
+    "name": "Khaled Badr Al-Din",
+    "quote": "Since the establishment of Marja' Al-Mabani United Company in 2000, I have been committed to working with dedication and sincerity, attracting the best qualified talents, and training and developing the promising youth from our nation to enhance their practical skills. This foundation has been crucial in achieving my ambitions, and with God's grace, this entity continues to thrive, becoming one of the key players in community development and construction.",
+    "description" : "Bachelor's degree in Electrical Engineering and Communications, Master's degree in Engineering Systems and Information Management, with a career that spans multiple positions in both the public and private sectors. In 2000, I founded my own business in Jeddah, driven by my passion and vision. I am known for my creativity, innovation, and flexibility in providing solutions.",
+    "footer": {
+        "about_us": "About Us",
+        "services": "Our Services",
+        "our_work": "Our Work",
+        "our_team": "Our Team",
+        "contact_us": "Stay in Touch with Us",
+        "name": "Full Name",
+        "email": "Email",
+        "phone": "Phone Number",
+        "message_subject": "Message Subject",
+        "service_details": "Service Details / Inquiry",
+        "send": "Send",
+        "location": "Jeddah, Al-Batarji Street, Al-Zahra District",
+        "email_address": "info@bru.com.sa",
+        "phone_number": "0552311322",
+        "social_media": {
+            "whatsapp": "WhatsApp",
+            "instagram": "Instagram",
+            "twitter": "Twitter"
+        },
+        "language": "EN"
+    },
+    "contact_us": {
+        "title": "Contact Us",
+        "email": "Email Address",
+        "full_name": "Full Name",
+        "subject": "Subject",
+        "phone": "Phone Number",
+        "message": "Service Details / Inquiry",
+        "submit_button": "Submit",
+        "location": "Jeddah, Al-Betergi Street, Al-Zahra District",
+        "email_address": "info@bru.com.sa",
+        "phone_number": "0552311322",
+        "social_media": {
+            "whatsapp": "WhatsApp",
+            "instagram": "Instagram",
+            "twitter": "Twitter"
+        }
     }
 }
