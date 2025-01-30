@@ -12,17 +12,17 @@ const Expertise = () => {
         {
             title: t("expertise.service1"),
             description: t("expertise.service1Description"),
-            image: ContainerPhoto, // Static image for demonstration
+            image: ContainerPhoto,
         },
         {
             title: t("expertise.service2"),
             description: t("expertise.service2Description"),
-            image: ContainerPhoto, // Static image for demonstration
+            image: ContainerPhoto,
         },
         {
             title: t("expertise.service3"),
             description: t("expertise.service3Description"),
-            image: ContainerPhoto, // Static image for demonstration
+            image: ContainerPhoto,
         }
     ];
 
@@ -36,9 +36,18 @@ const Expertise = () => {
         <Container>
             <div className="py-12">
                 <div className="flex flex-col 2xl:flex-row xl:flex-row lg:flex-row items-center justify-between mb-16 px-6 lg:px-0">
+
+
+                    <div className="lg:w-1/2 w-full text-right">
+                        <p className="text-3xl font-bold text-primary mb-4 text-text-primary">
+                            {t("expertise.title")}
+                            <p className="text-text-black">{t("expertise.subtitle")}</p>
+                        </p>
+                    </div>
+
                     <div className="relative lg:w-1/2 w-full mb-8 lg:mb-0">
                         <div
-                            className="relative w-full h-[265px] bg-primary-dark overflow-hidden rounded-lg shadow-lg transition-all duration-300 transform group"
+                            className="relative w-full h-[265px] overflow-hidden rounded-lg transition-all duration-300 transform group"
                         >
                             <img
                                 src={ContainerPhoto}
@@ -54,16 +63,9 @@ const Expertise = () => {
                                     clipPath: "polygon(0 0, 90% 0%, 100% 100%, 0 100%)",
                                 }}
                             >
-                                <p className="text-sm">{t("expertise.description")}</p>
+                                <p className="text-sm px-2xl">{t("expertise.description")}</p>
                             </div>
                         </div>
-                    </div>
-
-                    <div className="lg:w-1/2 w-full text-right">
-                        <p className="text-3xl font-bold text-primary mb-4 text-text-primary">
-                            {t("expertise.title")}
-                            <p className="text-text-black">{t("expertise.subtitle")}</p>
-                        </p>
                     </div>
                 </div>
 
