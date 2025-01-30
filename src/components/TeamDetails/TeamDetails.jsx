@@ -5,28 +5,20 @@ import useFetch from '../../hooks/UseFetch';
 import { useTranslation } from 'react-i18next';
 
 const TeamDetails = () => {
-    const { t, i18n } = useTranslation();
-    const [lang, setLang] = useState(localStorage.getItem("language") || "ar");
-    const { data, loading, error } = useFetch("api/frontend/teams", {}, lang);
-    const [isLangLoaded, setIsLangLoaded] = useState(false);
+    const { t,i18n } = useTranslation(); // استخدام i18n للتبديل بين اللغات
+    const [lang, setLang] = useState(localStorage.getItem("language") || "ar"); // اللغة المحفوظة
+    const { data, loading, error } = useFetch("api/frontend/teams", {}, lang); // استخدام hook مع تغيير اللغة
 
     useEffect(() => {
         const storedLang = localStorage.getItem("language") || "ar";
         if (i18n.language !== storedLang) {
             i18n.changeLanguage(storedLang).then(() => {
                 setLang(storedLang);
-                setIsLangLoaded(true);
             });
         } else {
-            setIsLangLoaded(true);
+            setLang(storedLang); // Language was already correct
         }
-    }, []);
-
-    useEffect(() => {
-        if (isLangLoaded) {
-            setLang(i18n.language);
-        }
-    }, [i18n.language, isLangLoaded]);
+    }, [i18n.language]);
 
 
     if (loading) return <div>{t('loading')}</div>;
