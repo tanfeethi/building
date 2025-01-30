@@ -17,18 +17,20 @@ const OurProjects = () => {
     }, []);
 
     return (
-        <Container>
-            <motion.img
-                src={projectHero}
-                className="w-full my-2xl mb-5xl"
-                alt="Our Projects"
-                initial={{ scale: 1.1 }}
-                animate={{ scale: isZoomedIn ? 1.1 : 1 }}
-                transition={{ duration: 2, ease: 'easeInOut' }}
-            />
-            <Projects2 />
+        <>
+            <Container>
+                <motion.img
+                    src={projectHero}
+                    className="w-full my-2xl mb-5xl"
+                    alt="Our Projects"
+                    initial={{ scale: 1.1 }}
+                    animate={{ scale: isZoomedIn ? 1.1 : 1 }}
+                    transition={{ duration: 2, ease: 'easeInOut' }}
+                />
+                <Projects2 />
+            </Container>
             <Footer />
-        </Container>
+        </>
     );
 };
 
