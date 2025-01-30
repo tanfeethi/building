@@ -1,1 +1,1 @@
-export const api_url = 'https://2651-102-45-90-84.ngrok-free.app';
+export const api_url = 'https://backend.bru.com.sa';
