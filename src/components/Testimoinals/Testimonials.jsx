@@ -1,27 +1,55 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/swiper-bundle.css";
 import useFetch from "../../hooks/UseFetch";
+import { useTranslation } from "react-i18next";
 
 const Testimonials = () => {
-    const { data: testimonials, loading, error } = useFetch("api/frontend/reviews");
+    const { i18n, t } = useTranslation();
+    const [lang, setLang] = useState(localStorage.getItem("language") || "ar");
+    const [isLangLoaded, setIsLangLoaded] = useState(false);
+
+    const { data: testimonials, loading, error } = useFetch("api/frontend/reviews", {}, lang);
+
+    // Ensure language from localStorage is applied
+    useEffect(() => {
+        const storedLang = localStorage.getItem("language") || "ar";
+        if (i18n.language !== storedLang) {
+            i18n.changeLanguage(storedLang).then(() => {
+                setLang(storedLang);
+                setIsLangLoaded(true);
+            });
+        } else {
+            setIsLangLoaded(true);
+        }
+    }, []);
+
+    useEffect(() => {
+        if (isLangLoaded) {
+            setLang(i18n.language);
+        }
+    }, [i18n.language, isLangLoaded]);
+
+    if (!isLangLoaded) {
+        return <div className="text-center">{t("loading")}...</div>;
+    }
 
     if (loading) {
-        return <div>Loading...</div>;
+        return <div className="text-center">{t("loading")}...</div>;
     }
 
     if (error) {
-        return <div>Error: {error.message || "Something went wrong"}</div>;
+        return <div className="text-center text-red-500">{t("error")}: {error}</div>;
     }
 
     if (!testimonials || testimonials.length === 0) {
-        return <div>No testimonials found.</div>;
+        return <div className="text-center text-red-500">{t("no_testimonials_found")}</div>;
     }
 
     return (
         <div className="bg-gray-900 py-16">
             <h2 className="text-center text-white text-3xl font-bold mb-12">
-                شهادات العملاء
+                {t("testimonials")}
             </h2>
             <div className="container mx-auto">
                 <Swiper spaceBetween={30} slidesPerView={3} loop={true}>
