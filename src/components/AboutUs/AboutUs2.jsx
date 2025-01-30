@@ -7,9 +7,10 @@ import { useTranslation } from "react-i18next"; // Import useTranslation
 
 const AboutUs2 = () => {
     const { i18n } = useTranslation(); // Initialize i18n
-    const [lang, setLang] = useState(localStorage.getItem("language") || "ar"); // Ensure correct language on load
+    const [lang, setLang] = useState(localStorage.getItem("language") || "ar");
     const { data, loading, error } = useFetch("api/frontend/staticPages", {}, lang);
 
+    // Listen for language changes and update the state and fetch data accordingly
     useEffect(() => {
         const storedLang = localStorage.getItem("language") || "ar";
         if (i18n.language !== storedLang) {
@@ -19,7 +20,7 @@ const AboutUs2 = () => {
         } else {
             setLang(storedLang); // Language was already correct
         }
-    }, [i18n.language]);
+    }, [i18n.language]); // This will trigger the effect whenever the language changes
 
     if (loading) return <div className="text-center">Loading...</div>;
     if (error) return <div className="text-center text-red-500">Error: {error}</div>;
@@ -35,14 +36,14 @@ const AboutUs2 = () => {
             >
                 <div className="2xl:w-1/2">
                     <h2 className="text-text-primary text-3xl me-8 font-bold mb-4 text-center">
-                        {i18n.language === "ar" ? "من نحــــــن" : "About Us"} {/* Dynamic Title */}
+                        {i18n.language === "ar" ? "من نحــــــن" : "About Us"}
                     </h2>
                     <p className='mt-xl flex justify-center text-medium items-center'>
                         {i18n.language === "ar" ? "في عالم البناء" : "In the world of construction"}
                         <span className='mx-4'>
                             <img src={Aboutlogo} alt="Aboutlogo" />
                         </span>
-                        {i18n.language === "ar" ? "شركة مرجع المباني المتحدة" : "United Buildings Reference Company"} {/* Dynamic Text */}
+                        {i18n.language === "ar" ? "شركة مرجع المباني المتحدة" : "United Buildings Reference Company"}
                     </p>
                 </div>
             </motion.div>
@@ -68,11 +69,11 @@ const AboutUs2 = () => {
                             />
                         </div>
                         <div className="2xl:w-1/2 text-right my-xl">
-                            <h2 className="text-text-primary text-3xl me-8 font-bold mb-4">
+                            <h2 className="text-text-primary text-3xl mx-8 font-bold mb-4">
                                 {section.title} {/* Static title, ensure it’s properly translated in the backend */}
                             </h2>
                             <motion.p
-                                className="text-text-primary-dark me-8"
+                                className="text-text-primary-dark mx-8"
                                 initial={{ opacity: 0 }}
                                 whileInView={{ opacity: 1 }}
                                 transition={{ duration: 1 }}
