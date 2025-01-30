@@ -12,7 +12,7 @@ const Service = () => {
 
     return (
         <Container>
-            <h2 className="text-text-primary text-large font-bold mb-8 text-end">
+            <h2 className="text-text-primary text-large font-bold mb-8">
                 {t("services")}
             </h2>
             
