@@ -36,36 +36,36 @@ const ProjectDetails = () => {
                 </div>
 
                 <div className="relative w-full md:w-[842px] mx-auto h-[500px] overflow-hidden rounded-2xl shadow-lg mb-10">
-    {project.images.length > 0 ? (
-        <img
-            src={project.images[currentIndex]?.image || ""}
-            alt={project.title}
-            className="w-full h-full object-cover"
-        />
-    ) : (
-        <div className="w-full h-full flex items-center justify-center text-gray-500">
-            لا توجد صور متوفرة
-        </div>
-    )}
-    {project.images.length > 1 && (
-        <>
-            {/* Left Arrow */}
-            <button
-                onClick={prevSlide}
-                className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-800 text-3xl bg-white bg-opacity-70 px-4 py-2 rounded-full shadow-lg hover:bg-opacity-90 transition z-20"
-            >
-                ❮
-            </button>
-            {/* Right Arrow */}
-            <button
-                onClick={nextSlide}
-                className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-800 text-3xl bg-white bg-opacity-70 px-4 py-2 rounded-full shadow-lg hover:bg-opacity-90 transition z-20"
-            >
-                ❯
-            </button>
-        </>
-    )}
-</div>
+                    {project.images.length > 0 ? (
+                        <img
+                            src={project.images[currentIndex]?.image || ""}
+                            alt={project.title}
+                            className="w-full h-full object-cover"
+                        />
+                    ) : (
+                        <div className="w-full h-full flex items-center justify-center text-gray-500">
+                            لا توجد صور متوفرة
+                        </div>
+                    )}
+                    {project.images.length > 1 && (
+                        <>
+                            {/* Left Arrow */}
+                            <button
+                                onClick={prevSlide}
+                                className="absolute left-4 top-1/2 transform -translate-y-1/2 text-text-primary text-3xl bg-white bg-opacity-70 px-4 py-2 rounded-full shadow-lg hover:bg-opacity-90 transition z-20"
+                            >
+                                ❮
+                            </button>
+                            {/* Right Arrow */}
+                            <button
+                                onClick={nextSlide}
+                                className="absolute right-4 top-1/2 transform -translate-y-1/2 text-text-primary text-3xl bg-white bg-opacity-70 px-4 py-2 rounded-full shadow-lg hover:bg-opacity-90 transition z-20"
+                            >
+                                ❯
+                            </button>
+                        </>
+                    )}
+                </div>
 
 
                 {/* Project Details */}
@@ -80,7 +80,7 @@ const ProjectDetails = () => {
                         </div>
 
                         {/* Right Section */}
-                        <div className="p-6 rounded-lg">
+                        <div className="rounded-lg">
                             <h2 className="text-2xl font-bold text-gray-800 mb-6">تفاصيل المشروع</h2>
                             <ul className="flex space-x-6 text-lg">
                                 <li className="flex flex-col">
