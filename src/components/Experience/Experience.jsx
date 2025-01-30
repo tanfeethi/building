@@ -27,7 +27,7 @@ const ExperienceSection = () => {
 
     return (
         <Container>
-            <div className="py-10 text-end">
+            <div className="py-10">
                 <h2 className="text-2xl font-bold text-text-primary mb-4">{t("experience.title")}</h2>
                 <p className="text-gray-600 mb-10">{t("experience.description")}</p>
 
