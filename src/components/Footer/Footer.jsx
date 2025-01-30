@@ -4,105 +4,106 @@ import { FaWhatsapp, FaInstagram, FaEnvelope, FaPhoneAlt } from "react-icons/fa"
 import { MdLocationOn } from "react-icons/md";
 import Container from "../Container/Container";
 import { BsTwitterX } from "react-icons/bs";
+import { useTranslation } from "react-i18next";
 
 const Footer = () => {
+    const { t } = useTranslation();
+
     return (
         <div className="bg-text-primary text-white py-5xl px-4">
             <Container>
-                <div className="flex flex-col-reverse 2xl:flex-row xl:flex-row lg:flex-row md:flex-row justify-between items-start">
+                <div className="flex flex-row gap-20 2xl:gap-32 md:flex-col sm:flex-col">
+                    
+                    {/* Left Section - Contact Form */}
+                    <div className="w-2/3 md:w-full sm:w-full flex flex-col space-y-6 mb-10">
+                        <h2 className="text-xlarge mb-4">{t("footer.contact_us")}</h2>
+                        <form className="space-y-4">
+                            <div className="grid grid-cols-1 2xl:grid-cols-2 xl:grid-cols-2 lg:grid-cols-2 gap-6 mb-xl">
+                                <div>
+                                    <label className="block mb-l">{t("footer.name")}</label>
+                                    <input
+                                        type="text"
+                                        className="w-full p-3 rounded bg-transparent border border-text-white text-text-primary"
+                                    />
+                                </div>
+                                <div>
+                                    <label className="block mb-l">{t("footer.email")}</label>
+                                    <input
+                                        type="email"
+                                        className="w-full p-3 rounded bg-transparent border border-text-white text-text-primary"
+                                    />
+                                </div>
+                            </div>
+                            <div className="grid grid-cols-1 2xl:grid-cols-2 xl:grid-cols-2 lg:grid-cols-2 gap-6 mb-xl">
+                                <div>
+                                    <label className="block mb-l">{t("footer.phone")}</label>
+                                    <input
+                                        type="text"
+                                        className="w-full p-3 rounded bg-transparent border border-text-white text-text-primary"
+                                    />
+                                </div>
+                                <div>
+                                    <label className="block mb-l">{t("footer.message_subject")}</label>
+                                    <input
+                                        type="text"
+                                        className="w-full p-3 rounded bg-transparent border border-text-white text-text-primary"
+                                    />
+                                </div>
+                            </div>
+                            <div className="mb-xl">
+                                <label className="block mb-l">{t("footer.service_details")}</label>
+                                <textarea
+                                    className="w-full p-3 rounded bg-transparent border border-text-white text-text-primary"
+                                    rows="4"
+                                ></textarea>
+                            </div>
+                            <div className="flex justify-end">
+                                <button
+                                    type="submit"
+                                    className="bg-white text-text-primary px-8 py-2 rounded hover:bg-text-grey-hover"
+                                >
+                                    {t("footer.send")}
+                                </button>
+                            </div>
+                        </form>
+                    </div>
 
-                    <div className="w-full 2xl:w-1/2 xl:w-1/2 lg:w-1/2 md:w-1/2 mt-8 md:mt-0 flex flex-col items-start">
+                    {/* Right Section - Info & Social Links */}
+                    <div className="mx-2xl sm:mx-0 md:mx-0 md:w-full sm:w-full flex flex-col items-start">
                         <div className="flex flex-row items-center space-x-6">
                             <img src={logo2} alt="Logo" className="w-48 h-auto mb-4" />
                         </div>
                         <div className="space-y-2 mb-4">
-                            <ul className="space-y-2 flex flex-col items-start">
-                                <li className="cursor-pointer hover:underline">من نحن</li>
-                                <li className="cursor-pointer hover:underline">خدماتنا</li>
-                                <li className="cursor-pointer hover:underline">أعمالنا</li>
-                                <li className="cursor-pointer hover:underline">فريقنا</li>
+                            <ul className="space-y-2 mx-2 flex flex-col items-start">
+                                <li className="cursor-pointer hover:underline">{t("footer.about_us")}</li>
+                                <li className="cursor-pointer hover:underline">{t("footer.services")}</li>
+                                <li className="cursor-pointer hover:underline">{t("footer.our_work")}</li>
+                                <li className="cursor-pointer hover:underline">{t("footer.our_team")}</li>
                             </ul>
                         </div>
                         <div className="space-y-2 mb-4">
-                            <p className="flex flex-row items-center">
-                                <FaEnvelope className="mr-2" /> info@bru.com.sa
+                            <p className="flex items-center">
+                                <FaEnvelope className="mx-2" /> {t("footer.email_address")}
                             </p>
-                            <p className="flex flex-row items-center">
-                                <FaPhoneAlt className="mr-2" /> 0552311322
+                            <p className="flex items-center">
+                                <FaPhoneAlt className="mx-2" /> {t("footer.phone_number")}
                             </p>
-                            <p className="flex flex-row items-center">
-                                <MdLocationOn className="mr-2" /> جدة شارع البترجي حي الزهراء
+                            <p className="flex items-center">
+                                <MdLocationOn className="mx-2" /> {t("footer.location")}
                             </p>
                         </div>
-                        <div className="flex flex-row-reverse space-x-4 space-y-2 rtl:space-x-reverse">
-                            <span className="text-text-white px-7 py-1 rounded cursor-pointer">EN</span>
+                        <div className="flex flex-row space-x-4 rtl:space-x-reverse">
+                            <span className="text-text-white px-7 py-1 rounded cursor-pointer">
+                                {t("footer.language")}
+                            </span>
                             <FaWhatsapp className="w-6 h-6 cursor-pointer hover:text-gray-300" />
                             <FaInstagram className="w-6 h-6 cursor-pointer hover:text-gray-300" />
                             <BsTwitterX className="w-6 h-6 cursor-pointer hover:text-gray-300" />
                         </div>
                     </div>
 
-                    <div className="w-full md:w-1/2 text-end flex flex-col space-y-6">
-                        <h2 className="text-xlarge mb-4">كن على تواصل معنا</h2>
-                        <form className="space-y-4">
-                            <div className="grid grid-cols-1 2xl:grid-cols-2 xl:grid-cols-2 lg:grid-cols-2 gap-6 mb-xl">
-                                <div>
-                                    <label className="block mb-l">الاسم كاملاً</label>
-                                    <input
-                                        type="text"
-                                        className="w-full p-2 rounded bg-transparent border border-text-white text-text-primary"
-                                    />
-                                </div>
-                                <div>
-                                    <label className="block mb-l">البريد الإلكتروني</label>
-                                    <input
-                                        type="email"
-                                        className="w-full p-2 rounded bg-transparent border border-text-white text-text-primary"
-                                    />
-                                </div>
-                            </div>
-                            <div className="grid grid-cols-1 2xl:grid-cols-2 xl:grid-cols-2 lg:grid-cols-2 gap-6 mb-xl">
-                                <div>
-                                    <label className="block mb-l">رقم الهاتف</label>
-                                    <input
-                                        type="text"
-                                        className="w-full p-2 rounded bg-transparent border border-text-white text-text-primary"
-                                    />
-                                </div>
-                                <div>
-                                    <label className="block mb-l">موضوع الرسالة</label>
-                                    <input
-                                        type="text"
-                                        className="w-full p-2 rounded bg-transparent border border-text-white text-text-primary"
-                                    />
-                                </div>
-                            </div>
-                            <div className="mb-xl">
-                                <label className="block mb-l">تفاصيل الخدمة / الاستفسار</label>
-                                <textarea
-                                    className="w-full p-2 rounded bg-transparent border border-text-white text-text-primary"
-                                ></textarea>
-                            </div>
-                            <div className="mb-xl">
-                                <label className="block mb-1">رقم التحقق</label>
-                                <input
-                                    type="text"
-                                    className="w-full p-2 rounded text-text-primary bg-transparent border border-text-white"
-                                />
-                            </div>
-                            <div className="flex justify-end">
-                                <button
-                                    type="submit"
-                                    className="bg-white text-text-primary px-8 py-2 hover:bg-text-grey-hover"
-                                >
-                                    إرسال
-                                </button>
-                            </div>
-                        </form>
-                    </div>
                 </div>
             </Container>
-
         </div>
     );
 };

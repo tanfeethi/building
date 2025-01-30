@@ -48,7 +48,7 @@ const Navbar = () => {
                         <div className="hidden 2xl:flex xl:flex lg:flex space-x-8">
                             <a
                                 href="/"
-                                className={`${isActive("/") ? "text-text-primary font-bold" : "text-text-grey font-medium"
+                                className={`${lang === "ar" ? "me-8" : ""} ${isActive("/") ? "text-text-primary font-bold" : "text-text-grey font-medium"
                                     } text-medium`}
                             >
                                 {t("home")}
