@@ -141,19 +141,19 @@ const ContactUs = () => {
                     <div className="mt-8 text-text-primary flex flex-wrap flex-row-reverse justify-between">
                         <div>
                             <div className="flex flex-row-reverse items-center mb-4">
-                                <span className={`ml-4 ${lang === "ar" ? "mr-4 ml-0" : ""}`}>
+                                <span className={`${lang === "ar" ? "mr-0 ml-4" : ""}`}>
                                     <CiLocationOn />
                                 </span>
                                 <p>{t("contact_us.location")}</p>
                             </div>
                             <div className="flex items-center flex-row-reverse mb-4">
-                                <span className={`ml-4 ${lang === "ar" ? "mr-4 ml-0" : ""}`}>
+                                <span className={`${lang === "ar" ? "mr-0 ml-4" : ""}`}>
                                     <CiMail />
                                 </span>
                                 <p>info@bru.com.sa</p>
                             </div>
                             <div className="flex items-center flex-row-reverse mb-4">
-                                <span className={`ml-4 ${lang === "ar" ? "mr-4 ml-0" : ""}`}>
+                                <span className={`${lang === "ar" ? "mr-0 ml-4" : ""}`}>
                                     <IoCallOutline />
                                 </span>
                                 <p>0552311322</p>
