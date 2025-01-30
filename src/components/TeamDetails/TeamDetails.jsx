@@ -1,18 +1,40 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Container from '../Container/Container';
 import { motion } from 'framer-motion';
 import useFetch from '../../hooks/UseFetch';
+import { useTranslation } from 'react-i18next';
 
 const TeamDetails = () => {
-    const { data, loading, error } = useFetch("api/frontend/teams", {}, "ar");
+    const { t, i18n } = useTranslation();
+    const [lang, setLang] = useState(localStorage.getItem("language") || "ar");
+    const { data, loading, error } = useFetch("api/frontend/teams", {}, lang);
+    const [isLangLoaded, setIsLangLoaded] = useState(false);
 
-    if (loading) return <div>Loading...</div>;
-    if (error) return <div className="text-red-500">Error: {error}</div>;
+    useEffect(() => {
+        const storedLang = localStorage.getItem("language") || "ar";
+        if (i18n.language !== storedLang) {
+            i18n.changeLanguage(storedLang).then(() => {
+                setLang(storedLang);
+                setIsLangLoaded(true);
+            });
+        } else {
+            setIsLangLoaded(true);
+        }
+    }, []);
+
+    useEffect(() => {
+        if (isLangLoaded) {
+            setLang(i18n.language);
+        }
+    }, [i18n.language, isLangLoaded]);
+
+
+    if (loading) return <div>{t('loading')}</div>;
+    if (error) return <div className="text-red-500">{t('error')}: {error}</div>;
 
     const imageVariants = {
         hidden: { y: -140 },
         visible: { y: 0, transition: { type: 'spring', stiffness: 100, damping: 20 } },
-        
     };
 
     return (
@@ -29,7 +51,7 @@ const TeamDetails = () => {
                             >
                                 <img
                                     src={member.image || 'default-person.png'}
-                                    alt={member.name || "Engineer"}
+                                    alt={member.name || t('defaultEngineer')}
                                     className="rounded-3xl w-36 h-auto absolute bottom-[-32px] left-48 z-0"
                                 />
 
@@ -63,7 +85,7 @@ const TeamDetails = () => {
                         </div>
                     ))
                 ) : (
-                    <div>No team members found</div>
+                    <div>{t('noTeamMembers')}</div>
                 )}
             </div>
         </Container>
