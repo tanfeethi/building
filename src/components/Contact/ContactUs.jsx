@@ -2,11 +2,13 @@ import React, { useState } from "react";
 import { CiLocationOn, CiMail } from "react-icons/ci";
 import { FaWhatsapp, FaInstagram } from "react-icons/fa";
 import { IoCallOutline } from "react-icons/io5";
-import Button from "../Buttons/Button";
 import { BsTwitterX } from "react-icons/bs";
 import useFetch from "../../hooks/UseFetch";
+import { useTranslation } from 'react-i18next';  // Import useTranslation hook
 
 const ContactUs = () => {
+    const { t } = useTranslation();  // Initialize the translation hook
+    const [lang, setLang] = useState(localStorage.getItem("language") || "en");
     const [formData, setFormData] = useState({
         email: "",
         fullName: "",
@@ -18,6 +20,7 @@ const ContactUs = () => {
 
     const { data, loading, error } = useFetch("api/contactUs/sendMail", {
         method: "POST",
+        mode: "no-cors",
         body: JSON.stringify(formData),
     });
 
@@ -50,7 +53,7 @@ const ContactUs = () => {
     return (
         <div className="flex flex-col my-2xl px-4 md:px-8 lg:px-16">
             <h2 className="text-large text-text-primary text-center font-bold mb-5xl">
-                اتصل بنا
+                {t("contact_us.title")}  {/* Translating the title */}
             </h2>
 
             <div className="flex flex-col 2xl:flex-row-reverse xl:flex-row-reverse lg:flex-row-reverse">
@@ -59,7 +62,7 @@ const ContactUs = () => {
                         <div className="grid grid-cols-1 2xl:grid-cols-2 xl:grid-cols-2 gap-6 mb-xl">
                             <div className="flex flex-col">
                                 <label className="text-right text-text-primary mb-l">
-                                    عنوان البريد الإلكتروني
+                                    {t("contact_us.email")}  {/* Translating the label */}
                                 </label>
                                 <input
                                     type="email"
@@ -71,7 +74,7 @@ const ContactUs = () => {
                             </div>
                             <div className="flex flex-col">
                                 <label className="text-right text-text-primary mb-l">
-                                    الاسم الكامل
+                                    {t("contact_us.full_name")}  {/* Translating the label */}
                                 </label>
                                 <input
                                     type="text"
@@ -86,7 +89,7 @@ const ContactUs = () => {
                         <div className="grid grid-cols-1 2xl:grid-cols-2 xl:grid-cols-2 gap-6 mb-xl">
                             <div className="flex flex-col">
                                 <label className="text-right text-text-primary mb-l">
-                                    موضوع الرسالة
+                                    {t("contact_us.subject")}  {/* Translating the label */}
                                 </label>
                                 <input
                                     type="text"
@@ -97,7 +100,9 @@ const ContactUs = () => {
                                 />
                             </div>
                             <div className="flex flex-col">
-                                <label className="text-right text-text-primary mb-l">رقم الهاتف</label>
+                                <label className="text-right text-text-primary mb-l">
+                                    {t("contact_us.phone")}  {/* Translating the label */}
+                                </label>
                                 <input
                                     type="text"
                                     name="phone"
@@ -109,7 +114,9 @@ const ContactUs = () => {
                         </div>
 
                         <div className="flex flex-col mb-xl">
-                            <label className="text-right text-text-primary mb-l">تفاصيل الخدمة / الاستفسار</label>
+                            <label className="text-right text-text-primary mb-l">
+                                {t("contact_us.message")}  {/* Translating the label */}
+                            </label>
                             <textarea
                                 name="message"
                                 value={formData.message}
@@ -119,46 +126,34 @@ const ContactUs = () => {
                             />
                         </div>
 
-                        {/* <div className="flex flex-col mb-xl">
-                            <label className="text-right text-text-primary mb-l">رقم التحقق</label>
-                            <input
-                                type="text"
-                                name="verificationCode"
-                                value={formData.verificationCode}
-                                onChange={handleInputChange}
-                                className="border border-text-primary p-2 rounded-md w-full text-right bg-white text-black"
-                            />
-                        </div> */}
-
                         <div className="flex justify-end">
                             <button type="submit"
-                                onclick={handleSubmit}
+                                onClick={handleSubmit}
                                 className="bg-text-primary text-white px-8 py-2 font-medium shadow-lg transition">
-                                إرسال
+                                {t("contact_us.submit_button")}  {/* Translating the button */}
                             </button>
                         </div>
                     </form>
 
-                    {loading && <p>Loading...</p>}
-                    {/* {error && <p>{error}</p>} */}
+                    {loading && <p>{t("contact_us.loadingMessage")}</p>}  {/* Translating loading message */}
                     {data && <p>{data.message}</p>}
 
                     <div className="mt-8 text-text-primary flex flex-wrap flex-row-reverse justify-between">
                         <div>
                             <div className="flex flex-row-reverse items-center mb-4">
-                                <span className="ml-4">
+                                <span className={`ml-4 ${lang === "ar" ? "mr-4 ml-0" : ""}`}>
                                     <CiLocationOn />
                                 </span>
-                                <p>جدة، شارع البترجي، حي الزهراء</p>
+                                <p>{t("contact_us.location")}</p>  {/* Translating address */}
                             </div>
                             <div className="flex items-center flex-row-reverse mb-4">
-                                <span className="ml-4">
+                                <span className={`ml-4 ${lang === "ar" ? "mr-4 ml-0" : ""}`}>
                                     <CiMail />
                                 </span>
                                 <p>info@bru.com.sa</p>
                             </div>
                             <div className="flex items-center flex-row-reverse mb-4">
-                                <span className="ml-4">
+                                <span className={`ml-4 ${lang === "ar" ? "mr-4 ml-0" : ""}`}>
                                     <IoCallOutline />
                                 </span>
                                 <p>0552311322</p>
