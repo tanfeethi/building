@@ -10,20 +10,16 @@ const Projects = () => {
     const [lang, setLang] = useState(localStorage.getItem("language") || "ar"); // اللغة المحفوظة
     const { data: projects, loading, error } = useFetch("api/frontend/projects", {}, lang); // استخدام hook مع تغيير اللغة
 
-    useEffect(() => {
-        const storedLang = localStorage.getItem("language") || "ar"; // التحقق من اللغة المخزنة
+ useEffect(() => {
+        const storedLang = localStorage.getItem("language") || "ar";
         if (i18n.language !== storedLang) {
             i18n.changeLanguage(storedLang).then(() => {
-                setLang(storedLang); // تحديث اللغة بعد تغييرها
+                setLang(storedLang);
             });
+        } else {
+            setLang(storedLang); // Language was already correct
         }
-    }, [i18n.language]);
-
-    useEffect(() => {
-        // التأكد من إعادة تحميل البيانات عند تغيير اللغة
-        const storedLang = localStorage.getItem("language") || "ar";
-        setLang(storedLang);
-    }, [lang]); // تغيير اللغة سيؤدي إلى إعادة تحميل البيانات
+    }, [i18n.language]); 
 
     if (loading) return <div className="text-center">Loading...</div>;
     if (error) return <div className="text-center text-red-500">Error: {error}</div>;
