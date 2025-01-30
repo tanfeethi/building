@@ -17,7 +17,7 @@ const Projects = () => {
     return (
         <Container>
             <div className="my-5xl">
-                <h2 className="text-text-primary text-large font-bold mb-8 text-end">
+                <h2 className="text-text-primary text-large font-bold mb-8">
                     مشاريعنا
                 </h2>
                 <div className="grid grid-cols-1 2xl:grid-cols-3 xl:grid-cols-3 lg:grid-cols-3 md:grid-cols-2 gap-8">

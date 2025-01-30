@@ -1,11 +1,29 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Container from "../Container/Container";
 import Button from "../Buttons/Button";
 import { motion } from "framer-motion"; // for animations
 import useFetch from "../../hooks/UseFetch";
+import { useTranslation } from "react-i18next"; // استيراد useTranslation
 
 const Projects = () => {
-    const { data: projects, loading, error } = useFetch("api/frontend/projects");
+    const { i18n } = useTranslation(); // استخدام i18n للتبديل بين اللغات
+    const [lang, setLang] = useState(localStorage.getItem("language") || "ar"); // اللغة المحفوظة
+    const { data: projects, loading, error } = useFetch("api/frontend/projects", {}, lang); // استخدام hook مع تغيير اللغة
+
+    useEffect(() => {
+        const storedLang = localStorage.getItem("language") || "ar"; // التحقق من اللغة المخزنة
+        if (i18n.language !== storedLang) {
+            i18n.changeLanguage(storedLang).then(() => {
+                setLang(storedLang); // تحديث اللغة بعد تغييرها
+            });
+        }
+    }, [i18n.language]);
+
+    useEffect(() => {
+        // التأكد من إعادة تحميل البيانات عند تغيير اللغة
+        const storedLang = localStorage.getItem("language") || "ar";
+        setLang(storedLang);
+    }, [lang]); // تغيير اللغة سيؤدي إلى إعادة تحميل البيانات
 
     if (loading) return <div className="text-center">Loading...</div>;
     if (error) return <div className="text-center text-red-500">Error: {error}</div>;
@@ -13,8 +31,8 @@ const Projects = () => {
     return (
         <Container>
             <div className="my-5xl">
-                <h2 className="text-text-primary text-large font-bold mb-8 text-end">
-                    مشاريعنا
+                <h2 className="text-text-primary text-large font-bold mb-8">
+                    {i18n.language === "ar" ? "مشاريعنا" : "Our Projects"} {/* ترجمة العنوان بناءً على اللغة */}
                 </h2>
                 <div className="grid grid-cols-1 2xl:grid-cols-4 xl:grid-cols-4 lg:grid-cols-4 md:grid-cols-2 gap-8">
                     {projects.slice(0, 4).map((project) => (
@@ -42,10 +60,12 @@ const Projects = () => {
                                         {project.title}
                                     </h4>
                                     <p className="text-text-primary group-hover:text-text-white text-sm mb-5">
-                                        {project.deliveredStatus ? "تم التسليم" : "قيد التنفيذ"}
+                                        {project.deliveredStatus ? 
+                                            (i18n.language === "ar" ? "تم التسليم" : "Delivered") :
+                                            (i18n.language === "ar" ? "قيد التنفيذ" : "In Progress")} {/* ترجمة الحالة */}
                                     </p>
                                     <Button
-                                        name={project.address || "معرفة المزيد"}
+                                        name={project.address || (i18n.language === "ar" ? "معرفة المزيد" : "Learn More")}
                                         className="bg-transparent border-2 border-text-white text-white px-4 py-2 transition-all duration-300"
                                     />
                                 </motion.div>
