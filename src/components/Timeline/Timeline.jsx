@@ -4,8 +4,10 @@ import "react-datepicker/dist/react-datepicker.css";
 import "./Timeline.css";
 import { api_url } from "../../utils/api";
 import Container from "../Container/Container";
+import { useTranslation } from "react-i18next"; // Import useTranslation
 
 const Timeline = () => {
+    const { t } = useTranslation(); // Use translation hook
     const [selectedDate, setSelectedDate] = useState(new Date());
     const [selectedTime, setSelectedTime] = useState(null);
     const [formData, setFormData] = useState({
@@ -30,7 +32,7 @@ const Timeline = () => {
 
     const handleSubmit = async () => {
         if (!selectedTime) {
-            alert("Please select a time");
+            alert(t('select_time')); // Use translation here
             return;
         }
 
@@ -49,10 +51,9 @@ const Timeline = () => {
             const response = await fetch(`${api_url}/api/appointment/takeAppointment`, {
                 method: "POST",
                 headers: {
-                    // "Content-Type": "application/json",
-                    // "ngrok-skip-browser-warning": "true",
+                    "Content-Type": "application/json",
+                    "ngrok-skip-browser-warning": "true",
                 },
-                mode: "no-cors",
                 body: JSON.stringify(payload),
             });
 
@@ -62,12 +63,12 @@ const Timeline = () => {
 
             const result = await response.json();
             if (result.success) {
-                setSuccessMessage("Appointment booked successfully!");
+                setSuccessMessage(t('appointment_success')); // Use translation here
             } else {
-                throw new Error(result.message || "Failed to book appointment.");
+                throw new Error(result.message || t('error_occurred')); // Use translation here
             }
         } catch (err) {
-            setError(err.message || "An error occurred. Please try again.");
+            setError(err.message || t('error_occurred')); // Use translation here
         } finally {
             setLoading(false);
         }
@@ -78,7 +79,7 @@ const Timeline = () => {
             <Container>
                 <div className="flex flex-col 2xl:flex-row xl:flex-row lg:flex-row p-8">
                     <div className="lg:w-1/2 w-full flex flex-col items-center lg:items-start">
-                        <h2 className="text-medium text-white mb-4">Feb 2025</h2>
+                        <h2 className="text-medium text-white mb-4">{t('appointment_title')}</h2>
                         <DatePicker
                             selected={selectedDate}
                             onChange={(date) => setSelectedDate(date)}
@@ -105,11 +106,11 @@ const Timeline = () => {
 
                     {/* Form Section */}
                     <div className="lg:w-1/2 w-full flex flex-col gap-4 p-4">
-                        <h2 className="text-large text-white text-right">حجز المواعيد</h2>
+                        <h2 className="text-large text-white text-right">{t('appointment_title')}</h2>
                         <input
                             type="text"
                             name="name"
-                            placeholder="الاسم"
+                            placeholder={t('name_placeholder')}  // Use translation here
                             value={formData.name}
                             onChange={handleChange}
                             className="p-3 rounded-1xl border border-gray-300 text-black"
@@ -117,7 +118,7 @@ const Timeline = () => {
                         <input
                             type="text"
                             name="phone"
-                            placeholder="05xxxxxxxx"
+                            placeholder={t('phone_placeholder')}  // Use translation here
                             value={formData.phone}
                             onChange={handleChange}
                             className="p-3 rounded-1xl border border-gray-300 text-black"
@@ -125,7 +126,7 @@ const Timeline = () => {
                         <input
                             type="email"
                             name="email"
-                            placeholder="ex@example.com"
+                            placeholder={t('email_placeholder')}  // Use translation here
                             value={formData.email}
                             onChange={handleChange}
                             className="p-3 rounded-1xl border border-gray-300 text-black"
@@ -135,7 +136,7 @@ const Timeline = () => {
                             className="bg-text-primary text-white py-3 rounded-1xl"
                             disabled={loading}
                         >
-                            {loading ? "جاري الحجز..." : "احجز موعد"}
+                            {loading ? t('booking_in_progress') : t('book_appointment')}  {/* Use translation here */}
                         </button>
                         {error && <p className="text-red-500">{error}</p>}
                         {successMessage && <p className="text-green-500">{successMessage}</p>}
