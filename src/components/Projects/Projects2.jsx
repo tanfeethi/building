@@ -1,11 +1,25 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Container from "../Container/Container";
 import useFetch from "../../hooks/UseFetch";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 const Projects = () => {
-    const lang = "ar";
-    const { data: projects, loading, error } = useFetch("api/frontend/projects", {}, lang);
+    const { i18n } = useTranslation(); // استخدام i18n للتبديل بين اللغات
+    const [lang, setLang] = useState(localStorage.getItem("language") || "ar"); // اللغة المحفوظة
+    const { data: projects, loading, error } = useFetch("api/frontend/projects", {}, lang); // استخدام hook مع تغيير اللغة
+
+    useEffect(() => {
+        const storedLang = localStorage.getItem("language") || "ar";
+        if (i18n.language !== storedLang) {
+            i18n.changeLanguage(storedLang).then(() => {
+                setLang(storedLang);
+            });
+        } else {
+            setLang(storedLang); // Language was already correct
+        }
+    }, [i18n.language]);
+
 
     if (loading) return <div className="text-center">Loading...</div>;
     if (error) return <div className="text-center text-red-500">Error: {error}</div>;
