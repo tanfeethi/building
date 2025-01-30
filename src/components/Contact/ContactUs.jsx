@@ -1,28 +1,24 @@
 import React, { useState } from "react";
+import axios from "axios";
 import { CiLocationOn, CiMail } from "react-icons/ci";
 import { FaWhatsapp, FaInstagram } from "react-icons/fa";
 import { IoCallOutline } from "react-icons/io5";
 import { BsTwitterX } from "react-icons/bs";
-import useFetch from "../../hooks/UseFetch";
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from "react-i18next";
+import { api_url } from "../../utils/api";
 
 const ContactUs = () => {
     const { t } = useTranslation();
-    const [lang, setLang] = useState(localStorage.getItem("language") || "en");
+    const [lang] = useState(localStorage.getItem("language") || "en");
     const [formData, setFormData] = useState({
         email: "",
-        fullName: "",
+        name: "",
         subject: "",
         phone: "",
-        message: "",
-        // verificationCode: "",
+        massage: "",
     });
-
-    const { data, loading, error } = useFetch("api/contactUs/sendMail", {
-        method: "POST",
-        mode: "no-cors",
-        body: JSON.stringify(formData),
-    });
+    const [loading, setLoading] = useState(false);
+    const [responseMessage, setResponseMessage] = useState("");
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
@@ -34,26 +30,41 @@ const ContactUs = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setLoading(true);
+        setResponseMessage("");
 
-        const response = await sendRequest();
-        if (response?.status === "success") {
-            console.log("Message sent successfully");
-            setFormData({
-                email: "",
-                fullName: "",
-                subject: "",
-                phone: "",
-                message: "",
+        try {
+            const response = await axios.post(`${api_url}/api/contactUs/sendMail`, formData, {
+                headers: {
+                    "Content-Type": "application/json",
+                    "ngrok-skip-browser-warning": "true",
+                },
             });
-        } else {
-            console.error("Error sending message:", response?.message || error);
+
+            if (response.data?.status === "success") {
+                setResponseMessage("Message sent successfully");
+                setFormData({
+                    email: "",
+                    name: "",
+                    subject: "",
+                    phone: "",
+                    massage: "",
+                });
+            } else {
+                setResponseMessage(response.data?.message || "Failed to send message.");
+            }
+        } catch (error) {
+            setResponseMessage("Error sending message.");
+            console.error("Error:", error);
+        } finally {
+            setLoading(false);
         }
     };
 
     return (
         <div className="flex flex-col my-2xl px-4 md:px-8 lg:px-16">
             <h2 className="text-large text-text-primary text-center font-bold mb-5xl">
-                {t("contact_us.title")}  {/* Translating the title */}
+                {t("contact_us.title")}
             </h2>
 
             <div className="flex flex-col 2xl:flex-row-reverse xl:flex-row-reverse lg:flex-row-reverse">
@@ -62,7 +73,7 @@ const ContactUs = () => {
                         <div className="grid grid-cols-1 2xl:grid-cols-2 xl:grid-cols-2 gap-6 mb-xl">
                             <div className="flex flex-col">
                                 <label className="text-right text-text-primary mb-l">
-                                    {t("contact_us.email")}  {/* Translating the label */}
+                                    {t("contact_us.email")}
                                 </label>
                                 <input
                                     type="email"
@@ -70,18 +81,20 @@ const ContactUs = () => {
                                     value={formData.email}
                                     onChange={handleInputChange}
                                     className="border border-text-primary p-2 rounded-md w-full text-right bg-white text-black"
+                                    required
                                 />
                             </div>
                             <div className="flex flex-col">
                                 <label className="text-right text-text-primary mb-l">
-                                    {t("contact_us.full_name")}  {/* Translating the label */}
+                                    {t("contact_us.full_name")}
                                 </label>
                                 <input
                                     type="text"
-                                    name="fullName"
-                                    value={formData.fullName}
+                                    name="name"
+                                    value={formData.name}
                                     onChange={handleInputChange}
                                     className="border border-text-primary p-2 rounded-md w-full text-right bg-white text-black"
+                                    required
                                 />
                             </div>
                         </div>
@@ -89,7 +102,7 @@ const ContactUs = () => {
                         <div className="grid grid-cols-1 2xl:grid-cols-2 xl:grid-cols-2 gap-6 mb-xl">
                             <div className="flex flex-col">
                                 <label className="text-right text-text-primary mb-l">
-                                    {t("contact_us.subject")}  {/* Translating the label */}
+                                    {t("contact_us.subject")}
                                 </label>
                                 <input
                                     type="text"
@@ -97,11 +110,12 @@ const ContactUs = () => {
                                     value={formData.subject}
                                     onChange={handleInputChange}
                                     className="border border-text-primary p-2 rounded-md w-full text-right bg-white text-black"
+                                    required
                                 />
                             </div>
                             <div className="flex flex-col">
                                 <label className="text-right text-text-primary mb-l">
-                                    {t("contact_us.phone")}  {/* Translating the label */}
+                                    {t("contact_us.phone")}
                                 </label>
                                 <input
                                     type="text"
@@ -109,34 +123,34 @@ const ContactUs = () => {
                                     value={formData.phone}
                                     onChange={handleInputChange}
                                     className="border border-text-primary p-2 rounded-md w-full text-right bg-white text-black"
+                                    required
                                 />
                             </div>
                         </div>
 
                         <div className="flex flex-col mb-xl">
                             <label className="text-right text-text-primary mb-l">
-                                {t("contact_us.message")}  {/* Translating the label */}
+                                {t("contact_us.message")}
                             </label>
                             <textarea
-                                name="message"
-                                value={formData.message}
+                                name="massage"
+                                value={formData.massage}
                                 onChange={handleInputChange}
                                 className="border border-text-primary p-2 rounded-md w-full text-right bg-white text-black"
                                 rows="4"
+                                required
                             />
                         </div>
 
                         <div className="flex justify-end">
-                            <button type="submit"
-                                onClick={handleSubmit}
-                                className="bg-text-primary text-white px-8 py-2 font-medium shadow-lg transition">
-                                {t("contact_us.submit_button")}  {/* Translating the button */}
+                            <button type="submit" className="bg-text-primary text-white px-8 py-2 font-medium shadow-lg transition" disabled={loading}>
+                                {loading ? t("contact_us.sending") : t("contact_us.submit_button")}
                             </button>
                         </div>
                     </form>
 
-                    {loading && <p>{t("contact_us.loadingMessage")}</p>}  {/* Translating loading message */}
-                    {data && <p>{data.message}</p>}
+                    {loading && <p>{t("contact_us.loadingMessage")}</p>}
+                    {responseMessage && <p>{responseMessage}</p>}
 
                     <div className="mt-8 text-text-primary flex flex-wrap flex-row-reverse justify-between">
                         <div>
@@ -162,7 +176,7 @@ const ContactUs = () => {
 
                         <div className="flex">
                             <a href="#" className="text-text-primary p-2 rounded-full">
-                                <FaWhatsapp size={20}/>
+                                <FaWhatsapp size={20} />
                             </a>
                             <a href="#" className="text-text-primary p-2 rounded-full">
                                 <FaInstagram size={20} />
