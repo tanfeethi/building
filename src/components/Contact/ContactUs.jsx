@@ -4,10 +4,10 @@ import { FaWhatsapp, FaInstagram } from "react-icons/fa";
 import { IoCallOutline } from "react-icons/io5";
 import { BsTwitterX } from "react-icons/bs";
 import useFetch from "../../hooks/UseFetch";
-import { useTranslation } from 'react-i18next';  // Import useTranslation hook
+import { useTranslation } from 'react-i18next';
 
 const ContactUs = () => {
-    const { t } = useTranslation();  // Initialize the translation hook
+    const { t } = useTranslation();
     const [lang, setLang] = useState(localStorage.getItem("language") || "en");
     const [formData, setFormData] = useState({
         email: "",
@@ -144,7 +144,7 @@ const ContactUs = () => {
                                 <span className={`ml-4 ${lang === "ar" ? "mr-4 ml-0" : ""}`}>
                                     <CiLocationOn />
                                 </span>
-                                <p>{t("contact_us.location")}</p>  {/* Translating address */}
+                                <p>{t("contact_us.location")}</p>
                             </div>
                             <div className="flex items-center flex-row-reverse mb-4">
                                 <span className={`ml-4 ${lang === "ar" ? "mr-4 ml-0" : ""}`}>
@@ -160,9 +160,9 @@ const ContactUs = () => {
                             </div>
                         </div>
 
-                        <div className="flex space-x-4">
+                        <div className="flex">
                             <a href="#" className="text-text-primary p-2 rounded-full">
-                                <FaWhatsapp size={20} />
+                                <FaWhatsapp size={20}/>
                             </a>
                             <a href="#" className="text-text-primary p-2 rounded-full">
                                 <FaInstagram size={20} />
