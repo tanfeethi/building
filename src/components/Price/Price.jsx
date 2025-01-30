@@ -6,7 +6,7 @@ import Container from "../Container/Container";
 import { useTranslation } from "react-i18next";
 
 const PriceSection = () => {
-    const { t } = useTranslation();
+    const { t, i18n } = useTranslation();
     const [activeCard, setActiveCard] = useState(null);
 
     useEffect(() => {
@@ -16,6 +16,8 @@ const PriceSection = () => {
     const handleCardClick = (cardIndex) => {
         setActiveCard(cardIndex);  
     };
+
+    const isRtl = i18n.language === "ar";
 
     return (
         <Container>
@@ -32,12 +34,13 @@ const PriceSection = () => {
                             key={index}
                             className={`group relative transition-all duration-300 overflow-hidden cursor-pointer rounded-2xl ${
                                 activeCard === index
-                                    ? "w-96 h-60 bg-text-primary-dark"
-                                    : "w-80 h-52 bg-text-primary"
+                                    ? "w-[588px] h-60 bg-text-primary-dark"
+                                    : "w-72 h-52 bg-text-primary"
                             }`}
                             onClick={() => handleCardClick(index)}
                         >
-                            <div className="absolute top-8 right-8">
+                            {/* Conditional placement of the image based on language */}
+                            <div className={`absolute ${isRtl ? 'right-8' : 'left-8'} top-16`}>
                                 <img
                                     src={index === 0 ? numberOne : index === 1 ? numberTwo : numberThree}
                                     alt={t(`priceSection.stage${index + 1}`)}
@@ -46,7 +49,7 @@ const PriceSection = () => {
                             </div>
 
                             <div
-                                className={`transition-opacity duration-300 p-6 me-4xl text-right ${
+                                className={`transition-opacity mx-6xl duration-300 my-xl ${
                                     activeCard === index ? "opacity-100" : "opacity-0"
                                 }`}
                             >
