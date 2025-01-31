@@ -4,11 +4,14 @@ import useFetch from "../../hooks/UseFetch";
 import Footer from "../Footer/Footer";
 import Container from "../Container/Container";
 import ProjectDetail from '../../assets/ProjectDetails.jpg';
+import { useTranslation } from "react-i18next";
 
 const ProjectDetails = () => {
     const { id } = useParams();
+    const { i18n } = useTranslation();
     const { data: project, loading, error } = useFetch(`api/frontend/projects/${id}`);
     const [currentIndex, setCurrentIndex] = useState(0);
+    const currentLang = i18n.language;
 
     const prevSlide = () => {
         setCurrentIndex((prevIndex) =>
@@ -49,20 +52,38 @@ const ProjectDetails = () => {
                     )}
                     {project.images.length > 1 && (
                         <>
-                            {/* Left Arrow */}
-                            <button
-                                onClick={prevSlide}
-                                className="absolute left-4 top-1/2 transform -translate-y-1/2 text-text-primary text-3xl bg-white bg-opacity-70 px-4 py-2 rounded-full shadow-lg hover:bg-opacity-90 transition z-20"
-                            >
-                                ❮
-                            </button>
-                            {/* Right Arrow */}
-                            <button
-                                onClick={nextSlide}
-                                className="absolute right-4 top-1/2 transform -translate-y-1/2 text-text-primary text-3xl bg-white bg-opacity-70 px-4 py-2 rounded-full shadow-lg hover:bg-opacity-90 transition z-20"
-                            >
-                                ❯
-                            </button>
+                            {currentLang === "ar" ? <>
+                                {/* Left Arrow */}
+                                <button
+                                    onClick={prevSlide}
+                                    className="absolute right-4 top-1/2 transform -translate-y-1/2 text-text-primary text-3xl bg-white bg-opacity-70 px-4 py-2 rounded-full shadow-lg hover:bg-opacity-90 transition z-20"
+                                >
+                                    ❮
+                                </button>
+                                {/* Right Arrow */}
+                                <button
+                                    onClick={nextSlide}
+                                    className="absolute left-4 top-1/2 transform -translate-y-1/2 text-text-primary text-3xl bg-white bg-opacity-70 px-4 py-2 rounded-full shadow-lg hover:bg-opacity-90 transition z-20"
+                                >
+                                    ❯
+                                </button>
+                            </> : <>
+                                {/* Left Arrow */}
+                                <button
+                                    onClick={prevSlide}
+                                    className="absolute left-4 top-1/2 transform -translate-y-1/2 text-text-primary text-3xl bg-white bg-opacity-70 px-4 py-2 rounded-full shadow-lg hover:bg-opacity-90 transition z-20"
+                                >
+                                    ❮
+                                </button>
+                                {/* Right Arrow */}
+                                <button
+                                    onClick={nextSlide}
+                                    className="absolute right-4 top-1/2 transform -translate-y-1/2 text-text-primary text-3xl bg-white bg-opacity-70 px-4 py-2 rounded-full shadow-lg hover:bg-opacity-90 transition z-20"
+                                >
+                                    ❯
+                                </button>
+                            </>}
+
                         </>
                     )}
                 </div>

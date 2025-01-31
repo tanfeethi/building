@@ -31,7 +31,7 @@ const AboutUs = () => {
                         <motion.img
                             src={leftAbout}
                             alt="Construction Site Left"
-                            className="rounded-lg w-full h-96 object-cover"
+                            className="rounded-lg w-full sm:w-48 h-96 object-cover"
                             initial={{ y: 100, opacity: 0 }}
                             whileInView={{ y: 0, opacity: 1 }}
                             viewport={{ once: true }}
@@ -40,7 +40,7 @@ const AboutUs = () => {
                         <motion.img
                             src={rightAbout}
                             alt="Construction Site Right"
-                            className="rounded-lg w-full h-96 object-cover"
+                            className="rounded-lg w-full sm:w-48 h-96 object-cover"
                             initial={{ y: -100, opacity: 0 }}
                             whileInView={{ y: 0, opacity: 1 }}
                             viewport={{ once: true }}

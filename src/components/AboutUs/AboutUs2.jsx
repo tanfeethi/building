@@ -39,11 +39,11 @@ const AboutUs2 = () => {
                         {i18n.language === "ar" ? "من نحــــــن" : "About Us"}
                     </h2>
                     <p className='mt-xl flex justify-center text-medium items-center'>
-                        {i18n.language === "ar" ? "في عالم البناء" : "In the world of construction"}
+                        {i18n.language === "ar" ? "في عالم البناء" : "In world construction"}
                         <span className='mx-4'>
                             <img src={Aboutlogo} alt="Aboutlogo" />
                         </span>
-                        {i18n.language === "ar" ? "شركة مرجع المباني المتحدة" : "United Buildings Reference Company"}
+                        {i18n.language === "ar" ? "شركة مرجع المباني المتحدة" : "United Buildings Company"}
                     </p>
                 </div>
             </motion.div>

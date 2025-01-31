@@ -62,7 +62,7 @@ const Projects = () => {
                                     </p>
                                     <Button
                                         name={project.address || (i18n.language === "ar" ? "معرفة المزيد" : "Learn More")}
-                                        className="bg-transparent border-2 border-text-white text-white px-4 py-2 transition-all duration-300"
+                                        className="bg-transparent border-2 md:px-2 border-text-white text-white px-4 py-2 transition-all duration-300"
                                     />
                                 </motion.div>
                             </div>

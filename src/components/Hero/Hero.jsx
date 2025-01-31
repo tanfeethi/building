@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Container from "../Container/Container";
 import useFetch from "../../hooks/UseFetch";
+import greyRectangle from "../../assets/grey-rectangle.png";
 import { useTranslation } from "react-i18next";
 
 const Hero = () => {
@@ -10,6 +11,7 @@ const Hero = () => {
     const [isLangLoaded, setIsLangLoaded] = useState(false); // To track language loading
     const { data: sliders, loading, error } = useFetch("api/frontend/sliders", {}, lang);
     const [currentIndex, setCurrentIndex] = useState(0);
+    const currentLang = i18n.language;
 
     useEffect(() => {
         const storedLang = localStorage.getItem("language") || "ar";
@@ -58,19 +60,23 @@ const Hero = () => {
             <div className="grid grid-cols-1 2xl:grid-cols-2 xl:grid-cols-2 lg:grid-cols-1 gap-8 w-full">
                 <div className="relative w-[842px] h-[500px] overflow-hidden">
                     <AnimatePresence mode="wait">
-                        <motion.img
+                        <motion.div
                             key={currentIndex}
-                            src={sliders[currentIndex]?.background}
-                            alt={sliders[currentIndex]?.title}
-                            className="w-full h-full object-cover rounded-2xl shadow-lg"
-                            initial={{ y: -500 }}
-                            animate={{ y: 0 }}
-                            exit={{ y: -500 }}
+                            className="absolute top-0 left-0 w-full h-full"
+                            initial={{ y: 300, opacity: 0 }}
+                            animate={{ y: 0, opacity: 1 }}
                             transition={{ type: "spring", stiffness: 100 }}
-                        />
+                        >
+                            <img
+                                src={sliders[currentIndex]?.background}
+                                alt={sliders[currentIndex]?.title}
+                                className="w-full h-full object-cover rounded-2xl shadow-lg"
+                            />
+                        </motion.div>
                     </AnimatePresence>
 
-                    <div className="absolute bottom-4 left-4 flex space-x-4">
+
+                    <div className={`absolute ${currentLang === "ar" ? "bottom-0 right-0" : "bottom-0 left-0"} flex flex-col`}>
                         <button
                             onClick={prevSlide}
                             className="text-text-primary text-3xl bg-text-white bg-opacity-50 px-4 py-2 hover:bg-opacity-80 transition"

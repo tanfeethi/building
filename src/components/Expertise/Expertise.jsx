@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
-import ContainerPhoto from "../../assets/container.jpg"; // Replace with the actual image path
+import ContainerPhoto from "../../assets/container.jpg";
 import Container from "../Container/Container";
 import { motion } from "framer-motion";
 
 const Expertise = () => {
-    const { t } = useTranslation();
+    const { t , i18n } = useTranslation();
     const [activeIndex, setActiveIndex] = useState(0);
+    const currentLang = i18n.language;
 
     const services = [
         {
@@ -38,7 +39,7 @@ const Expertise = () => {
                 <div className="flex flex-col 2xl:flex-row xl:flex-row lg:flex-row items-center justify-between mb-16 px-6 lg:px-0">
 
 
-                    <div className="lg:w-1/2 w-full text-right">
+                    <div className="lg:w-1/2 w-full">
                         <p className="text-3xl font-bold text-primary mb-4 text-text-primary">
                             {t("expertise.title")}
                             <p className="text-text-black">{t("expertise.subtitle")}</p>
@@ -46,6 +47,7 @@ const Expertise = () => {
                     </div>
 
                     <div className="relative lg:w-1/2 w-full mb-8 lg:mb-0">
+                    {currentLang === "ar" ? 
                         <div
                             className="relative w-full h-[265px] overflow-hidden rounded-lg transition-all duration-300 transform group"
                         >
@@ -65,7 +67,29 @@ const Expertise = () => {
                             >
                                 <p className="text-sm px-2xl">{t("expertise.description")}</p>
                             </div>
-                        </div>
+                        </div> 
+                        : 
+                        <div
+                            className="relative w-full h-[265px] overflow-hidden rounded-lg transition-all duration-300 transform group"
+                        >
+                            <img
+                                src={ContainerPhoto}
+                                style={{
+                                    clipPath: "polygon(15% 0, 100% 0%, 100% 100%, 0 100%)",
+                                }}
+                                alt="Expertise"
+                                className="absolute top-0 right-0 w-full h-full object-cover opacity-80 group-hover:opacity-90 transition-all duration-300 group-hover:scale-110"
+                            />
+                            <div
+                                className="absolute bottom-0 right-0 left-32 p-4 text-white bg-text-primary"
+                                style={{
+                                    clipPath: "polygon(10% 0, 100% 0%, 100% 100%, 0 100%)",
+                                }}
+                            >
+                                <p className="text-sm px-2xl">{t("expertise.description")}</p>
+                            </div>
+                        </div> }
+
                     </div>
                 </div>
 

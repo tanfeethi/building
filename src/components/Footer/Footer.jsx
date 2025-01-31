@@ -69,7 +69,7 @@ const Footer = () => {
                     </div>
 
                     {/* Right Section - Info & Social Links */}
-                    <div className="mx-2xl sm:mx-0 md:mx-0 md:w-full sm:w-full flex flex-col items-start">
+                    <div className="mx-2xl sm:mx-0 md:mx-0 md:w-full sm:w-full flex flex-col justify-evenly items-start">
                         <div className="flex flex-row items-center space-x-6">
                             <img src={logo2} alt="Logo" className="w-48 h-auto mb-4" />
                         </div>
