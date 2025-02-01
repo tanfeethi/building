@@ -3,7 +3,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import moment from "moment";
 import axios from "axios";
-import "./Timeline.css";
+import "./timeline.css";
 import { api_url } from "../../utils/api";
 import Container from "../Container/Container";
 import { useTranslation } from "react-i18next";
