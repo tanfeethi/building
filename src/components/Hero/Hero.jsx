@@ -2,13 +2,12 @@ import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Container from "../Container/Container";
 import useFetch from "../../hooks/UseFetch";
-import greyRectangle from "../../assets/grey-rectangle.png";
 import { useTranslation } from "react-i18next";
 
 const Hero = () => {
     const { i18n } = useTranslation();
-    const [lang, setLang] = useState(localStorage.getItem("language") || "ar"); // Ensure correct language on load
-    const [isLangLoaded, setIsLangLoaded] = useState(false); // To track language loading
+    const [lang, setLang] = useState(localStorage.getItem("language") || "ar");
+    const [isLangLoaded, setIsLangLoaded] = useState(false);
     const { data: sliders, loading, error } = useFetch("api/frontend/sliders", {}, lang);
     const [currentIndex, setCurrentIndex] = useState(0);
     const currentLang = i18n.language;
@@ -18,16 +17,16 @@ const Hero = () => {
         if (i18n.language !== storedLang) {
             i18n.changeLanguage(storedLang).then(() => {
                 setLang(storedLang);
-                setIsLangLoaded(true); // Set after ensuring language is applied
+                setIsLangLoaded(true);
             });
         } else {
-            setIsLangLoaded(true); // Language was already correct
+            setIsLangLoaded(true);
         }
     }, []);
 
     useEffect(() => {
         if (isLangLoaded) {
-            setLang(i18n.language); // Update lang after i18n updates
+            setLang(i18n.language);
         }
     }, [i18n.language, isLangLoaded]);
 
@@ -43,11 +42,7 @@ const Hero = () => {
         );
     };
 
-    if (!isLangLoaded) {
-        return <div className="text-center">Loading...</div>;
-    }
-
-    if (loading) {
+    if (!isLangLoaded || loading) {
         return <div className="text-center">Loading...</div>;
     }
 
@@ -56,62 +51,61 @@ const Hero = () => {
     }
 
     return (
-        <div className="w-full my-5xl flex justify-between">
-            <div className="grid grid-cols-1 2xl:grid-cols-2 xl:grid-cols-2 lg:grid-cols-1 gap-8 w-full">
-                <div className="relative w-[842px] h-[500px] overflow-hidden">
-                    <AnimatePresence mode="wait">
-                        <motion.div
-                            key={currentIndex}
-                            className="absolute top-0 left-0 w-full h-full"
-                            initial={{ y: 300, opacity: 0 }}
-                            animate={{ y: 0, opacity: 1 }}
-                            transition={{ type: "spring", stiffness: 100 }}
-                        >
-                            <img
-                                src={sliders[currentIndex]?.background}
-                                alt={sliders[currentIndex]?.title}
-                                className="w-full h-full object-cover rounded-2xl shadow-lg"
-                            />
-                        </motion.div>
-                    </AnimatePresence>
-
-
-                    <div className={`absolute ${currentLang === "ar" ? "bottom-0 right-0" : "bottom-0 left-0"} flex flex-col`}>
-                        <button
-                            onClick={prevSlide}
-                            className="text-text-primary text-3xl bg-text-white bg-opacity-50 px-4 py-2 hover:bg-opacity-80 transition"
-                        >
-                            ❮
-                        </button>
-                        <button
-                            onClick={nextSlide}
-                            className="text-text-primary text-3xl bg-text-white bg-opacity-50 px-4 py-2 hover:bg-opacity-80 transition"
-                        >
-                            ❯
-                        </button>
-                    </div>
-                </div>
-
-                <Container>
+        <div className="w-full my-5 flex flex-col 2xl:flex-row xl:flex-row items-center justify-center">
+            <div className="relative w-full sm:w-[80%] md:w-[70%] xl:w-[50%] h-[50vh] sm:h-[40vh] overflow-hidden">
+                <AnimatePresence mode="wait">
                     <motion.div
-                        className="text-right"
-                        initial={{ y: -50, opacity: 0 }}
+                        key={currentIndex}
+                        className="absolute top-0 left-0 w-full h-full"
+                        initial={{ y: 300, opacity: 0 }}
                         animate={{ y: 0, opacity: 1 }}
-                        exit={{ y: -50, opacity: 0 }}
-                        transition={{ type: "spring", stiffness: 300 }}
+                        transition={{ type: "spring", stiffness: 100 }}
                     >
-                        <h1 className="text-3xl font-bold text-text-primary">
-                            {sliders[currentIndex]?.title}
-                        </h1>
-                        <p className="text-small mt-4 text-gray-700">
-                            {sliders[currentIndex]?.text}
-                        </p>
-                        <button className="mt-6 px-6 py-3 bg-text-primary text-white rounded-2xl hover:bg-opacity-80">
-                            {sliders[currentIndex]?.btnTitle}
-                        </button>
+                        <img
+                            src={sliders[currentIndex]?.background}
+                            alt={sliders[currentIndex]?.title}
+                            className="w-full h-full object-cover rounded-xl shadow-lg"
+                        />
                     </motion.div>
-                </Container>
+                </AnimatePresence>
+
+                {/* Navigation Buttons */}
+                <div className={`absolute ${currentLang === "ar" ? "bottom-0 right-0" : "bottom-0 left-0"} flex flex-col`}>
+                    <button
+                        onClick={prevSlide}
+                        className="text-text-primary text-3xl bg-text-white bg-opacity-50 px-4 py-2 hover:bg-opacity-80 transition"
+                    >
+                        ❮
+                    </button>
+                    <button
+                        onClick={nextSlide}
+                        className="text-text-primary text-3xl bg-text-white bg-opacity-50 px-4 py-2 hover:bg-opacity-80 transition"
+                    >
+                        ❯
+                    </button>
+                </div>
             </div>
+
+            {/* Text Content */}
+            <Container>
+                <motion.div
+                    className="text-right"
+                    initial={{ y: -50, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    exit={{ y: -50, opacity: 0 }}
+                    transition={{ type: "spring", stiffness: 300 }}
+                >
+                    <h1 className="text-3xl font-bold text-text-primary">
+                        {sliders[currentIndex]?.title}
+                    </h1>
+                    <p className="text-small mt-4 text-gray-700">
+                        {sliders[currentIndex]?.text}
+                    </p>
+                    <button className="mt-6 px-6 py-3 bg-text-primary text-white rounded-2xl hover:bg-opacity-80">
+                        {sliders[currentIndex]?.btnTitle}
+                    </button>
+                </motion.div>
+            </Container>
         </div>
     );
 };
