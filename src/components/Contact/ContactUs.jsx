@@ -8,8 +8,8 @@ import { useTranslation } from "react-i18next";
 import { api_url } from "../../utils/api";
 
 const ContactUs = () => {
-    const { t } = useTranslation();
-    const [lang] = useState(localStorage.getItem("language") || "en");
+    const { t, i18n } = useTranslation();
+    const lang = i18n.language;
     const [formData, setFormData] = useState({
         email: "",
         name: "",
@@ -155,22 +155,26 @@ const ContactUs = () => {
                     <div className="mt-8 text-text-primary flex flex-wrap flex-row-reverse justify-between">
                         <div>
                             <div className="flex flex-row-reverse items-center mb-4">
-                                <span className={`${lang === "ar" ? "mr-0 ml-4" : ""}`}>
+                                <span className={`${lang === "ar" ? "mx-2 ml-0" : "ms-2"}`}>
                                     <CiLocationOn />
                                 </span>
                                 <p>{t("contact_us.location")}</p>
                             </div>
                             <div className="flex items-center flex-row-reverse mb-4">
-                                <span className={`${lang === "ar" ? "mr-0 ml-4" : ""}`}>
+                                <span className={`${lang === "ar" ? "mx-2 ml-0" : "ms-2"}`}>
                                     <CiMail />
                                 </span>
-                                <p>info@bru.com.sa</p>
+                                <a href="mailto:info@bru.com.sa" className="hover:underline">
+                                    info@bru.com.sa
+                                </a>
                             </div>
                             <div className="flex items-center flex-row-reverse mb-4">
-                                <span className={`${lang === "ar" ? "mr-0 ml-4" : ""}`}>
+                                <span className={`${lang === "ar" ? "mx-2 ml-0" : "ms-2"}`}>
                                     <IoCallOutline />
                                 </span>
-                                <p>0552311322</p>
+                                <a href="tel:0552311322" className="hover:underline">
+                                    0552311322
+                                </a>
                             </div>
                         </div>
 

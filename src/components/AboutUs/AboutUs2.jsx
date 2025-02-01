@@ -3,14 +3,13 @@ import { motion } from "framer-motion";
 import Container from "../Container/Container";
 import useFetch from "../../hooks/UseFetch";
 import Aboutlogo from '../../assets/Aboutlogo.png';
-import { useTranslation } from "react-i18next"; // Import useTranslation
+import { useTranslation } from "react-i18next";
 
 const AboutUs2 = () => {
-    const { i18n } = useTranslation(); // Initialize i18n
+    const { i18n } = useTranslation();
     const [lang, setLang] = useState(localStorage.getItem("language") || "ar");
     const { data, loading, error } = useFetch("api/frontend/staticPages", {}, lang);
 
-    // Listen for language changes and update the state and fetch data accordingly
     useEffect(() => {
         const storedLang = localStorage.getItem("language") || "ar";
         if (i18n.language !== storedLang) {
@@ -18,9 +17,9 @@ const AboutUs2 = () => {
                 setLang(storedLang);
             });
         } else {
-            setLang(storedLang); // Language was already correct
+            setLang(storedLang);
         }
-    }, [i18n.language]); // This will trigger the effect whenever the language changes
+    }, [i18n.language]);
 
     if (loading) return <div className="text-center">Loading...</div>;
     if (error) return <div className="text-center text-red-500">Error: {error}</div>;
@@ -70,7 +69,7 @@ const AboutUs2 = () => {
                         </div>
                         <div className="2xl:w-1/2 text-right my-xl">
                             <h2 className="text-text-primary text-3xl mx-8 font-bold mb-4">
-                                {section.title} {/* Static title, ensure it’s properly translated in the backend */}
+                                {section.title}
                             </h2>
                             <motion.p
                                 className="text-text-primary-dark mx-8"
@@ -79,7 +78,7 @@ const AboutUs2 = () => {
                                 transition={{ duration: 1 }}
                                 viewport={{ once: true, amount: 0.2 }}
                             >
-                                {section.text} {/* Static text, ensure it’s properly translated in the backend */}
+                                {section.text}
                             </motion.p>
                         </div>
                     </motion.div>

@@ -31,7 +31,7 @@ const ExperienceSection = () => {
         <Container>
             <div className="py-10">
                 <h2 className="text-2xl font-bold text-text-primary mb-4">{t("experience.title")}</h2>
-                <p className="text-gray-600 mb-10">{t("experience.description")}</p>
+                <p className="text-text-grey mb-10">{t("experience.description")}</p>
 
                 {currentLang === "ar" ?
                     <div className="flex flex-row-reverse flex-wrap justify-center gap-6">
@@ -39,7 +39,7 @@ const ExperienceSection = () => {
                             <motion.div
                                 key={index}
                                 className={`relative ${activeIndex === index ? "w-64 h-[596px]" : "w-52 h-[296px]"} 
-                                        bg-blue-900 text-white flex flex-col justify-start items-center cursor-pointer`}
+                                        bg-text-dark text-white flex flex-col justify-start items-center cursor-pointer`}
                                 style={{
                                     clipPath: item.text === "3+"
                                         ? "polygon(0 0, 100% 60%, 100% 100%, 0 100%)"
@@ -61,7 +61,7 @@ const ExperienceSection = () => {
                                         className="w-full h-full object-cover"
                                     />
                                 </div>
-                                <div className="relative z-10 p-4 bg-blue-900 opacity-80 w-full h-full flex items-center justify-center flex-col">
+                                <div className="relative z-10 p-4 bg-text-dark opacity-80 w-full h-full flex items-center justify-center flex-col">
                                     <p className="text-4xl font-bold">{item.text}</p>
                                     {item.description && (
                                         <p className="text-lg mt-2">{item.description}</p>
@@ -76,7 +76,7 @@ const ExperienceSection = () => {
                             <motion.div
                                 key={index}
                                 className={`relative ${activeIndex === index ? "w-64 h-[596px]" : "w-52 h-[296px]"} 
-                        bg-blue-900 text-white flex flex-col justify-start items-center cursor-pointer`}
+                                bg-text-dark text-white flex flex-col justify-start items-center cursor-pointer`}
                                 style={{
                                     clipPath: item.text === "3+"
                                         ? "polygon(40% 0, 100% 0%, 100% 100%, 0 100%)"
@@ -87,7 +87,6 @@ const ExperienceSection = () => {
                                 animate={{
                                     scale: activeIndex === index ? 1.05 : 1,
                                     transition: { duration: 0.3 },
-                                    x: activeIndex === index ? 0 : index < activeIndex ? -100 : 100,
                                 }}
                                 onClick={() => handleClick(index)}
                             >
@@ -98,7 +97,7 @@ const ExperienceSection = () => {
                                         className="w-full h-full object-cover"
                                     />
                                 </div>
-                                <div className="relative z-10 p-4 bg-blue-900 opacity-80 w-full h-full flex items-center justify-center flex-col">
+                                <div className="relative z-10 p-4 bg-text-dark opacity-80 w-full h-full flex items-center justify-center flex-col">
                                     <p className="text-4xl font-bold">{item.text}</p>
                                     {item.description && (
                                         <p className="text-lg mt-2">{item.description}</p>

@@ -34,7 +34,7 @@ const PriceSection = () => {
                             key={index}
                             className={`group relative transition-all duration-300 overflow-hidden cursor-pointer rounded-2xl ${
                                 activeCard === index
-                                    ? "w-[588px] sm:w-96 h-60 bg-text-primary-dark"
+                                    ? "w-[588px] sm:w-full 2xl:h-60 xl:h-60 h-72 sm:h-full md:h-full bg-text-primary-dark"
                                     : "w-72 h-52 bg-text-primary"
                             }`}
                             onClick={() => handleCardClick(index)}

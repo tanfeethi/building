@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from "react";
 import Container from "../Container/Container";
 import Button from "../Buttons/Button";
-import { motion } from "framer-motion"; // for animations
+import { motion } from "framer-motion";
 import useFetch from "../../hooks/UseFetch";
-import { useTranslation } from "react-i18next"; // استيراد useTranslation
+import { useTranslation } from "react-i18next";
 
 const Projects = () => {
-    const { i18n } = useTranslation(); // استخدام i18n للتبديل بين اللغات
-    const [lang, setLang] = useState(localStorage.getItem("language") || "ar"); // اللغة المحفوظة
-    const { data: projects, loading, error } = useFetch("api/frontend/projects", {}, lang); // استخدام hook مع تغيير اللغة
+    const { i18n } = useTranslation();
+    const [lang, setLang] = useState(localStorage.getItem("language") || "ar");
+    const { data: projects, loading, error } = useFetch("api/frontend/projects", {}, lang);
 
     useEffect(() => {
         const storedLang = localStorage.getItem("language") || "ar";
@@ -17,7 +17,7 @@ const Projects = () => {
                 setLang(storedLang);
             });
         } else {
-            setLang(storedLang); // Language was already correct
+            setLang(storedLang);
         }
     }, [i18n.language]);
 
@@ -28,9 +28,9 @@ const Projects = () => {
         <Container>
             <div className="my-5xl">
                 <h2 className="text-text-primary text-large font-bold mb-8">
-                    {i18n.language === "ar" ? "مشاريعنا" : "Our Projects"} {/* ترجمة العنوان بناءً على اللغة */}
+                    {i18n.language === "ar" ? "مشاريعنا" : "Our Projects"}
                 </h2>
-                <div className="grid grid-cols-1 2xl:grid-cols-4 xl:grid-cols-4 lg:grid-cols-4 md:grid-cols-2 gap-8">
+                <div id="projects" className="grid grid-cols-1 2xl:grid-cols-4 xl:grid-cols-4 lg:grid-cols-4 md:grid-cols-2 gap-8">
                     {projects.slice(0, 4).map((project) => (
                         <motion.div
                             key={project.id}
@@ -60,10 +60,12 @@ const Projects = () => {
                                             (i18n.language === "ar" ? "تم التسليم" : "Delivered") :
                                             (i18n.language === "ar" ? "قيد التنفيذ" : "In Progress")} {/* ترجمة الحالة */}
                                     </p>
-                                    <Button
-                                        name={project.address || (i18n.language === "ar" ? "معرفة المزيد" : "Learn More")}
-                                        className="bg-transparent border-2 md:px-2 border-text-white text-white px-4 py-2 transition-all duration-300"
-                                    />
+                                    <a href="/projects">
+                                        <Button
+                                            name={project.address || (i18n.language === "ar" ? "معرفة المزيد" : "Learn More")}
+                                            className="bg-transparent border-2 md:px-2 border-text-white text-white px-4 py-2 transition-all duration-300"
+                                        />
+                                    </a>
                                 </motion.div>
                             </div>
                         </motion.div>

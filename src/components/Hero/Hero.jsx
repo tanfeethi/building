@@ -98,12 +98,14 @@ const Hero = () => {
                     <h1 className="text-3xl font-bold text-text-primary">
                         {sliders[currentIndex]?.title}
                     </h1>
-                    <p className="text-small mt-4 text-gray-700">
+                    <p className="text-small mt-4 text-text-black">
                         {sliders[currentIndex]?.text}
                     </p>
-                    <button className="mt-6 px-6 py-3 bg-text-primary text-white rounded-2xl hover:bg-opacity-80">
-                        {sliders[currentIndex]?.btnTitle}
-                    </button>
+                    <a href="#projects">
+                        <button className="mt-6 px-6 py-3 bg-text-primary text-white rounded-2xl hover:bg-opacity-80">
+                            {sliders[currentIndex]?.btnTitle}
+                        </button>
+                    </a>
                 </motion.div>
             </Container>
         </div>

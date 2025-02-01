@@ -5,9 +5,9 @@ import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
 const Projects = () => {
-    const { i18n } = useTranslation(); // استخدام i18n للتبديل بين اللغات
-    const [lang, setLang] = useState(localStorage.getItem("language") || "ar"); // اللغة المحفوظة
-    const { data: projects, loading, error } = useFetch("api/frontend/projects", {}, lang); // استخدام hook مع تغيير اللغة
+    const { i18n } = useTranslation();
+    const [lang, setLang] = useState(localStorage.getItem("language") || "ar"); 
+    const { data: projects, loading, error } = useFetch("api/frontend/projects", {}, lang);
 
     useEffect(() => {
         const storedLang = localStorage.getItem("language") || "ar";
@@ -16,7 +16,7 @@ const Projects = () => {
                 setLang(storedLang);
             });
         } else {
-            setLang(storedLang); // Language was already correct
+            setLang(storedLang);
         }
     }, [i18n.language]);
 

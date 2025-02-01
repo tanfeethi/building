@@ -10,17 +10,17 @@ const Navbar = () => {
     const location = useLocation();
     const isActive = (path) => location.pathname === path;
     const [isMenuOpen, setIsMenuOpen] = useState(false);
-    const [lang, setLang] = useState(localStorage.getItem("language") || "en"); // Load saved language
+    const [lang, setLang] = useState(localStorage.getItem("language") || "en");
 
     useEffect(() => {
-        i18n.changeLanguage(lang); // Set language when component mounts
+        i18n.changeLanguage(lang);
     }, [lang]);
 
     const changeLanguage = () => {
         const newLang = lang === "en" ? "ar" : "en";
         setLang(newLang);
         i18n.changeLanguage(newLang);
-        localStorage.setItem("language", newLang); // Save to localStorage
+        localStorage.setItem("language", newLang);
     };
 
 
