@@ -109,7 +109,7 @@ const TeamDetails = () => {
 
                                 <div className='flex text-text-primary'>
                                     
-                                    <div className='flex bg-text-grey-hover text-text-dark w-80 flex-col py-3xl px-xl items-end z-20'>
+                                    <div className='flex bg-text-grey-hover text-text-dark w-80 flex-col py-3xl px-xl z-20'>
                                         <h3 className='text-medium font-bold'>{member.name}</h3>
                                         <p className='text-small'>{member.position}</p>
                                     </div>
