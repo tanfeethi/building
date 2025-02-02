@@ -168,20 +168,20 @@ const ContactUs = () => {
                     {loading && <p>{t("contact_us.loadingMessage")}</p>}
                     {responseMessage && <p className="text-green-500">{responseMessage}</p>}
 
-                    <div className="mt-8 text-text-primary flex flex-wrap flex-row-reverse justify-between">
+                    <div className="mt-8 text-text-primary flex flex-wrap justify-between">
                         <div>
                             {settings && settings.address && (
-                                <div className="flex flex-row-reverse items-center mb-4">
+                                <div className="flex items-center mb-4">
                                     <span className={lang === "ar" ? "mx-2 ml-0" : "ms-2"}>
-                                        <CiLocationOn />
+                                        <CiLocationOn className="me-2"/>
                                     </span>
                                     <p>{settings.address}</p>
                                 </div>
                             )}
                             {settings && settings.email && (
-                                <div className="flex items-center flex-row-reverse mb-4">
+                                <div className="flex items-center mb-4">
                                     <span className={lang === "ar" ? "mx-2 ml-0" : "ms-2"}>
-                                        <CiMail />
+                                        <CiMail className="me-2" />
                                     </span>
                                     <a href={`mailto:${settings.email}`} className="hover:underline">
                                         {settings.email}
@@ -189,9 +189,9 @@ const ContactUs = () => {
                                 </div>
                             )}
                             {settings && settings.phones && settings.phones.phones.map((phone, index) => (
-                                <div key={index} className="flex items-center flex-row-reverse mb-4">
+                                <div key={index} className="flex items-center mb-4">
                                     <span className={lang === "ar" ? "mx-2 ml-0" : "ms-2"}>
-                                        <IoCallOutline />
+                                        <IoCallOutline className="me-2" />
                                     </span>
                                     <a href={`tel:${phone}`} className="hover:underline">
                                         {phone}

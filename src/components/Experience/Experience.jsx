@@ -6,26 +6,25 @@ import { motion } from "framer-motion";
 
 const ExperienceSection = () => {
     const { t, i18n } = useTranslation();
-    const [activeIndex, setActiveIndex] = useState(0);
     const currentLang = i18n.language;
 
-
-    const experiences = t("experience.stats", { returnObjects: true }).map((exp) => ({
-        ...exp,
-        image: servicesPhoto1,
-    }));
+    const [experiences, setExperiences] = useState(
+        t("experience.stats", { returnObjects: true }).map((exp) => ({
+            ...exp,
+            image: servicesPhoto1,
+        }))
+    );
 
     const handleClick = (index) => {
-        if (activeIndex !== index) {
-            setActiveIndex(index);
-        }
-    };
+        if (index === 0) return;
 
-    const reorderedExperiences = [
-        experiences[activeIndex],
-        ...experiences.slice(0, activeIndex),
-        ...experiences.slice(activeIndex + 1),
-    ];
+        const newExperiences = [
+            experiences[index],
+            ...experiences.slice(0, index),
+            ...experiences.slice(index + 1),
+        ];
+        setExperiences(newExperiences);
+    };
 
     return (
         <Container>
@@ -33,80 +32,47 @@ const ExperienceSection = () => {
                 <h2 className="text-2xl font-bold text-text-primary mb-4">{t("experience.title")}</h2>
                 <p className="text-text-grey mb-10">{t("experience.description")}</p>
 
-                {currentLang === "ar" ?
-                    <div className="flex flex-row-reverse flex-wrap justify-center gap-6">
-                        {reorderedExperiences.map((item, index) => (
-                            <motion.div
-                                key={index}
-                                className={`relative ${activeIndex === index ? "w-64 h-[596px]" : "w-52 h-[296px]"} 
-                                        bg-text-dark text-white flex flex-col justify-start items-center cursor-pointer`}
-                                style={{
-                                    clipPath: item.text === "3+"
+                <div 
+                    className={`flex flex-nowrap items-end justify-center gap-6 ${currentLang === "en" ? "flex-row-reverse" : ""}`} 
+                    style={{ minHeight: "600px" }}
+                >
+                    {experiences.map((item, index) => (
+                        <motion.div
+                            key={index}
+                            className={`relative ${index === 0 ? "w-64 h-[596px]" : "w-52 h-[296px]"} 
+                                bg-text-dark text-white flex flex-col justify-end items-center cursor-pointer`}
+                            style={{
+                                clipPath: item.text === "3+"
+                                    ? currentLang === "en"
                                         ? "polygon(0 0, 100% 60%, 100% 100%, 0 100%)"
-                                        : "polygon(0 0, 100% 70%, 100% 100%, 0 100%)",
-                                    marginTop: activeIndex !== index && index < 49 ? "315px" : "0",
-                                }}
-                                initial={{ scale: 1 }}
-                                animate={{
-                                    scale: activeIndex === index ? 1.05 : 1,
-                                    transition: { duration: 0.3 },
-                                }}
-                                onClick={() => handleClick(index)}
-                            >
-                                <div className="absolute inset-0 w-full h-full z-0">
-                                    <img
-                                        src={item.image}
-                                        alt={item.description || "Experience Image"}
-                                        className="w-full h-full object-cover"
-                                    />
-                                </div>
-                                <div className="relative z-10 p-4 bg-text-dark opacity-80 w-full h-full flex items-center justify-center flex-col">
-                                    <p className="text-4xl font-bold">{item.text}</p>
-                                    {item.description && (
-                                        <p className="text-lg mt-2">{item.description}</p>
-                                    )}
-                                </div>
-                            </motion.div>
-                        ))}
-                    </div>
-                    :
-                    <div className="flex flex-wrap justify-center gap-6">
-                        {reorderedExperiences.map((item, index) => (
-                            <motion.div
-                                key={index}
-                                className={`relative ${activeIndex === index ? "w-64 h-[596px]" : "w-52 h-[296px]"} 
-                                bg-text-dark text-white flex flex-col justify-start items-center cursor-pointer`}
-                                style={{
-                                    clipPath: item.text === "3+"
-                                        ? "polygon(40% 0, 100% 0%, 100% 100%, 0 100%)"
+                                        : "polygon(40% 0, 100% 0%, 100% 100%, 0 100%)"
+                                    : currentLang === "en"
+                                        ? "polygon(0 0, 100% 70%, 100% 100%, 0 100%)"
                                         : "polygon(30% 0, 100% 0%, 100% 100%, 0 100%)",
-                                    marginTop: activeIndex !== index && index < 49 ? "315px" : "0",
-                                }}
-                                initial={{ scale: 1 }}
-                                animate={{
-                                    scale: activeIndex === index ? 1.05 : 1,
-                                    transition: { duration: 0.3 },
-                                }}
-                                onClick={() => handleClick(index)}
-                            >
-                                <div className="absolute inset-0 w-full h-full z-0">
-                                    <img
-                                        src={item.image}
-                                        alt={item.description || "Experience Image"}
-                                        className="w-full h-full object-cover"
-                                    />
-                                </div>
-                                <div className="relative z-10 p-4 bg-text-dark opacity-80 w-full h-full flex items-center justify-center flex-col">
-                                    <p className="text-4xl font-bold">{item.text}</p>
-                                    {item.description && (
-                                        <p className="text-lg mt-2">{item.description}</p>
-                                    )}
-                                </div>
-                            </motion.div>
-                        ))}
-                    </div>
-                }
-
+                            }}
+                            initial={{ scale: 1 }}
+                            animate={{
+                                scale: index === 0 ? 1.05 : 1,
+                                transition: { duration: 0.3 },
+                            }}
+                            onClick={() => handleClick(index)}
+                        >
+                            <div className="absolute inset-0 w-full h-full z-0">
+                                <img
+                                    src={item.image}
+                                    alt={item.description || "Experience Image"}
+                                    className="w-full h-full object-cover"
+                                />
+                            </div>
+                            <div className="relative z-10 p-4 bg-text-dark opacity-80 w-full h-full flex items-end justify-center flex-col">
+                                <p className="text-4xl font-bold mx-5xl">{item.text}</p>
+                                {item.description && (
+                                    <p className="text-lg mt-2 mx-12">{item.description}</p>
+                                )}
+                            </div>
+                        </motion.div>
+                    ))}
+                </div>
             </div>
         </Container>
     );

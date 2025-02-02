@@ -45,20 +45,20 @@ const Projects = () => {
                                 alt={project.title}
                                 className="w-full h-[500px] object-cover"
                             />
-                            <div className="absolute top-0 left-0 right-0 bottom-0 p-4 flex flex-col justify-end items-end bg-text-dark bg-opacity-50 opacity-0 group-hover:opacity-100 transition-all duration-300">
+                            <div className="absolute top-0 left-0 right-0 bottom-0 p-4 flex flex-col justify-end bg-text-dark bg-opacity-50 opacity-0 group-hover:opacity-100 transition-all duration-300">
                                 <motion.div
-                                    className="flex flex-col items-end"
+                                    className="flex flex-col"
                                     initial={{ y: 30, opacity: 0 }}
                                     animate={{ y: 0, opacity: 1 }}
                                     transition={{ duration: 0.3 }}
                                 >
-                                    <h4 className="text-text-primary group-hover:text-text-white mb-2xl text-xl font-bold border-b-4 border-text-primary group-hover:border-b-4 group-hover:border-text-white">
+                                    <h4 className="w-fit text-text-primary group-hover:text-text-white mb-2xl text-xl font-bold border-b-4 border-text-primary group-hover:border-b-4 group-hover:border-text-white">
                                         {project.title}
                                     </h4>
                                     <p className="text-text-primary group-hover:text-text-white text-sm mb-5">
                                         {project.deliveredStatus ?
                                             (i18n.language === "ar" ? "تم التسليم" : "Delivered") :
-                                            (i18n.language === "ar" ? "قيد التنفيذ" : "In Progress")} {/* ترجمة الحالة */}
+                                            (i18n.language === "ar" ? "قيد التنفيذ" : "In Progress")}
                                     </p>
                                     <a href="/projects">
                                         <Button

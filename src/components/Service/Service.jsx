@@ -34,8 +34,8 @@ const Service = () => {
 
                         <div className="absolute inset-0 w-full h-full bg-text-dark opacity-0 group-hover:opacity-50 transition-all duration-500"></div>
 
-                        <motion.div className="absolute bottom-4 right-4">
-                            <h4 className="text-text-primary mb-xl text-xl font-bold border-b-4 border-text-primary transition-all duration-300 group-hover:text-text-white group-hover:border-text-white">
+                        <motion.div className="absolute bottom-4 right-4 left-4">
+                            <h4 className="w-fit text-text-primary mb-xl text-xl font-bold border-b-4 border-text-primary transition-all duration-300 group-hover:text-text-white group-hover:border-text-white">
                                 {service.title}
                             </h4>
                         </motion.div>

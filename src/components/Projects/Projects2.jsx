@@ -46,14 +46,16 @@ const Projects = () => {
                                     alt={project.title}
                                     className="w-full h-[500px] object-cover"
                                 />
-                                <div className="absolute top-0 left-0 right-0 bottom-0 p-4 flex flex-col justify-end items-end bg-opacity-50 opacity-0 group-hover:opacity-100 transition-all duration-300">
-                                    <div className="absolute right-0 bottom-0 w-full p-8 space-y-8 flex flex-col justify-end items-end bg-opacity-0 group-hover:bg-text-primary transition-all duration-300">
-                                        <h4 className="text-xl font-bold border-b-4 border-text-primary text-text-primary group-hover:text-text-white group-hover:border-text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                <div className="absolute top-0 left-0 right-0 bottom-0 p-4 flex flex-col justify-end bg-opacity-50 opacity-0 group-hover:opacity-100 transition-all duration-300">
+                                    <div className="absolute right-0 bottom-0 w-full p-8 space-y-8 flex flex-col justify-end bg-opacity-0 group-hover:bg-text-primary transition-all duration-300">
+                                        <h4 className="w-fit text-xl font-bold border-b-4 border-text-primary text-text-primary group-hover:text-text-white group-hover:border-text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                                             {project.title}
                                         </h4>
                                         <div className="flex justify-between w-full text-text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 mt-2">
                                             <p>{project.type}</p>
-                                            <p><p>{project.deliveredStatus === 1 ? "تم التسليم" : "لم يتم التسليم"}</p></p>
+                                            {project.deliveredStatus ?
+                                            (i18n.language === "ar" ? "تم التسليم" : "Delivered") :
+                                            (i18n.language === "ar" ? "قيد التنفيذ" : "In Progress")}
                                         </div>
                                     </div>
                                 </div>
