@@ -51,7 +51,7 @@ const AboutUs2 = () => {
                 data.map((section, index) => (
                     <motion.div
                         key={section.name}
-                        className={`flex flex-col 2xl:flex-row items-center justify-between mb-8xl ${index % 2 === 0 ? "" : "2xl:flex-row-reverse"}`}
+                        className={`flex flex-col 2xl:flex-row justify-between mb-8xl ${index % 2 === 0 ? "" : "2xl:flex-row-reverse"}`}
                         initial={{ opacity: 0, x: 100 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         transition={{ duration: 1 }}
