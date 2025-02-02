@@ -65,7 +65,7 @@ const Expertise = () => {
                                     clipPath: "polygon(0 0, 90% 0%, 100% 100%, 0 100%)",
                                 }}
                             >
-                                <p className="text-sm px-2xl">{t("expertise.description")}</p>
+                                <p className="text-sm px-2xl sm:px-l">{t("expertise.description")}</p>
                             </div>
                         </div> 
                         : 
