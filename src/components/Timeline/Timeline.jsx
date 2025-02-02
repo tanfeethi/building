@@ -58,14 +58,12 @@ const Timeline = () => {
                 },
             });
 
-            // ✅ Check for successful response based on HTTP status, not just response.data.success
             if (response.status === 200 && response.data) {
                 setSuccessMessage(t("appointment_success"));
             } else {
                 throw new Error(response.data?.message || t("error_occurred"));
             }
         } catch (err) {
-            // ✅ Improved error handling
             setError(err.response?.data?.message || err.message || t("error_occurred"));
         } finally {
             setLoading(false);
