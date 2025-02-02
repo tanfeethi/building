@@ -121,7 +121,7 @@ const Timeline = () => {
                             inline
                             calendarClassName="custom-calendar"
                         />
-                        <div className="flex gap-2 mt-4">
+                        <div className="flex gap-2 mt-4 mb-4 flex-wrap">
                             {["05:00 PM", "06:00 PM", "07:00 AM", "08:00 PM", "09:00 PM"].map((time) => (
                                 <button
                                     key={time}
