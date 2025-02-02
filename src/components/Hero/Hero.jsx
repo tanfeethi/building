@@ -51,7 +51,7 @@ const Hero = () => {
     }
 
     return (
-        <div className="w-full my-5 flex flex-col 2xl:flex-row xl:flex-row items-center justify-center">
+        <div className="w-full my-5 flex flex-col 2xl:flex-row xl:flex-row items-center lg:items-start justify-center">
             <div className="relative w-full sm:w-[80%] md:w-[70%] xl:w-[50%] h-[50vh] sm:h-[40vh] overflow-hidden">
                 <AnimatePresence mode="wait">
                     <motion.div
@@ -89,7 +89,7 @@ const Hero = () => {
             {/* Text Content */}
             <Container>
                 <motion.div
-                    className="text-right"
+                    className="my-xl"
                     initial={{ y: -50, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
                     exit={{ y: -50, opacity: 0 }}

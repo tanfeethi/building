@@ -38,7 +38,6 @@ const Timeline = () => {
             return;
         }
 
-        // Combine selected date and selected time, and format it to 'Y-m-d H:i:s'
         const datetime = moment(`${moment(selectedDate).format("YYYY-MM-DD")} ${selectedTime}`, "YYYY-MM-DD hh:mm A")
             .format("YYYY-MM-DD HH:mm:ss");
 
@@ -59,12 +58,14 @@ const Timeline = () => {
                 },
             });
 
-            if (response.data.success) {
+            // ✅ Check for successful response based on HTTP status, not just response.data.success
+            if (response.status === 200 && response.data) {
                 setSuccessMessage(t("appointment_success"));
             } else {
-                throw new Error(response.data.message || t("error_occurred"));
+                throw new Error(response.data?.message || t("error_occurred"));
             }
         } catch (err) {
+            // ✅ Improved error handling
             setError(err.response?.data?.message || err.message || t("error_occurred"));
         } finally {
             setLoading(false);
@@ -75,7 +76,6 @@ const Timeline = () => {
         <div className="bg-text-primary-dark text-white">
             <Container>
                 <div className="flex flex-col 2xl:flex-row xl:flex-row lg:flex-row p-8">
-
                     {/* Form Section */}
                     <div className="lg:w-1/2 w-full flex flex-col gap-4 p-4">
                         <h2 className="text-large text-white">{t("appointment_title")}</h2>
@@ -113,6 +113,8 @@ const Timeline = () => {
                         {error && <p className="text-red-500">{error}</p>}
                         {successMessage && <p className="text-green-500">{successMessage}</p>}
                     </div>
+
+                    {/* Date & Time Selection */}
                     <div className="lg:w-1/2 w-full flex flex-col items-center lg:items-start">
                         <h2 className="text-medium text-white mb-4">{t("appointment_title")}</h2>
                         <DatePicker
@@ -136,7 +138,6 @@ const Timeline = () => {
                         </div>
                     </div>
                 </div>
-                
             </Container>
         </div>
     );

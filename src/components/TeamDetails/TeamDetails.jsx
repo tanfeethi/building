@@ -98,10 +98,10 @@ const TeamDetails = () => {
                                     <img
                                         src={member.image || 'default-person.png'}
                                         alt={member.name || t('defaultEngineer')}
-                                        className="rounded-3xl w-36 h-auto absolute bottom-[-32px] left-48 z-0"
+                                        className="rounded-3xl w-36 h-auto absolute bottom-[-32px] left-64 z-0"
                                     />
 
-                                    <div className='bg-text-grey-hover me-6xl w-12 h-16 flex justify-center items-start absolute -left-24 bottom-10 z-10'>
+                                    <div className='bg-text-grey-hover me-48 w-12 h-16 flex justify-center items-start absolute -left-24 bottom-10 z-10'>
                                         <div className='w-12 h-full bg-text-primary'></div>
                                         <div className='w-12 h-full bg-text-dark'></div>
                                     </div>

@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { CiLocationOn, CiMail } from "react-icons/ci";
 import { FaWhatsapp, FaInstagram } from "react-icons/fa";
 import { IoCallOutline } from "react-icons/io5";
 import { BsTwitterX } from "react-icons/bs";
 import { useTranslation } from "react-i18next";
-import { api_url } from "../../utils/api";
+import { api_url } from "../../utils/api";  // تأكد من تعريف الـ api_url
 
 const ContactUs = () => {
     const { t, i18n } = useTranslation();
@@ -19,6 +19,23 @@ const ContactUs = () => {
     });
     const [loading, setLoading] = useState(false);
     const [responseMessage, setResponseMessage] = useState("");
+    const [settings, setSettings] = useState(null); // حفظ بيانات الإعدادات من الـ API
+
+    useEffect(() => {
+        // جلب بيانات الإعدادات من الـ API
+        const fetchSettings = async () => {
+            try {
+                const response = await axios.get(`${api_url}/api/frontend/settings/list`);
+                if (response.data.status === "success") {
+                    setSettings(response.data.data);
+                }
+            } catch (error) {
+                console.error("Error fetching settings:", error);
+            }
+        };
+
+        fetchSettings();
+    }, []);
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
@@ -37,7 +54,6 @@ const ContactUs = () => {
             const response = await axios.post(`${api_url}/api/contactUs/sendMail`, formData, {
                 headers: {
                     "Content-Type": "application/json",
-                    "ngrok-skip-browser-warning": "true",
                 },
             });
 
@@ -150,44 +166,61 @@ const ContactUs = () => {
                     </form>
 
                     {loading && <p>{t("contact_us.loadingMessage")}</p>}
-                    {responseMessage && <p>{responseMessage}</p>}
+                    {responseMessage && <p className="text-green-500">{responseMessage}</p>}
 
                     <div className="mt-8 text-text-primary flex flex-wrap flex-row-reverse justify-between">
                         <div>
-                            <div className="flex flex-row-reverse items-center mb-4">
-                                <span className={`${lang === "ar" ? "mx-2 ml-0" : "ms-2"}`}>
-                                    <CiLocationOn />
-                                </span>
-                                <p>{t("contact_us.location")}</p>
-                            </div>
-                            <div className="flex items-center flex-row-reverse mb-4">
-                                <span className={`${lang === "ar" ? "mx-2 ml-0" : "ms-2"}`}>
-                                    <CiMail />
-                                </span>
-                                <a href="mailto:info@bru.com.sa" className="hover:underline">
-                                    info@bru.com.sa
-                                </a>
-                            </div>
-                            <div className="flex items-center flex-row-reverse mb-4">
-                                <span className={`${lang === "ar" ? "mx-2 ml-0" : "ms-2"}`}>
-                                    <IoCallOutline />
-                                </span>
-                                <a href="tel:0552311322" className="hover:underline">
-                                    0552311322
-                                </a>
-                            </div>
+                            {settings && settings.address && (
+                                <div className="flex flex-row-reverse items-center mb-4">
+                                    <span className={lang === "ar" ? "mx-2 ml-0" : "ms-2"}>
+                                        <CiLocationOn />
+                                    </span>
+                                    <p>{settings.address}</p>
+                                </div>
+                            )}
+                            {settings && settings.email && (
+                                <div className="flex items-center flex-row-reverse mb-4">
+                                    <span className={lang === "ar" ? "mx-2 ml-0" : "ms-2"}>
+                                        <CiMail />
+                                    </span>
+                                    <a href={`mailto:${settings.email}`} className="hover:underline">
+                                        {settings.email}
+                                    </a>
+                                </div>
+                            )}
+                            {settings && settings.phones && settings.phones.phones.map((phone, index) => (
+                                <div key={index} className="flex items-center flex-row-reverse mb-4">
+                                    <span className={lang === "ar" ? "mx-2 ml-0" : "ms-2"}>
+                                        <IoCallOutline />
+                                    </span>
+                                    <a href={`tel:${phone}`} className="hover:underline">
+                                        {phone}
+                                    </a>
+                                </div>
+                            ))}
                         </div>
 
                         <div className="flex">
-                            <a href="#" className="text-text-primary p-2 rounded-full">
-                                <FaWhatsapp size={20} />
-                            </a>
-                            <a href="#" className="text-text-primary p-2 rounded-full">
-                                <FaInstagram size={20} />
-                            </a>
-                            <a href="#" className="text-text-primary p-2 rounded-full">
-                                <BsTwitterX size={20} />
-                            </a>
+                            {settings?.phones?.phones?.length > 0 && (
+                                <a
+                                    className="text-text-primary p-2 rounded-full"
+                                    rel="noopener noreferrer"
+                                    href={`https://wa.me/${settings.phones.phones[0]}`} // Using the first phone number for WhatsApp
+                                    target="_blank"
+                                >
+                                    <FaWhatsapp size={20} />
+                                </a>
+                            )}
+                            {settings?.social_media?.instagram && (
+                                <a href={settings.social_media.instagram} rel="noopener noreferrer" target="_blank" className="text-text-primary p-2 rounded-full">
+                                    <FaInstagram size={20} />
+                                </a>
+                            )}
+                            {settings?.social_media?.x && (
+                                <a href={settings.social_media.x} rel="noopener noreferrer" target="_blank" className="text-text-primary p-2 rounded-full">
+                                    <BsTwitterX size={20} />
+                                </a>
+                            )}
                         </div>
                     </div>
                 </div>
