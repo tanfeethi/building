@@ -33,14 +33,14 @@ const ExperienceSection = () => {
                 <p className="text-text-grey mb-10">{t("experience.description")}</p>
 
                 <div 
-                    className={`flex flex-nowrap items-end justify-center gap-6 ${currentLang === "en" ? "flex-row-reverse" : ""}`} 
+                    className={`flex flex-wrap items-end justify-center gap-6 ${currentLang === "en" ? "flex-row-reverse" : ""}`} 
                     style={{ minHeight: "600px" }}
                 >
                     {experiences.map((item, index) => (
                         <motion.div
                             key={index}
                             className={`relative ${index === 0 ? "w-64 h-[596px]" : "w-52 h-[296px]"} 
-                                bg-text-dark text-white flex flex-col justify-end items-center cursor-pointer`}
+                                bg-text-dark text-white flex my-xl flex-col justify-end items-center cursor-pointer`}
                             style={{
                                 clipPath: item.text === "3+"
                                     ? currentLang === "en"
@@ -67,7 +67,7 @@ const ExperienceSection = () => {
                             <div className="relative z-10 p-4 bg-text-dark opacity-80 w-full h-full flex items-end justify-center flex-col">
                                 <p className="text-4xl font-bold mx-5xl">{item.text}</p>
                                 {item.description && (
-                                    <p className="text-lg mt-2 mx-12">{item.description}</p>
+                                    <p className="text-lg mt-2 mx-10">{item.description}</p>
                                 )}
                             </div>
                         </motion.div>
