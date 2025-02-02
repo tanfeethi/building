@@ -50,7 +50,6 @@ const ExperienceSection = () => {
                                 animate={{
                                     scale: activeIndex === index ? 1.05 : 1,
                                     transition: { duration: 0.3 },
-                                    x: activeIndex === index ? 0 : index < activeIndex ? -100 : 100,
                                 }}
                                 onClick={() => handleClick(index)}
                             >
