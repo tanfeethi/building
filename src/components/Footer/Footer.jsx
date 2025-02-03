@@ -110,6 +110,16 @@ const Footer = () => {
 
                         {settings && (
                             <div className="space-y-4 mb-4">
+                                {settings && settings.email && (
+                                    <div className="flex items-center mb-4">
+                                        <span className={lang === "ar" ? "mx-2 ml-0" : "ms-2"}>
+                                            <CiMail className="me-2" />
+                                        </span>
+                                        <a href={`mailto:${settings.email}`} className="hover:underline">
+                                            {settings.email}
+                                        </a>
+                                    </div>
+                                )}
                                 {settings.address && (
                                     <p className="flex items-center">
                                         <MdLocationOn className="mx-2" /> {settings.address}
@@ -119,12 +129,6 @@ const Footer = () => {
                                     <p key={index} className="flex items-center">
                                         <FaPhoneAlt className="mx-2" />
                                         <a href={`tel:${phone}`} className="hover:underline">{phone}</a>
-                                    </p>
-                                ))}
-                                {settings.phones?.mobiles?.map((mobile, index) => (
-                                    <p key={index} className="flex items-center">
-                                        <FaPhoneAlt className="mx-2" />
-                                        <a href={`tel:${mobile}`} className="hover:underline">{mobile}</a>
                                     </p>
                                 ))}
 
