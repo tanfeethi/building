@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 import Container from "../Container/Container";
 import logo2 from "../../assets/logo2.png";
 import { api_url } from "../../utils/api";
+import { CiMail } from "react-icons/ci";
 
 const Footer = () => {
     const { t, i18n } = useTranslation();
