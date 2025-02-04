@@ -15,10 +15,10 @@ const AboutUs = () => {
 
                     {/* Text Section */}
                     <div className="md:w-2/3">
-                        <h3 className="text-text-primary font-bold text-xl mb-4">
+                        <h3 className="text-text-primary font-bold text-large mb-4">
                             {t("aboutUs.title")}
                         </h3>
-                        <p className="text-text-black text-base leading-7 mb-4">
+                        <p className="text-text-black text-base leading-7">
                             {t("aboutUs.description1")}
                         </p>
                         <p className="text-text-black text-base leading-7">
