@@ -74,7 +74,7 @@ const Footer = () => {
                                 <label className="block mb-l">{t("footer.service_details")}</label>
                                 <textarea className="w-full p-3 rounded bg-transparent border border-text-white text-text-primary" rows="4"></textarea>
                             </div>
-                            <div className="flex justify-end">
+                            <div className="flex">
                                 <button type="submit" className="bg-white text-text-primary px-8 py-2 rounded hover:bg-text-grey-hover">
                                     {t("footer.send")}
                                 </button>
