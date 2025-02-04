@@ -107,21 +107,21 @@ const Footer = () => {
                         {settings && (
                             <div className="space-y-4 mb-4">
                                 {settings.email && (
-                                    <div className={`flex items-center gap-x-2 ${lang === "ar" ? "flex-row-reverse" : "flex-row"}`}>
+                                    <div className={`flex items-center gap-x-2`}>
                                         <CiMail className="w-5 h-5" />
                                         <a href={`mailto:${settings.email}`} className="hover:underline">{settings.email}</a>
                                     </div>
                                 )}
 
                                 {settings.address && (
-                                    <div className={`flex items-center gap-x-2 ${lang === "ar" ? "flex-row-reverse" : "flex-row"}`}>
+                                    <div className={`flex items-center gap-x-2`}>
                                         <MdLocationOn className="w-5 h-5" />
                                         <span>{settings.address}</span>
                                     </div>
                                 )}
 
                                 {settings.phones?.phones?.map((phone, index) => (
-                                    <div key={index} className={`flex items-center gap-x-2 ${lang === "ar" ? "flex-row-reverse" : "flex-row"}`}>
+                                    <div key={index} className={`flex items-center gap-x-2`}>
                                         <FaPhoneAlt className="w-5 h-5" />
                                         <a href={`tel:${phone}`} className="hover:underline">{phone}</a>
                                     </div>
