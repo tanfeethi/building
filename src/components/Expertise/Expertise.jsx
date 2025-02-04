@@ -105,7 +105,7 @@ const Expertise = () => {
                             }}
                             onClick={() => handleClick(index)}
                         >
-                            <h3 className="text-2xl text-nowrap sm:text-wrap font-bold text-misty mb-4 border-b-2 border-transparent inline-block text-text-primary group-hover:text-text-black group-hover:border-text-black transition-all duration-300">
+                            <h3 className="text-2xl text-nowrap sm:text-wrap md:text-wrap font-bold text-misty mb-4 border-b-2 border-transparent inline-block text-text-primary group-hover:text-text-black group-hover:border-text-black transition-all duration-300">
                                 {service.title}
                             </h3>
                             <p className="text-medium text-text-black">{service.description}</p>
