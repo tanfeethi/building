@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import useFetch from "../../hooks/UseFetch";
 import Footer from "../Footer/Footer";
@@ -9,9 +9,22 @@ import { useTranslation } from "react-i18next";
 const ProjectDetails = () => {
     const { id } = useParams();
     const { i18n } = useTranslation();
-    const { data: project, loading, error } = useFetch(`api/frontend/projects/${id}`);
+    const [lang, setLang] = useState(localStorage.getItem("language") || "ar");
+    const { data: project, loading, error } = useFetch(`api/frontend/projects/${id}`, {}, lang);
     const [currentIndex, setCurrentIndex] = useState(0);
     const currentLang = i18n.language;
+
+    useEffect(() => {
+        const storedLang = localStorage.getItem("language") || "ar";
+        if (i18n.language !== storedLang) {
+            i18n.changeLanguage(storedLang).then(() => {
+                setLang(storedLang);
+            });
+        } else {
+            setLang(storedLang);
+        }
+    }, [i18n.language]);
+
 
     const prevSlide = () => {
         setCurrentIndex((prevIndex) =>
@@ -103,16 +116,16 @@ const ProjectDetails = () => {
                         {/* Right Section */}
                         <div className="rounded-lg">
                             <h2 className="text-2xl font-bold text-gray-800 mb-6">تفاصيل المشروع</h2>
-                            <ul className="flex space-x-6 text-lg">
-                                <li className="flex flex-col">
+                            <ul className="grid grid-cols-4 md:grid-cols-2 sm:grid-cols-1 space-x-6 text-lg">
+                                <li className="flex flex-col mb-4">
                                     <span className="font-bold text-text-primary">الموقع</span>
                                     {project.address || "غير متوفر"}
                                 </li>
-                                <li className="flex flex-col">
+                                <li className="flex flex-col mb-4">
                                     <span className="font-bold text-text-primary">نطاق العمل</span>
                                     {project.type || "غير متوفر"}
                                 </li>
-                                <li className="flex flex-col">
+                                <li className="flex flex-col mb-4">
                                     <span className="font-bold text-text-primary">الحالة</span>
                                     {project.deliveredStatus === 1
                                         ? "تم التسليم"

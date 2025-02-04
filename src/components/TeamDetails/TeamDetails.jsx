@@ -37,7 +37,7 @@ const TeamDetails = () => {
                 <div className='mt-[200px] my-5xl grid grid-cols-3 gap-12 lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1'>
                     {data && Array.isArray(data) ? (
                         data.map((member, index) => (
-                            <div key={index} className="space-s-7xl mb-[200px]">
+                            <div key={index} className="group space-s-7xl mb-[200px]">
                                 <motion.div
                                     initial="hidden"
                                     animate="visible"
@@ -51,13 +51,13 @@ const TeamDetails = () => {
                                     />
 
                                     <div className='bg-text-grey-hover me-6xl w-12 h-16 flex justify-center items-end absolute bottom-10 z-10'>
-                                        <div className='w-12 h-full bg-text-primary'></div>
-                                        <div className='w-12 h-full bg-text-dark'></div>
+                                        <div className='w-12 h-full bg-text-primary group-hover:bg-[#E8E9EA]'></div>
+                                        <div className='w-12 h-full bg-text-dark group-hover:bg-[#C8C9CB]'></div>
                                     </div>
                                 </motion.div>
 
                                 <div className='flex text-text-primary'>
-                                    <div className='bg-text-primary flex items-center justify-center w-12 h-20'
+                                    <div className='bg-text-primary group-hover:bg-[#E8E9EA] flex items-center justify-center w-12 h-20'
                                         style={{
                                             clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 0)",
                                         }}
@@ -65,7 +65,7 @@ const TeamDetails = () => {
                                     </div>
 
                                     <div
-                                        className="bg-text-dark border border-e-4 border-opacity-10 border-text-grey flex items-center justify-center w-20 h-52"
+                                        className="bg-text-dark group-hover:bg-[#C8C9CB] border border-e-4 border-opacity-10 border-text-grey flex items-center justify-center w-20 h-52"
                                         style={{
                                             clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 38%)",
                                         }}
@@ -88,7 +88,7 @@ const TeamDetails = () => {
                 <div className='mt-[200px] my-5xl grid grid-cols-3 gap-12 lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1'>
                     {data && Array.isArray(data) ? (
                         data.map((member, index) => (
-                            <div key={index} className="space-s-7xl mb-[200px]">
+                            <div key={index} className="group space-s-7xl mb-[200px]">
                                 <motion.div
                                     initial="hidden"
                                     animate="visible"
@@ -102,26 +102,26 @@ const TeamDetails = () => {
                                     />
 
                                     <div className='bg-text-grey-hover me-48 w-12 h-16 flex justify-center items-start absolute -left-24 bottom-10 z-10'>
-                                        <div className='w-12 h-full bg-text-primary'></div>
-                                        <div className='w-12 h-full bg-text-dark'></div>
+                                        <div className='w-12 h-full bg-text-dark group-hover:bg-[#E8E9EA]'></div>
+                                        <div className='w-12 h-full bg-text-primary group-hover:bg-[#C8C9CB]'></div>
                                     </div>
                                 </motion.div>
 
                                 <div className='flex text-text-primary'>
-                                    
+
                                     <div className='flex bg-text-grey-hover text-text-dark w-80 flex-col py-3xl px-xl z-20'>
                                         <h3 className='text-medium font-bold'>{member.name}</h3>
                                         <p className='text-small'>{member.position}</p>
                                     </div>
                                     <div
-                                        className="bg-text-dark border border-e-4 border-opacity-10 border-text-grey flex items-center justify-center w-20 h-52"
+                                        className="bg-text-dark group-hover:bg-[#E8E9EA] border border-e-4 border-opacity-10 border-text-grey group-hover:border-[#E8E9EA] flex items-center justify-center w-20 h-52"
                                         style={{
                                             clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 38%)",
                                         }}
                                     >
                                     </div>
 
-                                    <div className='bg-text-primary flex items-center justify-center w-12 h-20'
+                                    <div className='bg-text-primary group-hover:bg-[#C8C9CB] flex items-center justify-center w-12 h-20'
                                         style={{
                                             clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 0)",
                                         }}

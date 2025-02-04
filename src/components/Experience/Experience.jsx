@@ -32,8 +32,8 @@ const ExperienceSection = () => {
                 <h2 className="text-large font-bold text-text-primary mb-4">{t("experience.title")}</h2>
                 <p className="text-text-grey text-medium mb-10">{t("experience.description")}</p>
 
-                <div 
-                    className={`flex flex-wrap items-end justify-center gap-6 ${currentLang === "en" ? "flex-row-reverse" : ""}`} 
+                <div
+                    className={`flex flex-wrap items-end justify-center gap-6 ${currentLang === "en" ? "flex-row-reverse" : ""}`}
                     style={{ minHeight: "600px" }}
                 >
                     {experiences.map((item, index) => (
@@ -42,19 +42,19 @@ const ExperienceSection = () => {
                             className={`relative ${index === 0 ? "w-64 h-[596px]" : "w-52 h-[296px]"} 
                                 bg-text-dark text-white flex my-xl flex-col justify-end items-center cursor-pointer`}
                             style={{
-                                clipPath: item.text === "3+"
-                                    ? currentLang === "en"
-                                        ? "polygon(0 0, 100% 60%, 100% 100%, 0 100%)"
-                                        : "polygon(40% 0, 100% 0%, 100% 100%, 0 100%)"
-                                    : currentLang === "en"
+                                clipPath: (() => {
+                                    if (item.text === "450+") {
+                                        return currentLang === "en"
+                                            ? "polygon(0 0, 100% 60%, 100% 100%, 0 100%)"
+                                            : "polygon(0 60%, 100% 0%, 100% 100%, 0 100%)";
+                                    }
+                                    return currentLang === "en"
                                         ? "polygon(0 0, 100% 40%, 100% 100%, 0 100%)"
-                                        : "polygon(60% 0, 100% 0%, 100% 100%, 0 100%)",
+                                        : "polygon(0 60%, 100% 0%, 100% 100%, 0 100%)";
+                                })(),
                             }}
+
                             initial={{ scale: 1 }}
-                            animate={{
-                                scale: index === 0 ? 1.05 : 1,
-                                transition: { duration: 0.3 },
-                            }}
                             onClick={() => handleClick(index)}
                         >
                             <div className="absolute inset-0 w-full h-full z-0">
@@ -67,7 +67,7 @@ const ExperienceSection = () => {
                             <div className="relative z-10 p-4 bg-text-dark opacity-80 w-full h-full flex items-end justify-center flex-col">
                                 <p className="text-4xl font-bold mx-5xl">{item.text}</p>
                                 {item.description && (
-                                    <p className="text-lg mt-2 mx-10">{item.description}</p>
+                                    <p className="text-lg mt-2 mx-10">{currentLang === "ar" ? "أنشطة ومجالات" : "Activities & Fields"}</p>
                                 )}
                             </div>
                         </motion.div>
