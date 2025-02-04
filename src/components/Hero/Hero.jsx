@@ -102,7 +102,7 @@ const Hero = () => {
                         {sliders[currentIndex]?.text}
                     </p>
                     <a href="#projects">
-                        <button className="mt-6 px-6 py-3 bg-text-primary text-white rounded-2xl hover:bg-opacity-80">
+                        <button className="mt-6 px-6 py-3 bg-text-primary text-white hover:bg-opacity-80">
                             {sliders[currentIndex]?.btnTitle}
                         </button>
                     </a>
