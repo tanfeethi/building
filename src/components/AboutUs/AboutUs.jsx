@@ -14,7 +14,7 @@ const AboutUs = () => {
                 <div className="flex flex-col 2xl:flex-row items-center justify-between gap-6">
 
                     {/* Text Section */}
-                    <div className="md:w-2/3">
+                    <div className="md:w-full sm:w-full 2xl:w-2/3 xl:w-2/3">
                         <h3 className="text-text-primary font-bold text-large mb-4">
                             {t("aboutUs.title")}
                         </h3>
@@ -27,7 +27,7 @@ const AboutUs = () => {
                     </div>
 
                     {/* Image Section */}
-                    <div className="flex gap-4">
+                    <div className="flex 2xl:w-1/3 xl:w-1/3 md:w-full gap-4">
                         <motion.img
                             src={leftAbout}
                             alt="Construction Site Left"
