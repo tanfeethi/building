@@ -6,7 +6,7 @@ import { useTranslation } from "react-i18next";
 
 const Projects = () => {
     const { i18n } = useTranslation();
-    const [lang, setLang] = useState(localStorage.getItem("language") || "ar"); 
+    const [lang, setLang] = useState(localStorage.getItem("language") || "ar");
     const { data: projects, loading, error } = useFetch("api/frontend/projects", {}, lang);
 
     useEffect(() => {
@@ -32,7 +32,7 @@ const Projects = () => {
         <Container>
             <div className="my-5xl">
                 <h2 className="text-text-primary text-large font-bold mb-8">
-                    مشاريعنا
+                    {i18n.language === "ar" ? "مشاريعنا" : "Our Projects"}
                 </h2>
                 <div className="grid grid-cols-1 2xl:grid-cols-3 xl:grid-cols-3 lg:grid-cols-3 md:grid-cols-2 gap-8">
                     {projects.map((project) => (
@@ -54,8 +54,8 @@ const Projects = () => {
                                         <div className="flex justify-between w-full text-text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 mt-2">
                                             <p>{project.type}</p>
                                             {project.deliveredStatus ?
-                                            (i18n.language === "ar" ? "تم التسليم" : "Delivered") :
-                                            (i18n.language === "ar" ? "قيد التنفيذ" : "In Progress")}
+                                                (i18n.language === "ar" ? "تم التسليم" : "Delivered") :
+                                                (i18n.language === "ar" ? "قيد التنفيذ" : "In Progress")}
                                         </div>
                                     </div>
                                 </div>

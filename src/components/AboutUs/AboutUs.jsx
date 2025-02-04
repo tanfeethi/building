@@ -18,10 +18,10 @@ const AboutUs = () => {
                         <h3 className="text-text-primary font-bold text-large mb-4">
                             {t("aboutUs.title")}
                         </h3>
-                        <p className="text-text-black text-base leading-7">
+                        <p className="text-text-black text-medium leading-7">
                             {t("aboutUs.description1")}
                         </p>
-                        <p className="text-text-black text-base leading-7">
+                        <p className="text-text-black text-medium leading-7">
                             {t("aboutUs.description2")}
                         </p>
                     </div>

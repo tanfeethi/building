@@ -95,10 +95,10 @@ const Hero = () => {
                     exit={{ y: -50, opacity: 0 }}
                     transition={{ type: "spring", stiffness: 300 }}
                 >
-                    <h1 className="text-3xl font-bold text-text-primary">
+                    <h1 className="text-large font-bold text-text-primary">
                         {sliders[currentIndex]?.title}
                     </h1>
-                    <p className="text-small mt-4 text-text-black">
+                    <p className="text-medium mt-4 text-text-black">
                         {sliders[currentIndex]?.text}
                     </p>
                     <a href="#projects">

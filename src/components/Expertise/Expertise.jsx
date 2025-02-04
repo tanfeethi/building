@@ -40,7 +40,7 @@ const Expertise = () => {
 
 
                     <div className="lg:w-1/2 w-full">
-                        <p className="text-3xl font-bold text-primary mb-4 text-text-primary">
+                        <p className="text-large font-bold text-primary mb-4 text-text-primary">
                             {t("expertise.title")}
                             <p className="text-text-black">{t("expertise.subtitle")}</p>
                         </p>
@@ -60,12 +60,12 @@ const Expertise = () => {
                                 className="absolute top-0 left-0 w-full h-full object-cover opacity-80 group-hover:opacity-90 transition-all duration-300 group-hover:scale-110"
                             />
                             <div
-                                className="absolute bottom-0 left-0 right-32 p-4 text-white bg-text-primary"
+                                className="absolute bottom-0 left-0 right-32 p-8 text-white bg-text-primary"
                                 style={{
                                     clipPath: "polygon(0 0, 90% 0%, 100% 100%, 0 100%)",
                                 }}
                             >
-                                <p className="text-sm px-2xl sm:px-l">{t("expertise.description")}</p>
+                                {/* <p className="text-sm px-2xl sm:px-l">{t("expertise.description")}</p> */}
                             </div>
                         </div> 
                         : 
@@ -81,12 +81,12 @@ const Expertise = () => {
                                 className="absolute top-0 right-0 w-full h-full object-cover opacity-80 group-hover:opacity-90 transition-all duration-300 group-hover:scale-110"
                             />
                             <div
-                                className="absolute bottom-0 right-0 left-32 p-4 text-white bg-text-primary"
+                                className="absolute bottom-0 right-0 left-32 p-8 text-white bg-text-primary"
                                 style={{
                                     clipPath: "polygon(10% 0, 100% 0%, 100% 100%, 0 100%)",
                                 }}
                             >
-                                <p className="text-sm px-2xl">{t("expertise.description")}</p>
+                                {/* <p className="text-sm px-2xl">{t("expertise.description")}</p> */}
                             </div>
                         </div> }
 
@@ -105,7 +105,7 @@ const Expertise = () => {
                             }}
                             onClick={() => handleClick(index)}
                         >
-                            <h3 className="text-lg font-bold text-misty mb-4 border-b-2 border-transparent inline-block text-text-primary group-hover:text-text-black group-hover:border-text-black transition-all duration-300">
+                            <h3 className="text-2xl text-nowrap font-bold text-misty mb-4 border-b-2 border-transparent inline-block text-text-primary group-hover:text-text-black group-hover:border-text-black transition-all duration-300">
                                 {service.title}
                             </h3>
                             <p className="text-medium text-text-black">{service.description}</p>

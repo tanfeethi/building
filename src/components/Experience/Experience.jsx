@@ -29,8 +29,8 @@ const ExperienceSection = () => {
     return (
         <Container>
             <div className="py-10">
-                <h2 className="text-2xl font-bold text-text-primary mb-4">{t("experience.title")}</h2>
-                <p className="text-text-grey mb-10">{t("experience.description")}</p>
+                <h2 className="text-large font-bold text-text-primary mb-4">{t("experience.title")}</h2>
+                <p className="text-text-grey text-medium mb-10">{t("experience.description")}</p>
 
                 <div 
                     className={`flex flex-wrap items-end justify-center gap-6 ${currentLang === "en" ? "flex-row-reverse" : ""}`} 
@@ -47,8 +47,8 @@ const ExperienceSection = () => {
                                         ? "polygon(0 0, 100% 60%, 100% 100%, 0 100%)"
                                         : "polygon(40% 0, 100% 0%, 100% 100%, 0 100%)"
                                     : currentLang === "en"
-                                        ? "polygon(0 0, 100% 70%, 100% 100%, 0 100%)"
-                                        : "polygon(30% 0, 100% 0%, 100% 100%, 0 100%)",
+                                        ? "polygon(0 0, 100% 40%, 100% 100%, 0 100%)"
+                                        : "polygon(60% 0, 100% 0%, 100% 100%, 0 100%)",
                             }}
                             initial={{ scale: 1 }}
                             animate={{

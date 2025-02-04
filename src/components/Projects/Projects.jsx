@@ -27,9 +27,17 @@ const Projects = () => {
     return (
         <Container>
             <div className="my-5xl">
-                <h2 className="text-text-primary text-large font-bold mb-8">
-                    {i18n.language === "ar" ? "مشاريعنا" : "Our Projects"}
-                </h2>
+                <div className="flex justify-between">
+                    <h2 className="text-text-primary text-large font-bold mb-8">
+                        {i18n.language === "ar" ? "مشاريعنا" : "Our Projects"}
+                    </h2>
+                    <a href="/projects">
+                        <div className="w-fit flex items-center">
+                            <Button className=" px-6 py-3 bg-text-primary text-white" name={`${i18n.language === "ar" ? "عرض جميع المشاريع" : "View All Projects"}`} />
+                        </div>
+                    </a>
+                </div>
+
                 <div id="projects" className="grid grid-cols-1 2xl:grid-cols-4 xl:grid-cols-4 lg:grid-cols-4 md:grid-cols-2 gap-8">
                     {projects.slice(0, 4).map((project) => (
                         <motion.div

@@ -114,7 +114,6 @@ const Timeline = () => {
 
                     {/* Date & Time Selection */}
                     <div className="lg:w-1/2 w-full flex flex-col items-center lg:items-start">
-                        <h2 className="text-medium text-white mb-4">{t("appointment_title")}</h2>
                         <DatePicker
                             selected={selectedDate}
                             onChange={(date) => setSelectedDate(date)}

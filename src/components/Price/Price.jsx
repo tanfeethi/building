@@ -66,9 +66,11 @@ const PriceSection = () => {
                         </div>
                     ))}
                 </div>
-                <p className="text-medium text-text-black mt-10">
-                    {t("priceSection.contact")}
-                </p>
+                <a href="/contact" className="hover:underline">
+                    <p className="text-medium text-text-black mt-10">
+                        {t("priceSection.contact")}
+                    </p>
+                </a>
             </div>
         </Container>
     );
