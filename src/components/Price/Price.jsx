@@ -14,7 +14,7 @@ const PriceSection = () => {
     }, []);
 
     const handleCardClick = (cardIndex) => {
-        setActiveCard(cardIndex);  
+        setActiveCard(cardIndex);
     };
 
     const isRtl = i18n.language === "ar";
@@ -32,11 +32,10 @@ const PriceSection = () => {
                     {[...Array(3)].map((_, index) => (
                         <div
                             key={index}
-                            className={`group relative transition-all duration-300 overflow-hidden cursor-pointer rounded-2xl ${
-                                activeCard === index
-                                    ? "w-[588px] sm:w-full 2xl:h-60 xl:h-60 h-72 sm:h-full md:h-full bg-text-primary-dark"
-                                    : "w-72 h-52 bg-text-primary"
-                            }`}
+                            className={`group relative transition-all duration-300 overflow-hidden cursor-pointer rounded-2xl ${activeCard === index
+                                ? "w-[588px] sm:w-full 2xl:h-60 xl:h-60 h-72 sm:h-full md:h-full bg-text-primary-dark"
+                                : "w-72 h-52 bg-text-primary"
+                                }`}
                             onClick={() => handleCardClick(index)}
                         >
                             {/* Conditional placement of the image based on language */}
@@ -49,9 +48,8 @@ const PriceSection = () => {
                             </div>
 
                             <div
-                                className={`transition-opacity mx-6xl duration-300 my-xl ${
-                                    activeCard === index ? "opacity-100" : "opacity-0"
-                                }`}
+                                className={`transition-opacity mx-6xl duration-300 my-xl ${activeCard === index ? "opacity-100" : "opacity-0"
+                                    }`}
                             >
                                 <h3 className="text-large font-bold mb-4 text-text-white">
                                     {t(`priceSection.stage${index + 1}`)}
@@ -66,11 +64,12 @@ const PriceSection = () => {
                         </div>
                     ))}
                 </div>
-                <a href="/contact" className="hover:underline">
-                    <p className="text-medium text-text-black mt-10">
-                        {t("priceSection.contact")}
-                    </p>
-                </a>
+                <p className="text-medium text-text-black mt-10">
+                    <a href="/contact" className="hover:underline">
+                        <span className="font-bold mx-1">{t("priceSection.contact")}</span>
+                    </a>
+                    {t("priceSection.contact2")}
+                </p>
             </div>
         </Container>
     );

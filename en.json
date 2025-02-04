@@ -11,7 +11,8 @@
         "stage1DescriptionLong": "In this stage, we study the technical details of the project, including plans and specifications.",
         "stage2DescriptionLong": "In this stage, the project budget is determined based on material details and specifications.",
         "stage3DescriptionLong": "In this stage, project execution begins according to the specified plans, and the final project is delivered.",
-        "contact": "Contact us now to know the best price offer for your project!"
+        "contact": "Contact us",
+        "contact2": " now to know the best price offer for your project!"
     },
     "home": "Home",
     "about": "About Us",
