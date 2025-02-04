@@ -89,7 +89,7 @@ const Hero = () => {
             {/* Text Content */}
             <Container>
                 <motion.div
-                    className="my-xl"
+                    className="m-xl"
                     initial={{ y: -50, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
                     exit={{ y: -50, opacity: 0 }}
