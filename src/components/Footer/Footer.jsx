@@ -41,11 +41,6 @@ const Footer = () => {
         localStorage.setItem("language", newLang);
     };
 
-    // تنسيق رقم الواتساب ليكون رقميْن فقط إذا كان أطول
-    const formatWhatsappNumber = (number) => {
-        return number.length > 2 ? number.slice(-2) : number;
-    };
-
     return (
         <div className="bg-text-primary text-white py-5xl px-4">
             <Container>
@@ -89,7 +84,7 @@ const Footer = () => {
 
                     {/* Right Section - Info & Social Links */}
                     <div className="mx-2xl sm:mx-0 md:mx-0 md:w-full sm:w-full flex flex-col justify-evenly items-start">
-                        <div className="flex flex-row items-center space-x-6">
+                        <div className="flex flex-row items-center space-x-6 -mx-2">
                             <img src={logo2} alt="Logo" className="w-48 h-auto mb-4" />
                         </div>
                         <div className="mb-4">
@@ -111,33 +106,32 @@ const Footer = () => {
 
                         {settings && (
                             <div className="space-y-4 mb-4">
-                                {settings && settings.email && (
-                                    <div className="flex items-center mb-4">
-                                        <span className={lang === "ar" ? "mx-2 ml-0" : "ms-2"}>
-                                            <CiMail className="me-2" />
-                                        </span>
-                                        <a href={`mailto:${settings.email}`} className="hover:underline">
-                                            {settings.email}
-                                        </a>
+                                {settings.email && (
+                                    <div className={`flex items-center gap-x-2 ${lang === "ar" ? "flex-row-reverse" : "flex-row"}`}>
+                                        <CiMail className="w-5 h-5" />
+                                        <a href={`mailto:${settings.email}`} className="hover:underline">{settings.email}</a>
                                     </div>
                                 )}
+
                                 {settings.address && (
-                                    <p className="flex items-center">
-                                        <MdLocationOn className="mx-2" /> {settings.address}
-                                    </p>
+                                    <div className={`flex items-center gap-x-2 ${lang === "ar" ? "flex-row-reverse" : "flex-row"}`}>
+                                        <MdLocationOn className="w-5 h-5" />
+                                        <span>{settings.address}</span>
+                                    </div>
                                 )}
+
                                 {settings.phones?.phones?.map((phone, index) => (
-                                    <p key={index} className="flex items-center">
-                                        <FaPhoneAlt className="mx-2" />
+                                    <div key={index} className={`flex items-center gap-x-2 ${lang === "ar" ? "flex-row-reverse" : "flex-row"}`}>
+                                        <FaPhoneAlt className="w-5 h-5" />
                                         <a href={`tel:${phone}`} className="hover:underline">{phone}</a>
-                                    </p>
+                                    </div>
                                 ))}
 
                                 {/* Social Media Links */}
                                 <div className="flex space-x-4 rtl:space-x-reverse mt-4">
                                     {settings?.phones?.phones?.length > 0 && (
                                         <a
-                                            href={`https://wa.me/${settings.phones.phones[0]}`} // Using the first phone number for WhatsApp
+                                            href={`https://wa.me/${settings.phones.phones[0]}`}
                                             target="_blank"
                                             rel="noopener noreferrer"
                                         >
