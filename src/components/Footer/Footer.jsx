@@ -42,7 +42,7 @@ const Footer = () => {
     };
 
     return (
-        <div className="bg-text-primary text-white py-5xl px-4">
+        <div className="bg-text-primary text-white py-5xl px-4 font-bold">
             <Container>
                 <div className="flex flex-row gap-20 2xl:gap-32 md:flex-col sm:flex-col">
 

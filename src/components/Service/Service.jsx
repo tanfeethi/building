@@ -30,7 +30,7 @@ const Service = () => {
 
             <div className="grid grid-cols-1 2xl:grid-cols-3 xl:grid-cols-3 lg:grid-cols-3 gap-8">
                 {services &&
-                    services.map((service, index) => (
+                    services.slice(0, 3).map((service, index) => (
                         <motion.div
                             key={index}
                             className="relative rounded-lg overflow-hidden shadow-lg group w-full h-96 cursor-pointer bg-white"

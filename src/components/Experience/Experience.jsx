@@ -64,7 +64,7 @@ const ExperienceSection = () => {
                                     className="w-full h-full object-cover"
                                 />
                             </div>
-                            <div className="relative z-10 p-4 bg-text-dark opacity-80 w-full h-full flex items-end justify-center flex-col">
+                            <div className="relative z-10 bg-text-dark opacity-80 w-full h-full flex items-center justify-center flex-col">
                                 <p className="text-4xl font-bold mx-5xl">{item.text}</p>
                                 {item.description && (
                                     <p className="text-lg mt-2 mx-10">{currentLang === "ar" ? "أنشطة ومجالات" : "Activities & Fields"}</p>

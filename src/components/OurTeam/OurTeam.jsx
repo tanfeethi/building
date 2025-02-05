@@ -51,8 +51,8 @@ const OurTeam = () => {
                     {/* النصوص */}
                     <div className="relative 2xl:w-2/3 xl:w-2/3 px-4 lg:px-16 text-white">
                         <div className="text-7xl sm:text-6xl w-12 h-12 text-blue-300 mb-4">“</div>
-                        <p className="text-xl sm:text-lg leading-loose mb-6">{t("quote")}</p>
-                        <p className="text-xl sm:text-lg leading-loose">{t("description")}</p>
+                        <p className="text-xl sm:text-lg leading-loose font-semibold text-text-dark mb-6">{t("quote")}</p>
+                        <p className="text-xl sm:text-lg leading-loose font-semibold">{t("description")}</p>
                     </div>
                 </div>
             </Container>

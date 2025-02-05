@@ -6,7 +6,8 @@ import leftAbout from '../../assets/leftAbout.png';
 import Container from '../Container/Container';
 
 const AboutUs = () => {
-    const { t } = useTranslation();
+    const { t, i18n } = useTranslation();
+    const currentLang = i18n.language;
 
     return (
         <Container>
@@ -27,7 +28,7 @@ const AboutUs = () => {
                     </div>
 
                     {/* Image Section */}
-                    <div className="flex 2xl:w-1/3 xl:w-1/3 md:w-full gap-4">
+                    <div className={`flex ${currentLang === "ar" ? "flex-row-reverse" : "flex-row"} 2xl:w-1/3 xl:w-1/3 md:w-full gap-4`}>
                         <motion.img
                             src={leftAbout}
                             alt="Construction Site Left"
