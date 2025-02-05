@@ -5,7 +5,7 @@ import Container from "../Container/Container";
 import { motion } from "framer-motion";
 
 const Expertise = () => {
-    const { t , i18n } = useTranslation();
+    const { t, i18n } = useTranslation();
     const [activeIndex, setActiveIndex] = useState(0);
     const currentLang = i18n.language;
 
@@ -47,48 +47,66 @@ const Expertise = () => {
                     </div>
 
                     <div className="relative lg:w-1/2 w-full mb-8 lg:mb-0">
-                    {currentLang === "ar" ? 
-                        <div
-                            className="relative w-full h-[265px] overflow-hidden rounded-lg transition-all duration-300 transform group"
-                        >
-                            <img
-                                src={ContainerPhoto}
-                                style={{
-                                    clipPath: "polygon(0 0, 60% 0%, 100% 100%, 0 100%)",
-                                }}
-                                alt="Expertise"
-                                className="absolute top-0 left-0 w-full h-full object-cover opacity-80 group-hover:opacity-90 transition-all duration-300 group-hover:scale-110"
-                            />
+                        {currentLang === "ar" ?
                             <div
-                                className="absolute bottom-0 left-0 right-32 p-8 text-white bg-text-primary"
-                                style={{
-                                    clipPath: "polygon(0 0, 90% 0%, 100% 100%, 0 100%)",
-                                }}
+                                className="relative w-full h-[265px] overflow-hidden rounded-lg transition-all duration-300 transform group"
                             >
-                                {/* <p className="text-sm px-2xl sm:px-l">{t("expertise.description")}</p> */}
+                                <img
+                                    src={ContainerPhoto}
+                                    style={{
+                                        clipPath: "polygon(15% 0, 100% 0%, 100% 100%, 0 100%)",
+                                    }}
+                                    alt="Expertise"
+                                    className="absolute top-0 right-0 w-full h-full object-cover opacity-80 group-hover:opacity-90 transition-all duration-300 group-hover:scale-110"
+                                />
+
+                                <div
+                                    className="absolute top-0 left-0 w-full h-full bg-text-dark opacity-0 group-hover:opacity-50 transition-all duration-300 group-hover:scale-110"
+                                    style={{
+                                        clipPath: "polygon(15% 0, 100% 0%, 100% 100%, 0 100%)",
+                                    }}
+                                ></div>
+
+                                <div
+                                    className="absolute bottom-0 right-0 left-32 p-8 text-white bg-text-primary-dark"
+                                    style={{
+                                        clipPath: "polygon(10% 0, 100% 0%, 100% 100%, 0 100%)",
+                                    }}
+                                >
+                                </div>
                             </div>
-                        </div> 
-                        : 
-                        <div
-                            className="relative w-full h-[265px] overflow-hidden rounded-lg transition-all duration-300 transform group"
-                        >
-                            <img
-                                src={ContainerPhoto}
-                                style={{
-                                    clipPath: "polygon(15% 0, 100% 0%, 100% 100%, 0 100%)",
-                                }}
-                                alt="Expertise"
-                                className="absolute top-0 right-0 w-full h-full object-cover opacity-80 group-hover:opacity-90 transition-all duration-300 group-hover:scale-110"
-                            />
+
+
+                            :
                             <div
-                                className="absolute bottom-0 right-0 left-32 p-8 text-white bg-text-primary"
-                                style={{
-                                    clipPath: "polygon(10% 0, 100% 0%, 100% 100%, 0 100%)",
-                                }}
+                                className="relative w-full h-[265px] overflow-hidden rounded-lg transition-all duration-300 transform group"
                             >
-                                {/* <p className="text-sm px-2xl">{t("expertise.description")}</p> */}
+                                <img
+                                    src={ContainerPhoto}
+                                    style={{
+                                        clipPath: "polygon(15% 0, 100% 0%, 100% 100%, 0 100%)",
+                                    }}
+                                    alt="Expertise"
+                                    className="absolute top-0 right-0 w-full h-full object-cover opacity-80 group-hover:opacity-90 transition-all duration-300 group-hover:scale-110"
+                                />
+
+                                <div
+                                    className="absolute top-0 left-0 w-full h-full bg-text-dark z-30 opacity-0 group-hover:opacity-50 transition-all duration-300 group-hover:scale-110"
+                                    style={{
+                                        clipPath: "polygon(15% 0, 100% 0%, 100% 100%, 0 100%)",
+                                    }}
+                                ></div>
+
+                                <div
+                                    className="absolute bottom-0 right-0 left-32 p-8 opacity-70 text-white bg-text-primary-dark z-20"
+                                    style={{
+                                        clipPath: "polygon(10% 0, 100% 0%, 100% 100%, 0 100%)",
+                                    }}
+                                >
+                                </div>
                             </div>
-                        </div> }
+
+                        }
 
                     </div>
                 </div>
