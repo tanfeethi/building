@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
-import { FaWhatsapp, FaInstagram, FaEnvelope, FaPhoneAlt } from "react-icons/fa";
+import React, { useState, useEffect } from "react";
+import { FaWhatsapp, FaInstagram, FaPhoneAlt } from "react-icons/fa";
 import { MdLocationOn } from "react-icons/md";
 import { BsTwitterX } from "react-icons/bs";
 import { useTranslation } from "react-i18next";
@@ -9,37 +8,35 @@ import Container from "../Container/Container";
 import logo2 from "../../assets/logo2.png";
 import { api_url } from "../../utils/api";
 import { CiMail } from "react-icons/ci";
+import useFetch from "../../hooks/UseFetch"; // Import useFetch hook
 
 const Footer = () => {
     const { t, i18n } = useTranslation();
-    const [settings, setSettings] = useState(null);
     const [lang, setLang] = useState(localStorage.getItem("language") || "en");
 
-    useEffect(() => {
-        const fetchSettings = async () => {
-            try {
-                const response = await axios.get(`${api_url}/api/frontend/settings/list` , {} , lang);
-                if (response.data.status === "success") {
-                    setSettings(response.data.data);
-                }
-            } catch (error) {
-                console.error("Error fetching settings:", error);
-            }
-        };
-
-        fetchSettings();
-    }, []);
+    const { data: settings, loading, error } = useFetch("api/frontend/settings/list", {}, lang);
 
     useEffect(() => {
-        i18n.changeLanguage(lang);
-    }, [lang]);
+        const storedLang = localStorage.getItem("language") || "ar";
+        if (i18n.language !== storedLang) {
+            i18n.changeLanguage(storedLang).then(() => {
+                setLang(storedLang);
+            });
+        } else {
+            setLang(storedLang);
+        }
+    }, [i18n.language]);
 
+    // Define the changeLanguage function
     const changeLanguage = () => {
-        const newLang = lang === "en" ? "ar" : "en";
-        setLang(newLang);
-        i18n.changeLanguage(newLang);
-        localStorage.setItem("language", newLang);
+        const newLang = lang === "en" ? "ar" : "en"; // Toggle language
+        setLang(newLang); // Update the state
+        i18n.changeLanguage(newLang); // Change the language in i18n
+        localStorage.setItem("language", newLang); // Save the language choice in localStorage
     };
+
+    if (loading) return <div>Loading...</div>;
+    if (error) return <div>Error: {error}</div>;
 
     return (
         <div className="bg-text-primary text-white py-5xl px-4 font-bold">
@@ -104,6 +101,7 @@ const Footer = () => {
                             </ul>
                         </div>
 
+                        {/* Conditional rendering of settings data */}
                         {settings && (
                             <div className="space-y-4 mb-4">
                                 {settings.email && (
@@ -158,7 +156,6 @@ const Footer = () => {
                                 </div>
                             </div>
                         )}
-
                     </div>
                 </div>
             </Container>
