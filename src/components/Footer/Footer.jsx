@@ -18,7 +18,7 @@ const Footer = () => {
     useEffect(() => {
         const fetchSettings = async () => {
             try {
-                const response = await axios.get(`${api_url}/api/frontend/settings/list`);
+                const response = await axios.get(`${api_url}/api/frontend/settings/list` , {} , lang);
                 if (response.data.status === "success") {
                     setSettings(response.data.data);
                 }
