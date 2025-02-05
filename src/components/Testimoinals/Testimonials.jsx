@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Autoplay } from "swiper/modules";
 import "swiper/css";
@@ -15,6 +15,8 @@ const Testimonials = () => {
 
     const { data: testimonials, loading, error } = useFetch("api/frontend/reviews", {}, lang);
 
+    const swiperRef = useRef(null); // Swiper ref for manual control
+
     useEffect(() => {
         const storedLang = localStorage.getItem("language") || "ar";
         if (i18n.language !== storedLang) {
@@ -30,6 +32,9 @@ const Testimonials = () => {
     useEffect(() => {
         if (isLangLoaded) {
             setLang(i18n.language);
+            if (swiperRef.current) {
+                swiperRef.current.swiper.update(); // Update swiper when language changes
+            }
         }
     }, [i18n.language, isLangLoaded]);
 
@@ -57,6 +62,7 @@ const Testimonials = () => {
                 </h2>
                 <div className="container mx-auto">
                     <Swiper
+                        ref={swiperRef} // Assign the ref here
                         spaceBetween={30}
                         loop={true}
                         modules={[Navigation, Pagination, Autoplay]}
@@ -65,6 +71,7 @@ const Testimonials = () => {
                             768: { slidesPerView: 2 },
                             1024: { slidesPerView: 3 }
                         }}
+                        key={lang} // Change the key to reset the Swiper on language change
                     >
                         {testimonials.map((testimonial) => (
                             <SwiperSlide key={testimonial.id}>
