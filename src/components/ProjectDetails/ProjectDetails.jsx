@@ -104,39 +104,50 @@ const ProjectDetails = () => {
 
                 {/* Project Details */}
                 <div className="py-10">
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-                        {/* Description Section */}
-                        <div>
-                            <h2 className="text-2xl font-bold text-gray-800 mb-4">وصف المشروع</h2>
-                            <p className="text-lg text-gray-700 leading-relaxed">
-                                {project.text}
-                            </p>
-                        </div>
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+        {/* وصف المشروع */}
+        <div>
+            <h2 className="text-2xl font-bold text-gray-800 mb-4">
+                {currentLang === "ar" ? "وصف المشروع" : "Project Description"}
+            </h2>
+            <p className="text-lg text-gray-700 leading-relaxed">
+                {project.text}
+            </p>
+        </div>
 
-                        {/* Right Section */}
-                        <div className="rounded-lg">
-                            <h2 className="text-2xl font-bold text-gray-800 mb-6">تفاصيل المشروع</h2>
-                            <ul className="grid grid-cols-4 md:grid-cols-2 sm:grid-cols-1 space-x-6 text-lg">
-                                <li className="flex flex-col mb-4">
-                                    <span className="font-bold text-text-primary">الموقع</span>
-                                    {project.address || "غير متوفر"}
-                                </li>
-                                <li className="flex flex-col mb-4">
-                                    <span className="font-bold text-text-primary">نطاق العمل</span>
-                                    {project.type || "غير متوفر"}
-                                </li>
-                                <li className="flex flex-col mb-4">
-                                    <span className="font-bold text-text-primary">الحالة</span>
-                                    {project.deliveredStatus === 1
-                                        ? "تم التسليم"
-                                        : project.deliveredStatus === 0
-                                            ? "لم يتم التسليم"
-                                            : "غير معروف"}
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
+        {/* تفاصيل المشروع */}
+        <div className="rounded-lg">
+            <h2 className="text-2xl font-bold text-gray-800 mb-6">
+                {currentLang === "ar" ? "تفاصيل المشروع" : "Project Details"}
+            </h2>
+            <ul className="grid grid-cols-4 md:grid-cols-2 sm:grid-cols-1 space-x-6 text-lg">
+                <li className="flex flex-col mb-4">
+                    <span className="font-bold text-text-primary">
+                        {currentLang === "ar" ? "الموقع" : "Location"}
+                    </span>
+                    {project.address || (currentLang === "ar" ? "غير متوفر" : "Not Available")}
+                </li>
+                <li className="flex flex-col mb-4">
+                    <span className="font-bold text-text-primary">
+                        {currentLang === "ar" ? "نطاق العمل" : "Scope of Work"}
+                    </span>
+                    {project.type || (currentLang === "ar" ? "غير متوفر" : "Not Available")}
+                </li>
+                <li className="flex flex-col mb-4">
+                    <span className="font-bold text-text-primary">
+                        {currentLang === "ar" ? "الحالة" : "Status"}
+                    </span>
+                    {project.deliveredStatus === 1
+                        ? (currentLang === "ar" ? "تم التسليم" : "Delivered")
+                        : project.deliveredStatus === 0
+                            ? (currentLang === "ar" ? "لم يتم التسليم" : "Not Delivered")
+                            : (currentLang === "ar" ? "غير معروف" : "Unknown")}
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
             </Container>
 
             {/* Footer Section */}
