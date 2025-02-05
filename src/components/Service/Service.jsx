@@ -40,7 +40,7 @@ const Service = () => {
                             transition={{ duration: 0.8, ease: "easeOut" }}
                         >
                             <motion.img
-                                src={service.image} // Using API image
+                                src={service.icon}
                                 alt={service.title}
                                 className="absolute inset-0 w-full h-full object-cover opacity-0 scale-90 transition-all duration-500 ease-in-out group-hover:opacity-100 group-hover:scale-110"
                             />
