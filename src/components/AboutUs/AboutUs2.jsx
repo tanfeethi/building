@@ -34,10 +34,10 @@ const AboutUs2 = () => {
                 viewport={{ once: true }}
             >
                 <div className="2xl:w-1/2">
-                    <h2 className="text-text-primary text-3xl me-8 font-bold mb-4 text-center">
+                    <h2 className="text-text-primary text-4xl me-8 font-bold mb-4 text-center">
                         {i18n.language === "ar" ? "من نحــــــن" : "About Us"}
                     </h2>
-                    <p className='mt-xl flex justify-center text-medium items-center'>
+                    <p className='mt-xl flex justify-center text-3xl items-center'>
                         {i18n.language === "ar" ? "في عالم البناء" : "In world construction"}
                         <span className='mx-4'>
                             <img src={Aboutlogo} alt="Aboutlogo" />
@@ -51,28 +51,28 @@ const AboutUs2 = () => {
                 data.map((section, index) => (
                     <motion.div
                         key={section.name}
-                        className={`flex flex-col 2xl:flex-row justify-between items-center sm:items-start md:items-start mb-8xl ${index % 2 === 0 ? "" : "2xl:flex-row-reverse"}`}
+                        className={`flex flex-col 2xl:flex-row justify-between items-center sm:items-start md:items-start mb-7xl ${index % 2 === 0 ? "" : "2xl:flex-row-reverse"}`}
                         initial={{ opacity: 0, x: 100 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         transition={{ duration: 1 }}
                         viewport={{ once: true, amount: 0.2 }}
                     >
-                        <div className="2xl:w-1/2">
+                        <div className="2xl:w-1/2 md:w-full sm:w-full">
                             <motion.img
                                 src={section.image}
                                 alt={section.title}
-                                className="w-full h-auto rounded-lg shadow-lg"
+                                className="contain w-max-[1264px] w-full 2xl:w-max-[1264px] xl:w-max-[1264px] lg:w-max-[664px] lg:h-[457px] md:w-max-[444px] md:h-[457px] sm:max-w-full sm:h-[357px] h-[557px] my-2xl mb-5xl"
                                 initial={{ scale: 0 }}
                                 whileInView={{ scale: 1 }}
                                 transition={{ duration: 0.8 }}
                             />
                         </div>
-                        <div className="2xl:w-1/2 my-xl">
-                            <h2 className="text-text-primary text-3xl mx-8 font-bold mb-4">
+                        <div className="2xl:w-1/2 my-xl md:w-full sm:w-full">
+                            <h2 className="text-text-primary text-4xl mx-8 font-bold mb-4">
                                 {section.title}
                             </h2>
                             <motion.p
-                                className="text-text-primary-dark mx-8"
+                                className="text-text-primary-dark mx-8 text-medium"
                                 initial={{ opacity: 0 }}
                                 whileInView={{ opacity: 1 }}
                                 transition={{ duration: 1 }}
