@@ -33,7 +33,6 @@ const TeamDetails = () => {
     return (
         <Container>
             {currentLang === "en" ?
-                // <div className='mt-[200px] my-5xl flex flex-row flex-wrap justify-between'>
                 <div className='mt-[200px] my-5xl grid grid-cols-3 gap-12 lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1'>
                     {data && Array.isArray(data) ? (
                         data.map((member, index) => (
@@ -84,7 +83,6 @@ const TeamDetails = () => {
                     )}
                 </div>
                 :
-                // <div className='mt-[200px] my-5xl flex flex-row flex-wrap justify-between'>
                 <div className='mt-[200px] my-5xl grid grid-cols-3 gap-12 lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1'>
                     {data && Array.isArray(data) ? (
                         data.map((member, index) => (
