@@ -44,10 +44,8 @@ const ProjectDetails = () => {
     return (
         <div>
             <Container>
-                {/* صورة الخلفية */}
-                <img src={ProjectDetail} className="w-full" alt="ProjectDetail" />
+                <img src={ProjectDetail} className="w-max-[1264px] w-full 2xl:w-max-[1264px] xl:w-max-[1264px] lg:w-max-[664px] lg:h-[457px] md:w-max-[444px] md:h-[457px] sm:max-w-full sm:h-[357px] h-[557px] my-2xl mb-5xl" alt="ProjectDetail" />
 
-                {/* 🔥 Breadcrumb المضاف 🔥 */}
                 <div className="py-4 text-lg text-gray-700">
                     <Link to="/" className="text-text-primary hover:underline">{currentLang === "ar" ? "الرئيسية" : "Home"}</Link>
                     <span className="mx-2">{'>'}</span>
