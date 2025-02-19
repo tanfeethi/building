@@ -88,7 +88,7 @@ const ContactUs = () => {
                     <form onSubmit={handleSubmit} className="space-y-6">
                         <div className="grid grid-cols-1 2xl:grid-cols-2 xl:grid-cols-2 gap-6 mb-xl">
                             <div className="flex flex-col">
-                                <label className="text-right text-text-primary mb-l">
+                                <label className="text-text-primary mb-l">
                                     {t("contact_us.email")}
                                 </label>
                                 <input
@@ -96,12 +96,12 @@ const ContactUs = () => {
                                     name="email"
                                     value={formData.email}
                                     onChange={handleInputChange}
-                                    className="border border-text-primary p-2 rounded-md w-full text-right bg-white text-black"
+                                    className="border border-text-primary p-2 rounded-md w-full bg-white text-black"
                                     required
                                 />
                             </div>
                             <div className="flex flex-col">
-                                <label className="text-right text-text-primary mb-l">
+                                <label className="text-text-primary mb-l">
                                     {t("contact_us.full_name")}
                                 </label>
                                 <input
@@ -109,7 +109,7 @@ const ContactUs = () => {
                                     name="name"
                                     value={formData.name}
                                     onChange={handleInputChange}
-                                    className="border border-text-primary p-2 rounded-md w-full text-right bg-white text-black"
+                                    className="border border-text-primary p-2 rounded-md w-full bg-white text-black"
                                     required
                                 />
                             </div>
@@ -117,7 +117,7 @@ const ContactUs = () => {
 
                         <div className="grid grid-cols-1 2xl:grid-cols-2 xl:grid-cols-2 gap-6 mb-xl">
                             <div className="flex flex-col">
-                                <label className="text-right text-text-primary mb-l">
+                                <label className="text-text-primary mb-l">
                                     {t("contact_us.subject")}
                                 </label>
                                 <input
@@ -125,12 +125,12 @@ const ContactUs = () => {
                                     name="subject"
                                     value={formData.subject}
                                     onChange={handleInputChange}
-                                    className="border border-text-primary p-2 rounded-md w-full text-right bg-white text-black"
+                                    className="border border-text-primary p-2 rounded-md w-full bg-white text-black"
                                     required
                                 />
                             </div>
                             <div className="flex flex-col">
-                                <label className="text-right text-text-primary mb-l">
+                                <label className="text-text-primary mb-l">
                                     {t("contact_us.phone")}
                                 </label>
                                 <input
@@ -138,27 +138,27 @@ const ContactUs = () => {
                                     name="phone"
                                     value={formData.phone}
                                     onChange={handleInputChange}
-                                    className="border border-text-primary p-2 rounded-md w-full text-right bg-white text-black"
+                                    className="border border-text-primary p-2 rounded-md w-full bg-white text-black"
                                     required
                                 />
                             </div>
                         </div>
 
                         <div className="flex flex-col mb-xl">
-                            <label className="text-right text-text-primary mb-l">
+                            <label className="text-text-primary mb-l">
                                 {t("contact_us.message")}
                             </label>
                             <textarea
                                 name="massage"
                                 value={formData.massage}
                                 onChange={handleInputChange}
-                                className="border border-text-primary p-2 rounded-md w-full text-right bg-white text-black"
+                                className="border border-text-primary p-2 rounded-md w-full bg-white text-black"
                                 rows="4"
                                 required
                             />
                         </div>
 
-                        <div className="flex justify-end">
+                        <div className={`flex ${i18n.language === "ar" ? "justify-end" : "justify-end"}`}>
                             <button type="submit" className="bg-text-primary text-white px-8 py-2 font-medium shadow-lg transition" disabled={loading}>
                                 {loading ? t("contact_us.sending") : t("contact_us.submit_button")}
                             </button>
@@ -205,7 +205,7 @@ const ContactUs = () => {
                                 <a
                                     className="text-text-primary p-2 rounded-full"
                                     rel="noopener noreferrer"
-                                    href={`https://wa.me/${settings.phones.phones[0]}`} // Using the first phone number for WhatsApp
+                                    href={`https://wa.me/${settings.phones.phones[0]}`}
                                     target="_blank"
                                 >
                                     <FaWhatsapp size={20} />
