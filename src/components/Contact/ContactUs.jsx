@@ -89,12 +89,12 @@ const ContactUs = () => {
                         <div className="grid grid-cols-1 2xl:grid-cols-2 xl:grid-cols-2 gap-6 mb-xl">
                             <div className="flex flex-col">
                                 <label className="text-text-primary mb-l">
-                                    {t("contact_us.email")}
+                                    {t("contact_us.full_name")}
                                 </label>
                                 <input
-                                    type="email"
-                                    name="email"
-                                    value={formData.email}
+                                    type="text"
+                                    name="name"
+                                    value={formData.name}
                                     onChange={handleInputChange}
                                     className="border border-text-primary p-2 rounded-md w-full bg-white text-black"
                                     required
@@ -102,12 +102,12 @@ const ContactUs = () => {
                             </div>
                             <div className="flex flex-col">
                                 <label className="text-text-primary mb-l">
-                                    {t("contact_us.full_name")}
+                                    {t("contact_us.email")}
                                 </label>
                                 <input
-                                    type="text"
-                                    name="name"
-                                    value={formData.name}
+                                    type="email"
+                                    name="email"
+                                    value={formData.email}
                                     onChange={handleInputChange}
                                     className="border border-text-primary p-2 rounded-md w-full bg-white text-black"
                                     required
