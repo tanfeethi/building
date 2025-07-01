@@ -64,7 +64,12 @@ const Timeline = () => {
                 throw new Error(response.data?.message || t("error_occurred"));
             }
         } catch (err) {
-            setError(err.response?.data?.message || err.message || t("error_occurred"));
+            const message =
+                err.response?.data?.data?.message ||
+                err.response?.data?.data?.error ||
+                err.message ||
+                t("error_occurred");
+            setError(message);
         } finally {
             setLoading(false);
         }
@@ -125,9 +130,8 @@ const Timeline = () => {
                                 <button
                                     key={time}
                                     onClick={() => handleTimeClick(time)}
-                                    className={`px-4 py-2 rounded-1xl ${
-                                        selectedTime === time ? "bg-text-dark text-white" : "bg-text-grey text-black"
-                                    }`}
+                                    className={`px-4 py-2 rounded-1xl ${selectedTime === time ? "bg-text-dark text-white" : "bg-text-grey text-black"
+                                        }`}
                                 >
                                     {time}
                                 </button>
