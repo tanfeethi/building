@@ -95,7 +95,7 @@ const Hero = () => {
                     exit={{ y: -50, opacity: 0 }}
                     transition={{ type: "spring", stiffness: 300 }}
                 >
-                    <h1 className="text-large font-bold text-text-primary">
+                    <h1 className="text-large font-bold text-text-primary mt-20">
                         {sliders[currentIndex]?.title}
                     </h1>
                     <p className="text-medium mt-4 text-text-black">

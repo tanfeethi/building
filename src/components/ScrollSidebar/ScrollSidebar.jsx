@@ -27,7 +27,7 @@ const ScrollSidebar = () => {
             style={{ zIndex: 1000 }}
         >
             {/* WhatsApp Icon */}
-            {settings?.phones?.phones?.length > 0 && (
+            {/* {settings?.phones?.phones?.length > 0 && (
                 <a
                     href={`https://wa.me/${settings.phones.phones[0]}`}
                     target="_blank"
@@ -36,7 +36,16 @@ const ScrollSidebar = () => {
                 >
                     <FaWhatsapp />
                 </a>
-            )}
+            )} */}
+
+            <a
+                href="https://wa.me/966552311322"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-text-primary text-2xl hover:text-text-primary-dark transition"
+            >
+                <FaWhatsapp />
+            </a>
 
             {/* Instagram Icon */}
             {settings?.social_media?.instagram && (
@@ -51,14 +60,21 @@ const ScrollSidebar = () => {
             )}
 
             {/* Email Icon */}
-            {settings?.phones?.phones?.length > 0 && (
+            {/* {settings?.phones?.phones?.length > 0 && (
                 <a
                     href={`mailto:${settings.phones.phones[0]}`} // استخدام أول رقم في phones كـ بريد إلكتروني
                     className="text-text-primary text-2xl hover:text-text-primary-dark transition"
                 >
                     <FaEnvelope />
                 </a>
-            )}
+            )} */}
+
+            <a
+                href="mailto:info@bru.com.sa"
+                className="text-text-primary text-2xl hover:text-text-primary-dark transition"
+            >
+                <FaEnvelope />
+            </a>
 
             {/* Twitter Icon */}
             {settings?.social_media?.x && (

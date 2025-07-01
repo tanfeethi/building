@@ -5,11 +5,12 @@ import { FaWhatsapp, FaInstagram } from "react-icons/fa";
 import { IoCallOutline } from "react-icons/io5";
 import { BsTwitterX } from "react-icons/bs";
 import { useTranslation } from "react-i18next";
-import { api_url } from "../../utils/api";  // تأكد من تعريف الـ api_url
+import { api_url } from "../../utils/api";
 
 const ContactUs = () => {
     const { t, i18n } = useTranslation();
-    const lang = i18n.language;
+    const [lang, setLang] = useState(localStorage.getItem("language") || "ar");
+
     const [formData, setFormData] = useState({
         email: "",
         name: "",
@@ -17,15 +18,26 @@ const ContactUs = () => {
         phone: "",
         massage: "",
     });
+
     const [loading, setLoading] = useState(false);
     const [responseMessage, setResponseMessage] = useState("");
-    const [settings, setSettings] = useState(null); // حفظ بيانات الإعدادات من الـ API
+    const [settings, setSettings] = useState(null);
 
     useEffect(() => {
-        // جلب بيانات الإعدادات من الـ API
+        const storedLang = localStorage.getItem("language") || "ar";
+        if (i18n.language !== storedLang) {
+            i18n.changeLanguage(storedLang).then(() => {
+                setLang(storedLang);
+            });
+        } else {
+            setLang(storedLang);
+        }
+    }, [i18n.language]);
+
+    useEffect(() => {
         const fetchSettings = async () => {
             try {
-                const response = await axios.get(`${api_url}/api/frontend/settings/list`);
+                const response = await axios.get(`${api_url}/api/frontend/settings/list?lang=${lang}`);
                 if (response.data.status === "success") {
                     setSettings(response.data.data);
                 }
@@ -35,7 +47,7 @@ const ContactUs = () => {
         };
 
         fetchSettings();
-    }, []);
+    }, [lang]);
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
@@ -158,8 +170,12 @@ const ContactUs = () => {
                             />
                         </div>
 
-                        <div className={`flex ${i18n.language === "ar" ? "justify-end" : "justify-end"}`}>
-                            <button type="submit" className="bg-text-primary text-white px-8 py-2 font-medium shadow-lg transition" disabled={loading}>
+                        <div className={`flex ${lang === "ar" ? "justify-end" : "justify-end"}`}>
+                            <button
+                                type="submit"
+                                className="bg-text-primary text-white px-8 py-2 font-medium shadow-lg transition"
+                                disabled={loading}
+                            >
                                 {loading ? t("contact_us.sending") : t("contact_us.submit_button")}
                             </button>
                         </div>
@@ -173,12 +189,12 @@ const ContactUs = () => {
                             {settings && settings.address && (
                                 <div className="flex items-center mb-4">
                                     <span className={lang === "ar" ? "mx-2 ml-0" : "ms-2"}>
-                                        <CiLocationOn className="me-2"/>
+                                        <CiLocationOn className="me-2" />
                                     </span>
                                     <p>{settings.address}</p>
                                 </div>
                             )}
-                            {settings && settings.email && (
+                            {/* {settings && settings.email && (
                                 <div className="flex items-center mb-4">
                                     <span className={lang === "ar" ? "mx-2 ml-0" : "ms-2"}>
                                         <CiMail className="me-2" />
@@ -187,8 +203,16 @@ const ContactUs = () => {
                                         {settings.email}
                                     </a>
                                 </div>
-                            )}
-                            {settings && settings.phones && settings.phones.phones.map((phone, index) => (
+                            )} */}
+                            <div className="flex items-center mb-4">
+                                <span className={lang === "ar" ? "mx-2 ml-0" : "ms-2"}>
+                                    <CiMail className="me-2" />
+                                </span>
+                                <a href="mailto:info@bru.com.sa" className="hover:underline">
+                                    info@bru.com.sa
+                                </a>
+                            </div>
+                            {/* {settings && settings.phones && settings.phones.phones.map((phone, index) => (
                                 <div key={index} className="flex items-center mb-4">
                                     <span className={lang === "ar" ? "mx-2 ml-0" : "ms-2"}>
                                         <IoCallOutline className="me-2" />
@@ -197,11 +221,19 @@ const ContactUs = () => {
                                         {phone}
                                     </a>
                                 </div>
-                            ))}
+                            ))} */}
+                            <div className="flex items-center mb-4">
+                                <span className={lang === "ar" ? "mx-2 ml-0" : "ms-2"}>
+                                    <IoCallOutline className="me-2" />
+                                </span>
+                                <a href="tel:+966552311322" className="hover:underline">
+                                    <span dir="ltr">+966 552311322</span>
+                                </a>
+                            </div>
                         </div>
 
                         <div className="flex">
-                            {settings?.phones?.phones?.length > 0 && (
+                            {/* {settings?.phones?.phones?.length > 0 && (
                                 <a
                                     className="text-text-primary p-2 rounded-full"
                                     rel="noopener noreferrer"
@@ -210,7 +242,15 @@ const ContactUs = () => {
                                 >
                                     <FaWhatsapp size={20} />
                                 </a>
-                            )}
+                            )} */}
+                            <a
+                                className="text-text-primary p-2 rounded-full"
+                                rel="noopener noreferrer"
+                                href="https://wa.me/966552311322"
+                                target="_blank"
+                            >
+                                <FaWhatsapp size={20} />
+                            </a>
                             {settings?.social_media?.instagram && (
                                 <a href={settings.social_media.instagram} rel="noopener noreferrer" target="_blank" className="text-text-primary p-2 rounded-full">
                                     <FaInstagram size={20} />

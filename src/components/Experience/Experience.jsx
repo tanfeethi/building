@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import servicesPhoto1 from "../../assets/servicesPhoto1.png";
 import Container from "../Container/Container";
@@ -7,13 +7,15 @@ import { motion } from "framer-motion";
 const ExperienceSection = () => {
     const { t, i18n } = useTranslation();
     const currentLang = i18n.language;
+    const [experiences, setExperiences] = useState([]);
 
-    const [experiences, setExperiences] = useState(
-        t("experience.stats", { returnObjects: true }).map((exp) => ({
+    useEffect(() => {
+        const translatedStats = t("experience.stats", { returnObjects: true }).map((exp) => ({
             ...exp,
             image: servicesPhoto1,
-        }))
-    );
+        }));
+        setExperiences(translatedStats);
+    }, [i18n.language]);
 
     const handleClick = (index) => {
         if (index === 0) return;
@@ -67,7 +69,7 @@ const ExperienceSection = () => {
                             <div className="relative z-10 bg-text-dark opacity-80 w-full h-full flex items-center justify-center flex-col">
                                 <p className="text-4xl font-bold mx-5xl">{item.text}</p>
                                 {item.description && (
-                                    <p className="text-lg mt-2 mx-10">{currentLang === "ar" ? "أنشطة ومجالات" : "Activities & Fields"}</p>
+                                    <p className="text-lg mt-2 mx-10">{item.description}</p>
                                 )}
                             </div>
                         </motion.div>

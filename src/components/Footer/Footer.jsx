@@ -6,9 +6,9 @@ import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import Container from "../Container/Container";
 import logo2 from "../../assets/logo2.png";
-import { api_url } from "../../utils/api";
 import { CiMail } from "react-icons/ci";
-import useFetch from "../../hooks/UseFetch"; // Import useFetch hook
+import useFetch from "../../hooks/UseFetch"
+import { TbWorld } from "react-icons/tb";
 
 const Footer = () => {
     const { t, i18n } = useTranslation();
@@ -50,21 +50,21 @@ const Footer = () => {
                             <div className="grid grid-cols-1 2xl:grid-cols-2 xl:grid-cols-2 lg:grid-cols-2 gap-6 mb-xl">
                                 <div>
                                     <label className="block mb-l">{t("footer.name")}</label>
-                                    <input type="text" className="w-full p-3 rounded bg-transparent border border-text-white text-text-primary" />
+                                    <input type="text" className="w-full p-3 rounded bg-transparent border border-text-white text-text-white" />
                                 </div>
                                 <div>
                                     <label className="block mb-l">{t("footer.email")}</label>
-                                    <input type="email" className="w-full p-3 rounded bg-transparent border border-text-white text-text-primary" />
+                                    <input type="email" className="w-full p-3 rounded bg-transparent border border-text-white text-text-white" />
                                 </div>
                             </div>
                             <div className="grid grid-cols-1 2xl:grid-cols-2 xl:grid-cols-2 lg:grid-cols-2 gap-6 mb-xl">
                                 <div>
                                     <label className="block mb-l">{t("footer.phone")}</label>
-                                    <input type="text" className="w-full p-3 rounded bg-transparent border border-text-white text-text-primary" />
+                                    <input type="text" className="w-full p-3 rounded bg-transparent border border-text-white text-text-white" />
                                 </div>
                                 <div>
                                     <label className="block mb-l">{t("footer.message_subject")}</label>
-                                    <input type="text" className="w-full p-3 rounded bg-transparent border border-text-white text-text-primary" />
+                                    <input type="text" className="w-full p-3 rounded bg-transparent border border-text-white text-text-white" />
                                 </div>
                             </div>
                             <div className="mb-xl">
@@ -101,15 +101,31 @@ const Footer = () => {
                             </ul>
                         </div>
 
+                        <div className="mb-4 text-justify">
+                            <p>{i18n.language === "ar" ? "اتصل بنا الآن لتحصل على أفضل عرض سعر لمشروعك"
+                                :
+                                "Call Us Now to take the best price offer for your project"
+                            }</p>
+                        </div>
+
                         {/* Conditional rendering of settings data */}
                         {settings && (
                             <div className="space-y-4 mb-4">
-                                {settings.email && (
+                                {/* {settings.email && (
                                     <div className={`flex items-center gap-x-2`}>
                                         <CiMail className="w-5 h-5" />
                                         <a href={`mailto:${settings.email}`} className="hover:underline">{settings.email}</a>
                                     </div>
-                                )}
+                                )} */}
+                                <div className="flex items-center gap-x-2">
+                                    <CiMail className="w-5 h-5" />
+                                    <a href="mailto:info@bru.com.sa" className="hover:underline">info@bru.com.sa</a>
+                                </div>
+
+                                <div className="flex items-center gap-x-2">
+                                    <TbWorld className="w-5 h-5" />
+                                    <a href="https://www.bru.com.sa/" className="hover:underline">bru.com.sa</a>
+                                </div>
 
                                 {settings.address && (
                                     <div className={`flex items-center gap-x-2`}>
@@ -118,16 +134,23 @@ const Footer = () => {
                                     </div>
                                 )}
 
-                                {settings.phones?.phones?.map((phone, index) => (
+                                {/* {settings.phones?.phones?.map((phone, index) => (
                                     <div key={index} className={`flex items-center gap-x-2`}>
                                         <FaPhoneAlt className="w-5 h-5" />
                                         <a href={`tel:${phone}`} className="hover:underline">{phone}</a>
                                     </div>
-                                ))}
+                                ))} */}
+
+                                <div className="flex items-center gap-x-2">
+                                    <FaPhoneAlt className="w-5 h-5" />
+                                    <a href="tel:+966552311322" className="hover:underline">
+                                        <span dir="ltr">+966 552311322</span>
+                                    </a>
+                                </div>
 
                                 {/* Social Media Links */}
                                 <div className="flex space-x-4 rtl:space-x-reverse mt-4">
-                                    {settings?.phones?.phones?.length > 0 && (
+                                    {/* {settings?.phones?.phones?.length > 0 && (
                                         <a
                                             href={`https://wa.me/${settings.phones.phones[0]}`}
                                             target="_blank"
@@ -135,7 +158,15 @@ const Footer = () => {
                                         >
                                             <FaWhatsapp className="w-6 h-6 cursor-pointer" />
                                         </a>
-                                    )}
+                                    )} */}
+
+                                    <a
+                                        href="https://wa.me/966552311322"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                    >
+                                        <FaWhatsapp className="w-6 h-6 cursor-pointer" />
+                                    </a>
 
                                     {settings.social_media?.facebook && (
                                         <a href={settings.social_media.facebook} target="_blank" rel="noopener noreferrer">
