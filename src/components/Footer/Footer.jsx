@@ -130,7 +130,10 @@ const Footer = () => {
                                 {settings.address && (
                                     <div className={`flex items-center gap-x-2`}>
                                         <MdLocationOn className="w-5 h-5" />
-                                        <span>{settings.address}</span>
+                                        <div>
+                                            <p>المكتب الرئيسي – جدة، المملكة العربية السعودية</p>
+                                            <span>{settings.address}</span>
+                                        </div>
                                     </div>
                                 )}
 
