@@ -1,27 +1,21 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import { CiLocationOn, CiMail } from "react-icons/ci";
 import { FaWhatsapp, FaInstagram } from "react-icons/fa";
 import { IoCallOutline } from "react-icons/io5";
 import { BsTwitterX } from "react-icons/bs";
 import { useTranslation } from "react-i18next";
 import { api_url } from "../../utils/api";
+import useFetch from "../../hooks/UseFetch";
 
 const ContactUs = () => {
     const { t, i18n } = useTranslation();
     const [lang, setLang] = useState(localStorage.getItem("language") || "ar");
 
-    const [formData, setFormData] = useState({
-        email: "",
-        name: "",
-        subject: "",
-        phone: "",
-        massage: "",
-    });
-
-    const [loading, setLoading] = useState(false);
-    const [responseMessage, setResponseMessage] = useState("");
-    const [settings, setSettings] = useState(null);
+    const {
+        data: settings,
+        loading: settingsLoading,
+        error: settingsError,
+    } = useFetch("api/frontend/settings/list", {}, lang);
 
     useEffect(() => {
         const storedLang = localStorage.getItem("language") || "ar";
@@ -34,20 +28,16 @@ const ContactUs = () => {
         }
     }, [i18n.language]);
 
-    useEffect(() => {
-        const fetchSettings = async () => {
-            try {
-                const response = await axios.get(`${api_url}/api/frontend/settings/list?lang=${lang}`);
-                if (response.data.status === "success") {
-                    setSettings(response.data.data);
-                }
-            } catch (error) {
-                console.error("Error fetching settings:", error);
-            }
-        };
+    const [formData, setFormData] = useState({
+        email: "",
+        name: "",
+        subject: "",
+        phone: "",
+        massage: "",
+    });
 
-        fetchSettings();
-    }, [lang]);
+    const [loading, setLoading] = useState(false);
+    const [responseMessage, setResponseMessage] = useState("");
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
@@ -63,14 +53,16 @@ const ContactUs = () => {
         setResponseMessage("");
 
         try {
-            const response = await axios.post(`${api_url}/api/contactUs/sendMail`, formData, {
-                headers: {
-                    "Content-Type": "application/json",
-                },
+            const response = await fetch(`${api_url}/api/contactUs/sendMail`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(formData),
             });
 
-            if (response.data?.status === "success") {
-                setResponseMessage("Message sent successfully");
+            const result = await response.json();
+
+            if (result.status === "success") {
+                setResponseMessage(t("contact_us.success_message"));
                 setFormData({
                     email: "",
                     name: "",
@@ -79,10 +71,10 @@ const ContactUs = () => {
                     massage: "",
                 });
             } else {
-                setResponseMessage(response.data?.message || "Failed to send message.");
+                setResponseMessage(result.message || t("contact_us.error_message"));
             }
         } catch (error) {
-            setResponseMessage("Error sending message.");
+            setResponseMessage(t("contact_us.error_message"));
             console.error("Error:", error);
         } finally {
             setLoading(false);
@@ -100,9 +92,7 @@ const ContactUs = () => {
                     <form onSubmit={handleSubmit} className="space-y-6">
                         <div className="grid grid-cols-1 2xl:grid-cols-2 xl:grid-cols-2 gap-6 mb-xl">
                             <div className="flex flex-col">
-                                <label className="text-text-primary mb-l">
-                                    {t("contact_us.full_name")}
-                                </label>
+                                <label className="text-text-primary mb-l">{t("contact_us.full_name")}</label>
                                 <input
                                     type="text"
                                     name="name"
@@ -113,9 +103,7 @@ const ContactUs = () => {
                                 />
                             </div>
                             <div className="flex flex-col">
-                                <label className="text-text-primary mb-l">
-                                    {t("contact_us.email")}
-                                </label>
+                                <label className="text-text-primary mb-l">{t("contact_us.email")}</label>
                                 <input
                                     type="email"
                                     name="email"
@@ -129,9 +117,7 @@ const ContactUs = () => {
 
                         <div className="grid grid-cols-1 2xl:grid-cols-2 xl:grid-cols-2 gap-6 mb-xl">
                             <div className="flex flex-col">
-                                <label className="text-text-primary mb-l">
-                                    {t("contact_us.subject")}
-                                </label>
+                                <label className="text-text-primary mb-l">{t("contact_us.subject")}</label>
                                 <input
                                     type="text"
                                     name="subject"
@@ -142,9 +128,7 @@ const ContactUs = () => {
                                 />
                             </div>
                             <div className="flex flex-col">
-                                <label className="text-text-primary mb-l">
-                                    {t("contact_us.phone")}
-                                </label>
+                                <label className="text-text-primary mb-l">{t("contact_us.phone")}</label>
                                 <input
                                     type="text"
                                     name="phone"
@@ -157,9 +141,7 @@ const ContactUs = () => {
                         </div>
 
                         <div className="flex flex-col mb-xl">
-                            <label className="text-text-primary mb-l">
-                                {t("contact_us.message")}
-                            </label>
+                            <label className="text-text-primary mb-l">{t("contact_us.message")}</label>
                             <textarea
                                 name="massage"
                                 value={formData.massage}
@@ -182,28 +164,28 @@ const ContactUs = () => {
                     </form>
 
                     {loading && <p>{t("contact_us.loadingMessage")}</p>}
-                    {responseMessage && <p className="text-green-500">{responseMessage}</p>}
+                    {responseMessage && (
+                        <p className={responseMessage.includes("success") ? "text-green-500" : "text-red-500"}>
+                            {responseMessage}
+                        </p>
+                    )}
 
                     <div className="mt-8 text-text-primary flex flex-wrap justify-between">
                         <div>
-                            {settings && settings.address && (
-                                <div className="flex items-center mb-4">
-                                    <span className={lang === "ar" ? "mx-2 ml-0" : "ms-2"}>
-                                        <CiLocationOn className="me-2" />
-                                    </span>
-                                    <p>{settings.address}</p>
+                            {settings?.address && (
+                                <div className="flex items-center mb-4 gap-x-2">
+                                    <CiLocationOn className="w-5 h-5" />
+                                    <div>
+                                        <p>
+                                            {i18n.language === "ar"
+                                                ? "المكتب الرئيسي – جدة، المملكة العربية السعودية"
+                                                : "Head Office – Jeddah, Kingdom of Saudi Arabia"}
+                                        </p>
+                                        <span>{settings.address}</span>
+                                    </div>
                                 </div>
                             )}
-                            {/* {settings && settings.email && (
-                                <div className="flex items-center mb-4">
-                                    <span className={lang === "ar" ? "mx-2 ml-0" : "ms-2"}>
-                                        <CiMail className="me-2" />
-                                    </span>
-                                    <a href={`mailto:${settings.email}`} className="hover:underline">
-                                        {settings.email}
-                                    </a>
-                                </div>
-                            )} */}
+
                             <div className="flex items-center mb-4">
                                 <span className={lang === "ar" ? "mx-2 ml-0" : "ms-2"}>
                                     <CiMail className="me-2" />
@@ -212,16 +194,7 @@ const ContactUs = () => {
                                     info@bru.com.sa
                                 </a>
                             </div>
-                            {/* {settings && settings.phones && settings.phones.phones.map((phone, index) => (
-                                <div key={index} className="flex items-center mb-4">
-                                    <span className={lang === "ar" ? "mx-2 ml-0" : "ms-2"}>
-                                        <IoCallOutline className="me-2" />
-                                    </span>
-                                    <a href={`tel:${phone}`} className="hover:underline">
-                                        {phone}
-                                    </a>
-                                </div>
-                            ))} */}
+
                             <div className="flex items-center mb-4">
                                 <span className={lang === "ar" ? "mx-2 ml-0" : "ms-2"}>
                                     <IoCallOutline className="me-2" />
@@ -233,16 +206,6 @@ const ContactUs = () => {
                         </div>
 
                         <div className="flex">
-                            {/* {settings?.phones?.phones?.length > 0 && (
-                                <a
-                                    className="text-text-primary p-2 rounded-full"
-                                    rel="noopener noreferrer"
-                                    href={`https://wa.me/${settings.phones.phones[0]}`}
-                                    target="_blank"
-                                >
-                                    <FaWhatsapp size={20} />
-                                </a>
-                            )} */}
                             <a
                                 className="text-text-primary p-2 rounded-full"
                                 rel="noopener noreferrer"
@@ -274,6 +237,7 @@ const ContactUs = () => {
                         frameBorder="0"
                         allowFullScreen
                         className="rounded-md shadow-md"
+                        title="Google Map"
                     />
                 </div>
             </div>

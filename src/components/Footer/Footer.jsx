@@ -131,7 +131,11 @@ const Footer = () => {
                                     <div className={`flex items-center gap-x-2`}>
                                         <MdLocationOn className="w-5 h-5" />
                                         <div>
-                                            <p>المكتب الرئيسي – جدة، المملكة العربية السعودية</p>
+                                            <p>
+                                                {i18n.language === "ar"
+                                                    ? "المكتب الرئيسي – جدة، المملكة العربية السعودية"
+                                                    : "Head Office – Jeddah, Kingdom of Saudi Arabia"}
+                                            </p>
                                             <span>{settings.address}</span>
                                         </div>
                                     </div>
