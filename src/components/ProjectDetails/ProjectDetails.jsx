@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import useFetch from "../../hooks/UseFetch";
 import Footer from "../Footer/Footer";
 import Container from "../Container/Container";
-import ProjectDetail from '../../assets/ProjectDetails.jpg';
+// import ProjectDetail from '../../assets/ProjectDetails.jpg';
 import { useTranslation } from "react-i18next";
 
 const ProjectDetails = () => {
@@ -44,7 +44,18 @@ const ProjectDetails = () => {
     return (
         <div>
             <Container>
-                <img src={ProjectDetail} className="w-max-[1264px] w-full 2xl:w-max-[1264px] xl:w-max-[1264px] lg:w-max-[664px] lg:h-[457px] md:w-max-[444px] md:h-[457px] sm:max-w-full sm:h-[357px] h-[557px] my-2xl mb-5xl" alt="ProjectDetail" />
+                {/* <img src={ProjectDetail} className="w-max-[1264px] w-full 2xl:w-max-[1264px] xl:w-max-[1264px] lg:w-max-[664px] lg:h-[457px] md:w-max-[444px] md:h-[457px] sm:max-w-full sm:h-[357px] h-[557px] my-2xl mb-5xl" alt="ProjectDetail" /> */}
+                {project.images?.[0]?.image ? (
+                    <img
+                        src={project.images[0].image}
+                        className="w-full mt-24 2xl:w-max-[1264px] xl:w-max-[1264px] lg:w-max-[664px] lg:h-[457px] md:w-max-[444px] md:h-[457px] sm:max-w-full sm:h-[357px] h-[557px] my-2xl mb-5xl object-cover rounded-lg"
+                        alt={project.title}
+                    />
+                ) : (
+                    <div className="w-full h-[557px] flex items-center justify-center bg-gray-200 text-gray-600 my-2xl mb-5xl">
+                        {currentLang === "ar" ? "لا توجد صورة متاحة" : "No image available"}
+                    </div>
+                )}
 
                 <div className="py-4 text-lg text-gray-700">
                     <Link to="/" className="text-text-primary hover:underline">{currentLang === "ar" ? "الرئيسية" : "Home"}</Link>
@@ -61,7 +72,7 @@ const ProjectDetails = () => {
                 </div>
 
                 {/* سلايدر الصور */}
-                <div className="relative w-full md:w-[842px] mx-auto h-[500px] overflow-hidden rounded-2xl shadow-lg mb-10">
+                <div className="relative w-full md:w-[842px] mx-auto overflow-hidden rounded-2xl mb-10">
                     {project.images.length > 0 ? (
                         <img
                             src={project.images[currentIndex]?.image || ""}
