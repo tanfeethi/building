@@ -37,7 +37,7 @@ const AboutUs2 = () => {
                     <h2 className="text-text-primary text-4xl me-8 font-bold mb-4 text-center">
                         {i18n.language === "ar" ? "من نحــــــن" : "About Us"}
                     </h2>
-                    <p className='mt-xl flex justify-center text-3xl items-center'>
+                    <p className='mt-xl flex flex-wrap justify-center text-xl md:text-3xl items-center'>
                         {i18n.language === "ar" ? "في عالم البناء" : "In world construction"}
                         <span className='mx-4'>
                             <img src={Aboutlogo} alt="Aboutlogo" />

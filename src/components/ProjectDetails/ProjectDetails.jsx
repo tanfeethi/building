@@ -45,7 +45,7 @@ const ProjectDetails = () => {
         <div>
             <Container>
                 {/* <img src={ProjectDetail} className="w-max-[1264px] w-full 2xl:w-max-[1264px] xl:w-max-[1264px] lg:w-max-[664px] lg:h-[457px] md:w-max-[444px] md:h-[457px] sm:max-w-full sm:h-[357px] h-[557px] my-2xl mb-5xl" alt="ProjectDetail" /> */}
-                {project.images?.[0]?.image ? (
+                {/* {project.images?.[0]?.image ? (
                     <img
                         src={project.images[0].image}
                         className="w-full mt-24 2xl:w-max-[1264px] xl:w-max-[1264px] lg:w-max-[664px] lg:h-[457px] md:w-max-[444px] md:h-[457px] sm:max-w-full sm:h-[357px] h-[557px] my-2xl mb-5xl object-cover rounded-lg"
@@ -55,9 +55,9 @@ const ProjectDetails = () => {
                     <div className="w-full h-[557px] flex items-center justify-center bg-gray-200 text-gray-600 my-2xl mb-5xl">
                         {currentLang === "ar" ? "لا توجد صورة متاحة" : "No image available"}
                     </div>
-                )}
+                )} */}
 
-                <div className="py-4 text-lg text-gray-700">
+                <div className="py-12 text-lg text-gray-700">
                     <Link to="/" className="text-text-primary hover:underline">{currentLang === "ar" ? "الرئيسية" : "Home"}</Link>
                     <span className="mx-2">{'>'}</span>
                     <Link to="/projects" className="text-text-primary hover:underline">{currentLang === "ar" ? "أعمالنا" : "Our Projects"}</Link>

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Container from "../Container/Container";
 import useFetch from "../../hooks/UseFetch";
@@ -51,7 +51,7 @@ const Hero = () => {
     }
 
     return (
-        <div className="w-full my-5 flex flex-col 2xl:flex-row xl:flex-row items-center lg:items-start justify-center">
+        <div className="w-full my-5 flex flex-col 2xl:flex-row xl:flex-row items-center lg:items-start justify-center mt-28">
             <div className="relative w-full sm:w-[80%] md:w-[70%] xl:w-[50%] h-[50vh] sm:h-[40vh] overflow-hidden">
                 <AnimatePresence mode="wait">
                     <motion.div
@@ -69,7 +69,6 @@ const Hero = () => {
                     </motion.div>
                 </AnimatePresence>
 
-                {/* Navigation Buttons */}
                 <div className={`absolute ${currentLang === "ar" ? "bottom-0 right-0" : "bottom-0 left-0"} flex flex-col`}>
                     <button
                         onClick={prevSlide}
@@ -86,7 +85,6 @@ const Hero = () => {
                 </div>
             </div>
 
-            {/* Text Content */}
             <Container>
                 <motion.div
                     className="m-xl"

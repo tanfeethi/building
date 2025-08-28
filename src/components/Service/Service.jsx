@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import Container from "../Container/Container";
@@ -42,16 +42,16 @@ const Service = () => {
                             <motion.img
                                 src={service.icon}
                                 alt={service.title}
-                                className="absolute inset-0 w-full h-full object-cover opacity-0 scale-90 transition-all duration-500 ease-in-out group-hover:opacity-100 group-hover:scale-110"
+                                className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                             />
 
-                            <div className="absolute inset-0 w-full h-full bg-text-dark opacity-0 group-hover:opacity-50 transition-all duration-500"></div>
+                            <div className="absolute inset-0 w-full h-full bg-text-dark opacity-0 group-hover:opacity-50 transition-opacity duration-500 z-10"></div>
 
-                            <motion.div className="absolute bottom-4 right-4 left-4">
-                                <h4 className="w-fit text-text-primary mb-xl text-xl font-bold border-b-4 border-text-primary transition-all duration-300 group-hover:text-text-white group-hover:border-text-white">
+                            <div className="absolute bottom-8 right-4 left-4 z-20">
+                                <h4 className="w-fit text-text-primary text-xl font-bold border-b-4 border-text-primary transition-all duration-300 group-hover:text-white group-hover:border-white">
                                     {service.title}
                                 </h4>
-                            </motion.div>
+                            </div>
                         </motion.div>
                     ))}
             </div>
