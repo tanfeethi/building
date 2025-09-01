@@ -20,14 +20,14 @@ const OurTeam = () => {
     return (
         <div className="relative bg-text-primary flex items-center justify-center px-4 sm:px-6 lg:px-12 xl:px-20 2xl:px-24 py-20 sm:py-16 overflow-hidden ">
             {/* Background columns - hidden on mobile and tablet */}
-            <div className={`absolute hidden xl:flex ${currentLang === "ar" ? "right-12 xl:right-24" : "left-12 xl:left-24"} bottom-0 w-full h-64 lg:h-80 xl:h-96 gap-2 lg:gap-3 opacity-40`}>
+            <div className={`absolute hidden 2xl:flex xl:flex ${currentLang === "ar" ? "right-12 xl:right-24 2xl:right-24" : "left-12 xl:left-24"} bottom-0 w-full h-64 lg:h-80 xl:h-96 gap-2 lg:gap-3 opacity-40`}>
                 <div className="w-8 lg:w-10 xl:w-12 h-full bg-text-primary-dark" style={{ clipPath: "polygon(0 0, 100% 10%, 100% 100%, 0 100%)" }}></div>
                 <div className="w-8 lg:w-10 xl:w-12 h-full bg-text-primary-dark" style={{ clipPath: "polygon(0 0, 100% 10%, 100% 100%, 0 100%)" }}></div>
                 <div className="w-8 lg:w-10 xl:w-12 h-full bg-text-primary-dark" style={{ clipPath: "polygon(0 0, 100% 10%, 100% 100%, 0 100%)" }}></div>
             </div>
 
             <Container>
-                <div className={`flex flex-col xl:flex-row lg:flex-row items-center justify-center lg:items-start my-8 sm:my-12 lg:my-16 xl:my-20 w-full gap-8 sm:gap-10 lg:gap-12 xl:gap-16 ${currentLang === "ar" ? "xl:mr-32 2xl:mr-48" : "xl:ml-32 2xl:ml-48"}`}>
+                <div className={`flex flex-col 2xl:flex-row xl:flex-row lg:flex-row items-center justify-center lg:items-start my-8 sm:my-12 lg:my-16 xl:my-20 w-full gap-8 sm:gap-10 lg:gap-12 xl:gap-16 ${currentLang === "ar" ? "xl:mr-32 2xl:mr-0" : "xl:ml-32 2xl:ml-0"}`}>
                     
                     {/* Image and title section */}
                     <div className="relative flex flex-col items-center lg:items-start w-full lg:w-auto lg:flex-shrink-0">
