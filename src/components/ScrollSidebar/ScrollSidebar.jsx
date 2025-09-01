@@ -3,16 +3,16 @@ import { FaWhatsapp, FaInstagram, FaEnvelope } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import axios from "axios";
 import { api_url } from "../../utils/api";
+import { MdLocationOn } from "react-icons/md";
 
 const ScrollSidebar = () => {
     const [settings, setSettings] = useState(null);
 
     useEffect(() => {
-        // جلب البيانات من الـ API
         const fetchSettings = async () => {
             try {
                 const response = await axios.get(`${api_url}/api/frontend/settings/list`);
-                setSettings(response.data.data); // تخزين البيانات القادمة في الـ state
+                setSettings(response.data.data);
             } catch (error) {
                 console.error("Error fetching settings:", error);
             }
@@ -26,17 +26,6 @@ const ScrollSidebar = () => {
             className="fixed top-1/2 right-4 transform -translate-y-1/2 flex flex-col space-y-4 bg-white shadow-lg rounded-2xl p-3"
             style={{ zIndex: 1000 }}
         >
-            {/* WhatsApp Icon */}
-            {/* {settings?.phones?.phones?.length > 0 && (
-                <a
-                    href={`https://wa.me/${settings.phones.phones[0]}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-text-primary text-2xl hover:text-text-primary-dark transition"
-                >
-                    <FaWhatsapp />
-                </a>
-            )} */}
 
             <a
                 href="https://wa.me/966552311322"
@@ -47,7 +36,6 @@ const ScrollSidebar = () => {
                 <FaWhatsapp />
             </a>
 
-            {/* Instagram Icon */}
             {settings?.social_media?.instagram && (
                 <a
                     href={settings.social_media.instagram}
@@ -59,16 +47,6 @@ const ScrollSidebar = () => {
                 </a>
             )}
 
-            {/* Email Icon */}
-            {/* {settings?.phones?.phones?.length > 0 && (
-                <a
-                    href={`mailto:${settings.phones.phones[0]}`} // استخدام أول رقم في phones كـ بريد إلكتروني
-                    className="text-text-primary text-2xl hover:text-text-primary-dark transition"
-                >
-                    <FaEnvelope />
-                </a>
-            )} */}
-
             <a
                 href="mailto:info@bru.com.sa"
                 className="text-text-primary text-2xl hover:text-text-primary-dark transition"
@@ -76,7 +54,15 @@ const ScrollSidebar = () => {
                 <FaEnvelope />
             </a>
 
-            {/* Twitter Icon */}
+            <a
+                href="https://maps.app.goo.gl/t21Ei34fmVAQgWLm7?g_st=iw"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-text-primary text-2xl hover:text-text-primary-dark transition"
+            >
+                <MdLocationOn />
+            </a>
+
             {settings?.social_media?.x && (
                 <a
                     href={settings.social_media.x}
